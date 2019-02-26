@@ -1,6 +1,9 @@
 [![Build Status](https://travis-ci.com/erkandem/swagccg-py2py.svg?token=EM8YQfR9wuLvQFQzBZ5o&branch=master)](https://travis-ci.com/erkandem/swagccg-py2py)
-![](https://img.shields.io/badge/License-MIT-blue.svg)
+
+![](https://img.shields.io/badge/License-BSD-blue.svg)
+
 ![](https://img.shields.io/badge/Python-3.6%20%7C%203.7%20-blue.svg)
+
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5f62dcb4a93c40e88cd01cc76425cccd)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=erkandem/swagccg-py2py&amp;utm_campaign=Badge_Grade)
 
 # swagccg-py2py
