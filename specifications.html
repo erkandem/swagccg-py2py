@@ -1,0 +1,374 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Specifications &mdash; swagccg py2py 2019 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Sample Client" href="sample_client.html" />
+    <link rel="prev" title="Design" href="design.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> swagccg py2py
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">swagccg-py2py</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Specifications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#query-strings">Query Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#path-parameters">path Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#request-body">Request Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-formdata-in-the-body">Using formData in the Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#header">header</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sample_client.html">Sample Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">swagccg py2py</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Specifications</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/specifications.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="specifications">
+<h1>Specifications<a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h1>
+<p>What can you expect the client code to do and what not?</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="15%" />
+<col width="17%" />
+<col width="15%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>http Method</strong></th>
+<th class="head"><code class="docutils literal notranslate"><span class="pre">GET</span></code></th>
+<th class="head"><code class="docutils literal notranslate"><span class="pre">POST</span></code></th>
+<th class="head"><code class="docutils literal notranslate"><span class="pre">PUT</span></code></th>
+<th class="head"><code class="docutils literal notranslate"><span class="pre">DELETE</span></code></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>parameter in</strong></td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>query string</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+<tr class="row-even"><td>header</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+<tr class="row-odd"><td>body</td>
+<td>⛔</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>⛔</td>
+</tr>
+<tr class="row-even"><td>path</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+<tr class="row-odd"><td>formData</td>
+<td>⛔</td>
+<td>☑️</td>
+<td>☑️</td>
+<td>☑️</td>
+</tr>
+</tbody>
+</table>
+<p>⛔ not specified by the RFC ✔️ supported ☑️ possible but cross your fingers</p>
+<p><em>Summary of the supported parameters and http-methods in this tool</em></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="23%" />
+<col width="23%" />
+<col width="23%" />
+<col width="23%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"></th>
+<th class="head">Read</th>
+<th class="head">Write</th>
+<th class="head">Modify</th>
+<th class="head">Delete</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SQL</td>
+<td><code class="docutils literal notranslate"><span class="pre">SELECT</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">INSERT</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">UPDATE</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">DELETE</span></code></td>
+</tr>
+<tr class="row-odd"><td>HTTP</td>
+<td><code class="docutils literal notranslate"><span class="pre">GET</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">POST</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">PUT</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">DELETE</span></code></td>
+</tr>
+</tbody>
+</table>
+<p><em>analogy between CRUD operations for SQL and RESTful Web API</em></p>
+<div class="section" id="query-strings">
+<h2>Query Strings<a class="headerlink" href="#query-strings" title="Permalink to this headline">¶</a></h2>
+<p>Assign a dictionary to the <code class="docutils literal notranslate"><span class="pre">fields_data</span></code> argument to set the query
+string. The key value pairs in the dictionary will be parsed to:</p>
+<p><code class="docutils literal notranslate"><span class="pre">endpoint</span></code>➕<code class="docutils literal notranslate"><span class="pre">?</span></code> ➕ <code class="docutils literal notranslate"><span class="pre">key=value&amp;key2=value2</span></code></p>
+</div>
+<div class="section" id="path-parameters">
+<h2>path Parameters<a class="headerlink" href="#path-parameters" title="Permalink to this headline">¶</a></h2>
+<p>Path parameters will be dropped into the URL using a f-string. If you
+require a specific format make sure you pass that path parameter as a
+string.</p>
+<p>This is because currently the data-type of the parameter which in
+specified in swagger is not parsed .</p>
+</div>
+<div class="section" id="request-body">
+<h2>Request Body<a class="headerlink" href="#request-body" title="Permalink to this headline">¶</a></h2>
+<p>By default any content in the body will be encoded in JSON and the
+<code class="docutils literal notranslate"><span class="pre">Content-Type</span></code> header will be set to <code class="docutils literal notranslate"><span class="pre">application/json</span></code>.</p>
+<p>There is no object validation built in.</p>
+</div>
+<div class="section" id="using-formdata-in-the-body">
+<h2>Using formData in the Body<a class="headerlink" href="#using-formdata-in-the-body" title="Permalink to this headline">¶</a></h2>
+<p>If you do need to use <code class="docutils literal notranslate"><span class="pre">formData</span></code> you can do so by adding the following header:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Content-Type</span></code>: <code class="docutils literal notranslate"><span class="pre">application/x-www-url-encoded</span></code></p>
+<p>This is the same as a query string but hidden in the body.</p>
+</div>
+<div class="section" id="header">
+<h2>header<a class="headerlink" href="#header" title="Permalink to this headline">¶</a></h2>
+<p>There is no restriction on behalf of this tool on what you do with the
+header. It is possible to send a custom header fields with any client
+class method</p>
+<p>Two headers are set by default:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Content-Type</span></code> : <code class="docutils literal notranslate"><span class="pre">application/json</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">Accept</span></code> : <code class="docutils literal notranslate"><span class="pre">application/json</span></code></p>
+<p>Additionally any Authorization header will appended.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Authorization</span></code> : <code class="docutils literal notranslate"><span class="pre">(Bearer)</span> <span class="pre">SomeFancyJwtTokenForExample</span></code></p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Overview_of_RESTful_API_Description_Languages">Overview of RESTful API Description_Languages</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Summary_table">HTTP methods summary table</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sample_client.html" class="btn btn-neutral float-right" title="Sample Client" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="design.html" class="btn btn-neutral" title="Design" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Erkan Demiralay.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'2019',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
