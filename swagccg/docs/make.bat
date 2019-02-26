@@ -8,7 +8,7 @@ if "%SPHINXBUILD%" == "" (
 	set SPHINXBUILD=sphinx-build
 )
 set SOURCEDIR=source
-set BUILDDIR=../../../swagccg-docs
+set BUILDDIR=../../../swagccg-py2py-docs
 
 if "%1" == "" goto help
 
