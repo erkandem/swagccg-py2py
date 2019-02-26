@@ -1,4 +1,10 @@
-|Build Status| |image1| |image2| |Codacy Badge|
+|Build Status|
+
+|image1|
+
+|image2|
+
+|Codacy Badge|
 
 swagccg-py2py
 =============
@@ -195,7 +201,7 @@ version <https://github.com/erkandem/swagccg-m2m>`__
 
 .. |Build Status| image:: https://travis-ci.com/erkandem/swagccg-py2py.svg?token=EM8YQfR9wuLvQFQzBZ5o&branch=master
    :target: https://travis-ci.com/erkandem/swagccg-py2py
-.. |image1| image:: https://img.shields.io/badge/License-MIT-blue.svg
+.. |image1| image:: https://img.shields.io/badge/License-BSD-blue.svg
 .. |image2| image:: https://img.shields.io/badge/Python-3.6%20%7C%203.7%20-blue.svg
 .. |Codacy Badge| image:: https://api.codacy.com/project/badge/Grade/5f62dcb4a93c40e88cd01cc76425cccd
    :target: https://www.codacy.com?utm_source=github.com&utm_medium=referral&utm_content=erkandem/swagccg-py2py&utm_campaign=Badge_Grade
