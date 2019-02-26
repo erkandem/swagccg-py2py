@@ -1,0 +1,428 @@
+"""
+auto-generated 2019-02-26 23:58:46
+... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)'
+
+your module level doc-string goes here 
+"""
+
+# #######################################################################
+# DO NOT MODIFY THIS FILE!
+# Your changes will be lost if you rerun ``make_client.py``! 
+# Edit the template!
+# #######################################################################
+
+try:
+    import urllib3
+except ImportError:
+    raise ImportError(f'Make sure that there is no other file shadowing urllib3')
+try:
+    import urllib
+except ImportError:
+    raise ImportError(f'Make sure that there is no other file shadowing urllib')
+try:
+    import certifi
+except ImportError:
+    raise ImportError(f'Make sure that there is no other file shadowing certifi')
+try:
+    import json
+except ImportError:
+    raise ImportError(f'Make sure that there is no other file shadowing json')
+try:
+    from datetime import datetime as dt, timedelta
+except ImportError:
+    raise ImportError(f'Make sure that there is no other file shadowing datetime, dt, or timedelta')
+
+
+class MyClientClass(object):
+    """Who needs SwaggerHub anyway ?"""
+    # 'DELETE'?
+    methods_using_body = ['POST', 'PUT', 'PATCH']
+
+    def __init__(self, deployment='remote'):
+        if deployment == 'remote':
+            self.API_PORT = '80'
+            self.API_URL_BASE = 'petstore.swagger.io'
+            self.API_PROTOCOL = 'https'
+        elif deployment == 'local':
+            self.API_PORT = '5000'
+            self.API_URL_BASE = '127.0.0.1'
+            self.API_PROTOCOL = 'http'
+        
+        self.BASE_PATH = '/v2'
+        self.LOGIN_TIMESTAMP = None
+        self.API_TOKEN = None
+        self.REFRESH_TIMESTAMP = None
+
+        self.AUTH_HEADER_NAME = 'Authorization'
+        self.AUTH_PREFIX = 'Bearer '  # mind the whitespace
+        self.AUTH_TOKEN_KEY = 'access_token'
+        self.AUTH_TOKEN_KEY_REFRESH = 'refreshed_token'
+        self.REFRESH_KEY = 'token'
+
+        self.API_ENDPOINTS = []  # unused
+        
+        if self.API_PORT == '80':
+            self.API_URL = f'{self.API_PROTOCOL}://{self.API_URL_BASE}'
+        else:
+            self.API_URL = f'{self.API_PROTOCOL}://{self.API_URL_BASE}:{self.API_PORT}'
+        
+        if self.API_PROTOCOL == 'https':
+            self.http = urllib3.PoolManager(cert_reqs='CERT_REQUIRED',
+                                            ca_certs=certifi.where())
+        else:
+            self.http = urllib3.PoolManager()
+
+        self.API_LOGIN_URL = f'{self.API_URL}/login'
+        self.API_REFRESH_URL = f'{self.API_URL}/refresh'
+        self.API_BASE_URL = f'{self.API_URL}{self.BASE_PATH}'
+    
+    def login_with_api(self, data):
+        """ login with the target API and save the JWT token within the class
+            .. param data:: login data externally supplied
+        """
+        encoded_data = json.dumps(data).encode('utf-8')
+        r = self.http.request('POST',
+                              self.API_LOGIN_URL,
+                              headers={'Content-Type': 'application/json'},
+                              body=encoded_data)
+        if r.status == 200:
+            res = json.loads(r.data.decode('utf-8'))
+            self.API_TOKEN = res[self.AUTH_TOKEN_KEY]
+            # print(self.API_TOKEN)
+            self.LOGIN_TIMESTAMP = dt.now()
+            self.REFRESH_TIMESTAMP = None
+        else:
+            print(f'login failed =/: \nstatus:{r.status} \nmessage: {r.msg} \nurl {r._request_url}')
+    
+    # -----------------------------------------------------------------------
+    # ---------- Token Management
+    # -----------------------------------------------------------------------
+    
+    def is_it_time_to_refresh_the_token(self):
+        """ Return True or False depending on the ``LOGIN_TIMESTAMP`` for the
+        first refresh or the ``REFRESH_TIMESTAMP`` if the JWT was already
+        refreshed once
+        
+        expiry is server specific
+         """
+        if self.REFRESH_TIMESTAMP is None:
+            if (self.LOGIN_TIMESTAMP + timedelta(hours=10)) < dt.now():
+                self.refresh_the_login()
+                return True
+            else:
+                return False
+        else:
+            if (self.REFRESH_TIMESTAMP + timedelta(hours=10)) < dt.now():
+                self.refresh_the_login()
+                return True
+            else:
+                return False
+    
+    def refresh_the_login(self):
+        """ server specific refresh routine"""
+        encoded_data = json.dumps({'token': self.API_TOKEN}).encode('utf-8')
+        r = self.http.request('POST',
+                              self.API_REFRESH_URL,
+                              headers={'Content-Type': 'application/json'},
+                              body=encoded_data)
+        res = json.loads(r.data.decode('utf-8'))
+        self.API_TOKEN = res[self.AUTH_TOKEN_KEY_REFRESH]
+        self.REFRESH_TIMESTAMP = dt.now()
+    
+    def _add_auth_header(self, headers=None):
+        """ adds the preconfigured authorization header """
+        if headers is None:
+            headers = dict()
+        headers[self.AUTH_HEADER_NAME] = f'{self.AUTH_PREFIX}{self.API_TOKEN}'
+        return headers
+
+    def _do_call(self, method=None, url=None, headers=None, fields=None, body=None, **kwargs):
+        """
+        A way to separate each resource from the actual request dispatching point
+        Response is assumed to be json by default. any other mapping can be hooked here.
+        
+        Args:
+            method (str): HTTP-Method
+            url (str): endpoint
+            headers (dict): each key:value pair represents one header field. Don't nest!
+            fields (dict):  each key:value pair will be urlencoded
+        Returns:
+            r : varying to response code , (0), JSON str, str, python object, 
+        """
+        
+        headers = self._add_auth_header(headers)
+        
+        if 'Content-Type' not in list(headers):
+            headers['Content-Type'] = 'application/json'
+
+        if body is not None and method in self.methods_using_body:
+            if headers['Content-Type'] == 'application/json':
+                body = self._encode(body)
+                r = self.http.request(method=method,
+                                      url=url,
+                                      headers=headers,
+                                      body=body)
+            elif headers['Content-Type'] == 'application/x-www-form-urlencoded':
+                r = self.http.urlopen(method,
+                                      url,
+                                      body=self._encode(body, 'url'),
+                                      headers=headers)
+            else:
+                 return 0
+        else:
+            r = self.http.request_encode_url(method=method,
+                                             url=url,
+                                             headers=headers,
+                                             fields=fields)
+        if 'pass_through' in kwargs:
+            if kwargs['pass_through']:
+                return r
+
+        if r.status == 200:
+            if len(r.data) > 0:
+                return self._decode(r.data)
+            else:
+                return r.status
+        elif r.status == 401:
+            self.refresh_the_login()
+            return 0
+        else:
+            return 0
+    
+    def _encode(self, data, format=None):
+        """
+        Abstracted encoding point. Mount your custom function.
+        Focus here is on built in JSON.
+        
+        Args:
+            data(): python object
+            format(str): json or url
+        
+        Returns:
+            data_encoded: :func:`json.dumps` and encode from utf-8 to binary
+            
+        """
+        if format == 'url':
+            return (urllib.parse.urlencode(data)).encode('utf-8')
+        if format is None:
+            return (json.dumps(data)).encode('utf-8')
+        elif format == 'json':
+            return (json.dumps(data)).encode('utf-8')
+        else:
+            msg = f"received format = {format}.\nUse 'json' or 'url'.\n 'json' is default."
+            raise NotImplementedError(msg)
+
+    def _decode(self, data):
+        """
+        abstracted decoding point 
+        Mount your custom function. Focus here is on JSON.
+        
+        Args:
+            data: python object (dict, list, ...)
+        
+        Returns:
+           data_decoded: first decode from binary to utf-8 and parse with 
+                         built-in :func:`json.loads`
+        """
+        
+        return json.loads(data.decode('utf-8')) 
+    
+    def post_add_pet_r(self, headers=None, body=None, fields_data=None, **kwargs):
+        """ Add a new pet to the store """
+        r = self._do_call(method='POST',
+                          url=f'{self.API_BASE_URL}/pet',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r
+    
+    def put_update_pet_r(self, headers=None, body=None, fields_data=None, **kwargs):
+        """ Update an existing pet """
+        r = self._do_call(method='PUT',
+                          url=f'{self.API_BASE_URL}/pet',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r
+    
+    def get_find_pets_by_status_r(self, headers=None, body=None, fields_data=None, **kwargs):
+        """ Finds Pets by status """
+        r = self._do_call(method='GET',
+                          url=f'{self.API_BASE_URL}/pet/findByStatus',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r
+    
+    def get_find_pets_by_tags_r(self, headers=None, body=None, fields_data=None, **kwargs):
+        """ Finds Pets by tags """
+        r = self._do_call(method='GET',
+                          url=f'{self.API_BASE_URL}/pet/findByTags',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r
+    
+    def get_pet_by_id_r(self, petId, headers=None, body=None, fields_data=None, **kwargs):
+        """ Find pet by ID """
+        r = self._do_call(method='GET',
+                          url=f'{self.API_BASE_URL}/pet/{petId}',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r
+    
+    def post_update_pet_with_form_r(self, petId, headers=None, body=None, fields_data=None, **kwargs):
+        """ Updates a pet in the store with form data """
+        r = self._do_call(method='POST',
+                          url=f'{self.API_BASE_URL}/pet/{petId}',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r
+    
+    def delete_pet_r(self, petId, headers=None, body=None, fields_data=None, **kwargs):
+        """ Deletes a pet """
+        r = self._do_call(method='DELETE',
+                          url=f'{self.API_BASE_URL}/pet/{petId}',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r
+    
+    def post_upload_file_r(self, petId, headers=None, body=None, fields_data=None, **kwargs):
+        """ uploads an image """
+        r = self._do_call(method='POST',
+                          url=f'{self.API_BASE_URL}/pet/{petId}/uploadImage',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r
+    
+    def get_inventory_r(self, headers=None, body=None, fields_data=None, **kwargs):
+        """ Returns pet inventories by status """
+        r = self._do_call(method='GET',
+                          url=f'{self.API_BASE_URL}/store/inventory',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r
+    
+    def post_place_order_r(self, headers=None, body=None, fields_data=None, **kwargs):
+        """ Place an order for a pet """
+        r = self._do_call(method='POST',
+                          url=f'{self.API_BASE_URL}/store/order',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r
+    
+    def get_order_by_id_r(self, orderId, headers=None, body=None, fields_data=None, **kwargs):
+        """ Find purchase order by ID """
+        r = self._do_call(method='GET',
+                          url=f'{self.API_BASE_URL}/store/order/{orderId}',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r
+    
+    def delete_order_r(self, orderId, headers=None, body=None, fields_data=None, **kwargs):
+        """ Delete purchase order by ID """
+        r = self._do_call(method='DELETE',
+                          url=f'{self.API_BASE_URL}/store/order/{orderId}',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r
+    
+    def post_create_user_r(self, headers=None, body=None, fields_data=None, **kwargs):
+        """ Create user """
+        r = self._do_call(method='POST',
+                          url=f'{self.API_BASE_URL}/user',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r
+    
+    def post_create_users_with_array_input_r(self, headers=None, body=None, fields_data=None, **kwargs):
+        """ Creates list of users with given input array """
+        r = self._do_call(method='POST',
+                          url=f'{self.API_BASE_URL}/user/createWithArray',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r
+    
+    def post_create_users_with_list_input_r(self, headers=None, body=None, fields_data=None, **kwargs):
+        """ Creates list of users with given input array """
+        r = self._do_call(method='POST',
+                          url=f'{self.API_BASE_URL}/user/createWithList',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r
+    
+    def get_login_user_r(self, headers=None, body=None, fields_data=None, **kwargs):
+        """ Logs user into the system """
+        r = self._do_call(method='GET',
+                          url=f'{self.API_BASE_URL}/user/login',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r
+    
+    def get_logout_user_r(self, headers=None, body=None, fields_data=None, **kwargs):
+        """ Logs out current logged in user session """
+        r = self._do_call(method='GET',
+                          url=f'{self.API_BASE_URL}/user/logout',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r
+    
+    def get_user_by_name_r(self, username, headers=None, body=None, fields_data=None, **kwargs):
+        """ Get user by user name """
+        r = self._do_call(method='GET',
+                          url=f'{self.API_BASE_URL}/user/{username}',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r
+    
+    def put_update_user_r(self, username, headers=None, body=None, fields_data=None, **kwargs):
+        """ Updated user """
+        r = self._do_call(method='PUT',
+                          url=f'{self.API_BASE_URL}/user/{username}',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r
+    
+    def delete_user_r(self, username, headers=None, body=None, fields_data=None, **kwargs):
+        """ Delete user """
+        r = self._do_call(method='DELETE',
+                          url=f'{self.API_BASE_URL}/user/{username}',
+                          headers=headers,
+                          body=body,
+                          fields=fields_data,
+                          **kwargs)
+        return r

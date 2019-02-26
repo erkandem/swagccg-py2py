@@ -1,0 +1,6 @@
+urllib3
+certifi
+python-dotenv
+pytest
+codecov
+

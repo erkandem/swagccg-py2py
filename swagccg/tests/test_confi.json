@@ -1,0 +1,13 @@
+{
+  "swagger_path": "https://petstore.swagger.io/v2/swagger.json",
+  "target_path": "swagccg/tests/auto_client.py",
+  "class_name": "MyClientClass",
+
+  "api_port_local": "5000",
+  "api_url_base_local": "127.0.0.1",
+  "api_protocol_local": "http",
+
+  "api_port_remote": "80",
+  "api_url_base_remote": "petstore.swagger.io",
+  "api_protocol_remote": "https"
+}
