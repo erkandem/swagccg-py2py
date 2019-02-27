@@ -161,7 +161,7 @@
 <span class="s1">auto-generated </span><span class="si">{time_stamp}</span><span class="s1"></span>
 <span class="s1">... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)&#39;</span>
 
-<span class="s1">your module level doc-string goes here </span>
+<span class="s1">your module level doc-string goes here</span>
 <span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
 
 <span class="s1"># #######################################################################</span>
@@ -190,6 +190,10 @@
 <span class="s1">    from datetime import datetime as dt, timedelta</span>
 <span class="s1">except ImportError:</span>
 <span class="s1">    raise ImportError(f&#39;Make sure that there is no other file shadowing datetime, dt, or timedelta&#39;)</span>
+<span class="s1">try:</span>
+<span class="s1">    import warnings</span>
+<span class="s1">except ImportError:</span>
+<span class="s1">    raise ImportError(f&#39;Make sure that there is no other file shadowing warnings&#39;)</span>
 <span class="s1">&#39;&#39;&#39;</span>
     <span class="k">return</span> <span class="n">py_code</span></div>
 
@@ -203,9 +207,7 @@
     <span class="n">py_code</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;&#39;&#39;</span>
 
 <span class="s1">class </span><span class="si">{args[&#39;class_name&#39;]}</span><span class="s1">(object):</span>
-<span class="s1">    </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1">Who needs SwaggerHub anyway ?</span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
-<span class="s1">    # &#39;DELETE&#39;?</span>
-<span class="s1">    methods_using_body = [&#39;POST&#39;, &#39;PUT&#39;, &#39;PATCH&#39;]</span>
+<span class="s1">    </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1">your client class level doc-string goes here</span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
 
 <span class="s1">    def __init__(self, deployment=&#39;remote&#39;):</span>
 <span class="s1">        if deployment == &#39;remote&#39;:</span>
@@ -318,6 +320,8 @@
 <span class="s1">            data_encoded: :func:`json.dumps` and encode from utf-8 to binary</span>
 <span class="s1">            </span>
 <span class="s1">        </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
+<span class="s1">        if type(data) is bytes:</span>
+<span class="s1">            return data</span>
 <span class="s1">        if format == &#39;url&#39;:</span>
 <span class="s1">            return (urllib.parse.urlencode(data)).encode(&#39;utf-8&#39;)</span>
 <span class="s1">        if format is None:</span>
@@ -365,34 +369,47 @@
 <span class="s1">        A way to separate each resource from the actual request dispatching point</span>
 <span class="s1">        Response is assumed to be json by default. any other mapping can be hooked here.</span>
 <span class="s1">        </span>
+<span class="s1">        Use ``pass_through = True`` to receive the untouched response object</span>
+<span class="s1">        </span>
 <span class="s1">        Args:</span>
 <span class="s1">            method (str): HTTP-Method</span>
 <span class="s1">            url (str): endpoint</span>
-<span class="s1">            headers (dict): each key:value pair represents one header field. Don&#39;t nest!</span>
-<span class="s1">            fields (dict):  each key:value pair will be urlencoded</span>
-<span class="s1">        Returns:</span>
-<span class="s1">            r : varying to response code , (0), JSON str, str, python object, </span>
+<span class="s1">            headers (dict): each key:value pair represents one header field:value. Don&#39;t nest!</span>
+<span class="s1">            fields (dict):  each key:value pair will be urlencoded and passed as query string. Don&#39;t nest!</span>
+<span class="s1">            body (dict): will be encoded to JSON and bytes afterwards</span>
+<span class="s1">                         You can get a urlencoding by setting</span>
+<span class="s1">                         &#39;Content-Type&#39;: &#39;application/x-www-form-urlencoded&#39;</span>
+
 <span class="s1">        </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
 <span class="s1">        </span>
 <span class="s1">        headers = self._add_auth_header(headers)</span>
-<span class="s1">        </span>
-<span class="s1">        if &#39;Content-Type&#39; not in list(headers):</span>
-<span class="s1">            headers[&#39;Content-Type&#39;] = &#39;application/json&#39;</span>
-
-<span class="s1">        if body is not None and method in self.methods_using_body:</span>
-<span class="s1">            if headers[&#39;Content-Type&#39;] == &#39;application/json&#39;:</span>
-<span class="s1">                body = self._encode(body)</span>
+<span class="s1">        if body is not None and method in [&#39;POST&#39;, &#39;PUT&#39;, &#39;PATCH&#39;]:</span>
+<span class="s1">            if &#39;Content-Type&#39; not in list(headers):</span>
+<span class="s1">                headers[&#39;Content-Type&#39;] = &#39;application/json&#39;</span>
 <span class="s1">                r = self.http.request(method=method,</span>
 <span class="s1">                                      url=url,</span>
-<span class="s1">                                      headers=headers,</span>
-<span class="s1">                                      body=body)</span>
-<span class="s1">            elif headers[&#39;Content-Type&#39;] == &#39;application/x-www-form-urlencoded&#39;:</span>
-<span class="s1">                r = self.http.urlopen(method,</span>
-<span class="s1">                                      url,</span>
-<span class="s1">                                      body=self._encode(body, &#39;url&#39;),</span>
+<span class="s1">                                      body=self._encode(body),</span>
 <span class="s1">                                      headers=headers)</span>
 <span class="s1">            else:</span>
-<span class="s1">                 return 0</span>
+<span class="s1">                if headers[&#39;Content-Type&#39;] == &#39;application/x-www-form-urlencoded&#39;:</span>
+<span class="s1">                    r = self.http.urlopen(method,</span>
+<span class="s1">                                          url,</span>
+<span class="s1">                                          body=self._encode(body, &#39;url&#39;),</span>
+<span class="s1">                                          headers=headers)</span>
+<span class="s1">                elif headers[&#39;Content-Type&#39;] == &#39;application/json&#39;:</span>
+<span class="s1">                    r = self.http.request(method=method,</span>
+<span class="s1">                                          url=url,</span>
+<span class="s1">                                          body=self._encode(body),</span>
+<span class="s1">                                          headers=headers)</span>
+<span class="s1">                else:</span>
+<span class="s1">                    msg = f</span><span class="se">\&#39;\&#39;\&#39;</span><span class="s1"> The Content-Type header was set to {{headers[&#39;Content-Type&#39;]}}</span><span class="se">\\</span><span class="s1">n</span>
+<span class="s1">                    However, anything else than &#39;application/json&#39; or &#39;application/x-www-form-urlencoded&#39;</span><span class="se">\\</span><span class="s1">n</span>
+<span class="s1">                    is not accounted for in the client.</span><span class="se">\\</span><span class="s1">n If you would like to add it look for:</span><span class="se">\\</span><span class="s1">n</span><span class="se">\\</span><span class="s1">n</span>
+<span class="s1">                    client_point_of_execution_f to build the logic</span><span class="se">\\</span><span class="s1">n</span>
+<span class="s1">                    client_encoding_decoding_point_f for handling encoding</span><span class="se">\\</span><span class="s1">n</span><span class="se">\\</span><span class="s1">n</span>
+<span class="s1">                    0 (zero) was returned to avoid a RunTimeError</span><span class="se">\&#39;\&#39;\&#39;</span><span class="s1"></span>
+<span class="s1">                    warnings.warn(msg)</span>
+<span class="s1">                    return 0</span>
 <span class="s1">        else:</span>
 <span class="s1">            r = self.http.request_encode_url(method=method,</span>
 <span class="s1">                                             url=url,</span>
