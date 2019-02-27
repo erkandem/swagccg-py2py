@@ -13,7 +13,7 @@ def client_imports_f():
 auto-generated {time_stamp}
 ... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)'
 
-your module level doc-string goes here 
+your module level doc-string goes here
 \"\"\"
 
 # #######################################################################
@@ -42,6 +42,10 @@ try:
     from datetime import datetime as dt, timedelta
 except ImportError:
     raise ImportError(f'Make sure that there is no other file shadowing datetime, dt, or timedelta')
+try:
+    import warnings
+except ImportError:
+    raise ImportError(f'Make sure that there is no other file shadowing warnings')
 '''
     return py_code
 
@@ -55,9 +59,7 @@ def client_class_def_template_f(args):
     py_code = f'''
 
 class {args['class_name']}(object):
-    \"\"\"Who needs SwaggerHub anyway ?\"\"\"
-    # 'DELETE'?
-    methods_using_body = ['POST', 'PUT', 'PATCH']
+    \"\"\"your client class level doc-string goes here\"\"\"
 
     def __init__(self, deployment='remote'):
         if deployment == 'remote':
@@ -170,6 +172,8 @@ def client_encoding_decoding_point_f():
             data_encoded: :func:`json.dumps` and encode from utf-8 to binary
             
         \"\"\"
+        if type(data) is bytes:
+            return data
         if format == 'url':
             return (urllib.parse.urlencode(data)).encode('utf-8')
         if format is None:
@@ -217,34 +221,47 @@ def client_point_of_execution_f():
         A way to separate each resource from the actual request dispatching point
         Response is assumed to be json by default. any other mapping can be hooked here.
         
+        Use ``pass_through = True`` to receive the untouched response object
+        
         Args:
             method (str): HTTP-Method
             url (str): endpoint
-            headers (dict): each key:value pair represents one header field. Don't nest!
-            fields (dict):  each key:value pair will be urlencoded
-        Returns:
-            r : varying to response code , (0), JSON str, str, python object, 
+            headers (dict): each key:value pair represents one header field:value. Don't nest!
+            fields (dict):  each key:value pair will be urlencoded and passed as query string. Don't nest!
+            body (dict): will be encoded to JSON and bytes afterwards
+                         You can get a urlencoding by setting
+                         'Content-Type': 'application/x-www-form-urlencoded'
+
         \"\"\"
         
         headers = self._add_auth_header(headers)
-        
-        if 'Content-Type' not in list(headers):
-            headers['Content-Type'] = 'application/json'
-
-        if body is not None and method in self.methods_using_body:
-            if headers['Content-Type'] == 'application/json':
-                body = self._encode(body)
+        if body is not None and method in ['POST', 'PUT', 'PATCH']:
+            if 'Content-Type' not in list(headers):
+                headers['Content-Type'] = 'application/json'
                 r = self.http.request(method=method,
                                       url=url,
-                                      headers=headers,
-                                      body=body)
-            elif headers['Content-Type'] == 'application/x-www-form-urlencoded':
-                r = self.http.urlopen(method,
-                                      url,
-                                      body=self._encode(body, 'url'),
+                                      body=self._encode(body),
                                       headers=headers)
             else:
-                 return 0
+                if headers['Content-Type'] == 'application/x-www-form-urlencoded':
+                    r = self.http.urlopen(method,
+                                          url,
+                                          body=self._encode(body, 'url'),
+                                          headers=headers)
+                elif headers['Content-Type'] == 'application/json':
+                    r = self.http.request(method=method,
+                                          url=url,
+                                          body=self._encode(body),
+                                          headers=headers)
+                else:
+                    msg = f\'\'\' The Content-Type header was set to {{headers['Content-Type']}}\\n
+                    However, anything else than 'application/json' or 'application/x-www-form-urlencoded'\\n
+                    is not accounted for in the client.\\n If you would like to add it look for:\\n\\n
+                    client_point_of_execution_f to build the logic\\n
+                    client_encoding_decoding_point_f for handling encoding\\n\\n
+                    0 (zero) was returned to avoid a RunTimeError\'\'\'
+                    warnings.warn(msg)
+                    return 0
         else:
             r = self.http.request_encode_url(method=method,
                                              url=url,
