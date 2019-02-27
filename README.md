@@ -4,7 +4,7 @@
 
 ![](https://img.shields.io/badge/Python-3.6%20%7C%203.7%20-blue.svg)
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5f62dcb4a93c40e88cd01cc76425cccd)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=erkandem/swagccg-py2py&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0181315639494eda8504e5b5092dee73)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=erkandem/swagccg-py2py&amp;utm_campaign=Badge_Grade)
 
 # swagccg-py2py
 *Swagger Client Code Generator. Using Python. For Python*
@@ -168,4 +168,4 @@ The attached petstore swagger by smartbear /  OpenAPI Initiative is licensed wit
 ## Click Bait
 Visitors who were interested in this repo also took a look at:
 
-[swagccg-m2m - MatLab to MatLab version](https://github.com/erkandem/swagccg-m2m)
+[swagccg-m2m - MatLab to MatLab Client Code Generation](https://github.com/erkandem/swagccg-m2m)
