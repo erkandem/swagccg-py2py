@@ -9,6 +9,11 @@ playbook.py
 petstore_playbook.py
 _nonrelated
 .venv/
+cov_annotate/
+cov_html/
+cov.html
+build/
+dist/
 
 make.cmd
 
