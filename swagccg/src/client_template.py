@@ -70,7 +70,7 @@ class {args['class_name']}(object):
             self.API_PORT = '{args["api_port_local"]}'
             self.API_URL_BASE = '{args["api_url_base_local"]}'
             self.API_PROTOCOL = '{args["api_protocol_local"]}'
-        
+
         self.BASE_PATH = '{args["basePath"]}'
         self.LOGIN_TIMESTAMP = None
         self.API_TOKEN = None
@@ -86,7 +86,7 @@ class {args['class_name']}(object):
             self.API_URL = f'{{self.API_PROTOCOL}}://{{self.API_URL_BASE}}'
         else:
             self.API_URL = f'{{self.API_PROTOCOL}}://{{self.API_URL_BASE}}:{{self.API_PORT}}'
-        
+
         if self.API_PROTOCOL == 'https':
             self.http = urllib3.PoolManager(
                 cert_reqs='CERT_REQUIRED',
@@ -98,9 +98,9 @@ class {args['class_name']}(object):
         self.API_LOGIN_URL = f'{{self.API_URL}}{{self.BASE_PATH}}/auth/login'
         self.API_REFRESH_URL = f'{{self.API_URL}}{{self.BASE_PATH}}/auth/refresh'
         self.API_BASE_URL = f'{{self.API_URL}}{{self.BASE_PATH}}'
-    
+
     # def __dir__():
-    
+
     def login_with_api(self, data):
         \"\"\" login with the target API and save the JWT token within the class
             .. param data:: login data externally supplied
@@ -120,16 +120,16 @@ class {args['class_name']}(object):
             self.REFRESH_TIMESTAMP = None
         else:
             print(f'login failed =/: \\nstatus:{{r.status}} \\nmessage: {{r.msg}} \\nurl {{r._request_url}}')
-    
+
     # -----------------------------------------------------------------------
     # ---------- Token Management
     # -----------------------------------------------------------------------
-    
+
     def is_it_time_to_refresh_the_token(self):
         \"\"\" Return True or False depending on the ``LOGIN_TIMESTAMP`` for the
         first refresh or the ``REFRESH_TIMESTAMP`` if the JWT was already
         refreshed once
-        
+
         expiry is server specific
          \"\"\"
         if self.REFRESH_TIMESTAMP is None:
@@ -144,7 +144,7 @@ class {args['class_name']}(object):
                 return True
             else:
                 return False
-    
+
     def refresh_the_login(self):
         \"\"\" server specific refresh routine\"\"\"
         encoded_data = json.dumps({{'token': self.API_TOKEN}}).encode('utf-8')
@@ -181,14 +181,14 @@ def client_encoding_decoding_point_f():
         \"\"\"
         Abstracted encoding point. Mount your custom function.
         Focus here is on built in JSON.
-        
+
         Args:
             data(): python object
             format(str): json or url
-        
+
         Returns:
             data_encoded: :func:`json.dumps` and encode from utf-8 to binary
-            
+
         \"\"\"
         if type(data) is bytes:
             return data
@@ -206,15 +206,15 @@ def client_encoding_decoding_point_f():
         \"\"\"
         abstracted decoding point 
         Mount your custom function. Focus here is on JSON.
-        
+
         Args:
             data: python object (dict, list, ...)
-        
+
         Returns:
            data_decoded: first decode from binary to utf-8 and parse with 
                          built-in :func:`json.loads`
         \"\"\"
-        
+
         return json.loads(data.decode('utf-8')) 
     '''
 
@@ -238,9 +238,9 @@ def client_point_of_execution_f() -> str:
         \"\"\"
         A way to separate each resource from the actual request dispatching point
         Response is assumed to be json by default. any other mapping can be hooked here.
-        
+
         Use ``pass_through = True`` to receive the untouched response object
-        
+
         Args:
             method (str): HTTP-Method
             url (str): endpoint
@@ -251,7 +251,7 @@ def client_point_of_execution_f() -> str:
                          'Content-Type': 'application/x-www-form-urlencoded'
 
         \"\"\"
-        
+
         headers = self._add_auth_header(headers)
         if body is not None and method in ['POST', 'PUT', 'PATCH']:
             if 'Content-Type' not in list(headers):
