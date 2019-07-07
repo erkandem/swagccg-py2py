@@ -1,10 +1,4 @@
-|Build Status|
-
-|image1|
-
-|image2|
-
-|Codacy Badge|
+|Build Status| |image1| |image2| |Codacy Badge|
 
 swagccg-py2py
 =============
@@ -25,7 +19,7 @@ to place itself between those two categories.
 On top of that, I would expect a programming language to be able to
 create its own tools. While Java is a mature and well established
 language, it might not be within the proficiency portfolio of each and
-everyone.
+everyone - not to mention the author.
 
 Get the Code
 ------------
@@ -34,80 +28,78 @@ Get the Code
 
 .. code:: bash
 
-   pip install swagccg-py2py
+    pip install swagccg-py2py
 
 or clone it into your development environment
 
 .. code:: bash
 
-   git clone https://github.com/erkandem/swagccg-py2py.git
+    git clone https://github.com/erkandem/swagccg-py2py.git
 
 or download the zip
 
 ::
 
-   https://github.com/erkandem/swagccg-py2py/archive/master.zip
+    https://github.com/erkandem/swagccg-py2py/archive/master.zip
 
 Getting started
 ---------------
 
-The assumption here ist that you already have a ``swagger.json`` file
+The assumption here ist that you already have a ``swagger.json`` file.
 
-the creation of client comes down to. Of course you could write a little
-shell script or create it on the fly for an app which is consuming your
-API.
+The creation of a client comes down to:
 
 .. code:: bash
 
-   python swagccg
+    python swagccg
 
-If the ``confi.json`` is not in your working directory you would have to
-add it’s location to the call:
+If the ``config.json`` is not in your working directory you would have
+to add its location to the call:
 
 .. code:: bash
 
-   python -m swagccg -c /location/of/your/confi.json
+    python -m swagccg -c /location/of/your/config.json
 
 the configuration file
 ^^^^^^^^^^^^^^^^^^^^^^
 
-``confi.json`` consists of two distinct parts. First we would like to
-tell the script - where we keep swagger definition - where we would like
-the module to be created - what name we would like the client class to
-have
+``config.json`` consists of two distinct parts. First, we would like to
+tell the script: - where we keep a swagger definition - where we would
+like the client module to be created - what name we would like the
+client class to have
 
-Since it’s rather a development tool we would like to switch between
-target hosts with little afford (i.e. environment variable). Therefore,
-we will offer it two targets which are later used to composed to the
-resource URL.
+Since this is rather a development tool we would like to switch between
+target hosts with little afford (i.e. environment variable). Therefore,
+we will offer it two targets which are later used to assamble resource
+URLs.
 
-We’ll set a local (i.e. development) and remote (i.e. deployed) set of:
-- port - base url (i.e IPv4, host, domain_name.tld,
-subdomain.domain_name.tld) - protocol (http or https)
+We'll set a local (i.e. development) and remote (i.e. deployed) set of:
+- port - base url (i.e IPv4, host, domain\_name.tld,
+subdomain.domain\_name.tld) - scheme (http or https)
 
 .. code:: json
 
-   {
-     "swagger_path": "/home/abuser/apiclient/swagger.json",
-     "target_path": "/home/abuser/apiclient/auto_client.py",
-     "class_name": "Myclient",
+    {
+      "swagger_path": "/home/abuser/apiclient/swagger.json",
+      "target_path": "/home/abuser/apiclient/auto_client.py",
+      "class_name": "Myclient",
 
 
-     "api_port_local": "5000",
-     "api_url_base_local": "127.0.0.1",
-     "api_protocol_local": "http",
+      "api_port_local": "5000",
+      "api_url_base_local": "127.0.0.1",
+      "api_protocol_local": "http",
 
-     "api_port_remote": "80",
-     "api_url_base_remote": "deployed.com",
-     "api_protocol_remote": "https"
-   }
+      "api_port_remote": "80",
+      "api_url_base_remote": "deployed.com",
+      "api_protocol_remote": "https"
+    }
 
 Client Creation
 ---------------
 
 .. code:: bash
 
-   python -m swagccg --c location/of/your/confi.json
+    python -m swagccg --c location/of/your/config.json
 
 Client Usage
 ------------
@@ -117,33 +109,33 @@ Nonetheless, the README would be incomplete without some usage examples:
 
 .. code:: python
 
-   from auto_client import MyApiClient # default names - set them in confi.json
-   from settings import credential_dict # if needed
+    from auto_client import MyApiClient # default names - set them in confi.json
+    from settings import credential_dict # if needed
 
-   client_instance = MyApiClient('remote')  # or 'local' 
-   client_instance.login_with_api(credential_dict) 
-   data = client_instance.get_something_r() 
+    client_instance = MyApiClient('remote')  # or 'local' 
+    client_instance.login_with_api(credential_dict) 
+    data = client_instance.get_something_r() 
 
 or
 
 .. code:: python
 
-   import os
-   from pathlib import Path
-   from dotenv import load_dotenv
-   from auto_client import MyApiClient
-   #%%
-   env_path = Path('.') / '.env'
-   load_dotenv(dotenv_path=env_path)
-   client_instance = MyApiClient('remote')
+    import os
+    from pathlib import Path
+    from dotenv import load_dotenv
+    from auto_client import MyApiClient
+    #%%
+    env_path = Path('.') / '.env'
+    load_dotenv(dotenv_path=env_path)
+    client_instance = MyApiClient('remote')
 
-   #%% login of course depends on the server
-   client_instance.login_with_api({
-       'username': os.getenv('API_USERNAME'),
-       'password': os.getenv('API_PASSWORD')
-       })
-   param_dict = dict(name='value')
-   data = client_instance.get_something_r(fields_data=param_dict)
+    #%% login of course depends on the server
+    client_instance.login_with_api({
+        'username': os.getenv('API_USERNAME'),
+        'password': os.getenv('API_PASSWORD')
+    })
+    param_dict = dict(name='value')
+    data = client_instance.get_something_r(fields_data=param_dict)
 
 gotchas
 -------
@@ -153,6 +145,8 @@ gotchas
 -  models and mapping is omitted (``marshmallow``)
 -  little to none ``HTTP status codes`` parsing
 -  assumes knowledge on HTTP HEADER, BODY, METHOD
+-  pass ``pass_through=True`` as parameter to receive the response
+   object untouched
 
 recommended reading
 -------------------
@@ -198,6 +192,9 @@ Visitors who were interested in this repo also took a look at:
 
 `swagccg-m2m - MatLab to MatLab Client Code
 Generation <https://github.com/erkandem/swagccg-m2m>`__
+
+Because every programming language should be able to create its own
+tools.
 
 .. |Build Status| image:: https://travis-ci.com/erkandem/swagccg-py2py.svg?token=EM8YQfR9wuLvQFQzBZ5o&branch=master
    :target: https://travis-ci.com/erkandem/swagccg-py2py

@@ -1,5 +1,5 @@
 """
-auto-generated 2019-03-27 14:34:32
+auto-generated 2019-07-07 04:27:11
 ... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)'
 
 your module level doc-string goes here

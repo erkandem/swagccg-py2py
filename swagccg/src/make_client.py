@@ -15,7 +15,7 @@ except ImportError:
     from .client_template import client_method_template_f
     from .client_template import client_point_of_execution_f
     from .client_template import client_encoding_decoding_point_f
-    print("Couldn't import client templates. Sphinx build?")
+    print("Alternative import used.")
 
 PARSED_HTTP_METHODS = ['GET', 'POST', 'DELETE', 'PATCH', 'PUT']
 

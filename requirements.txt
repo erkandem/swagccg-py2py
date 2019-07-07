@@ -3,4 +3,5 @@ certifi
 python-dotenv
 pytest
 codecov
-
+pdoc
+pytest-cov
