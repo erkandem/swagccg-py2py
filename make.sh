@@ -20,17 +20,19 @@ rm -rf .pytest_cache
 # run to see whether it actually works
 python3 -m swagccg -c swagccg/example/config.json
 
-# create new test coverage
+# create new test coverage report
 pytest --cov-report html:cov_html \
-        --cov-report xml:cov.xml \
-        --cov-report annotate:cov_annotate\
-        --cov=swagccg swagccg/tests
+    --cov-report xml:cov.xml \
+    --cov-report annotate:cov_annotate\
+    --cov=swagccg swagccg/tests
 
 # package the project using setuptools
 # setuptools? wheels?
 python setup.py sdist bdist_wheel
+
+# run pdoc as alternative to sphinx
 pdoc --html \
-     --html-dir /home/kan/dev/py/sccg-py2py/swagccg-pdocs \
+     --html-dir /home/kan/dev/py/swagccg-py2py/swagccg-py2py-pdocs \
      --overwrite swagccg
 
 # test whether the source is installable
@@ -43,20 +45,24 @@ pip uninstall swagccg --yes
 pip install dist/swagccg-0.3.0.tar.gz
 pip uninstall swagccg --yes
 
-./make_html.sh
+# translate the markdown Readme to rst (sphinx native format)
+pandoc -f markdown -t rst -o swagccg/docs/source/README.rst README.md
+
+# initiate tests
 pytest -vv
-# twine upload dist/*
 
-# Is the virtualenv activated?
-# sphinx-build html swagccg/docs/source ../swagccg-py2py-docs
+# Re-Build docs
+sphinx-build -b html swagccg/docs/source ../swagccg-py2py-docs
 
+# create coverage report
+coverage run -m swagccg --c swagccg/example/config.json
 
+# commit source changes
 git add .
 git commit -m "passed tests auto commit and push"
 git push origin master
 
-coverage run -m swagccg --c swagccg/example/config.json
-
+# commit documentation changes
 #: '
 cd ../swagccg-py2py-docs/html
 git add .
@@ -64,3 +70,6 @@ git commit -m "passed tests auto-built, commit docs and push to gh-pages"
 git push origin gh-pages
 cd ../../swagccg-py2py/
 #'
+
+# upload build to pypi
+# twine upload dist/*
