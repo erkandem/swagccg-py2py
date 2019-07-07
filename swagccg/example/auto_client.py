@@ -1,5 +1,5 @@
 """
-auto-generated 2019-07-08 00:24:44
+auto-generated 2019-07-08 00:27:57
 ... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)'
 
 your module level doc-string goes here
@@ -78,8 +78,15 @@ class MyClientClass(object):
         self.API_REFRESH_URL = f'{self.API_URL}{self.BASE_PATH}/auth/refresh'
         self.API_BASE_URL = f'{self.API_URL}{self.BASE_PATH}'
 
-    # def __dir__():
-
+    def __dir__(self):
+        method_names = [
+            'get_find_pets_r',
+            'post_add_pet_r',
+            'get_find_pet_by_id_r',
+            'delete_pet_r'
+        ]
+        return method_names
+    
     def login_with_api(self, data):
         """ login with the target API and save the JWT token within the class
             .. param data:: login data externally supplied

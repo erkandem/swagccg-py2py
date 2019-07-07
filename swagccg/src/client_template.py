@@ -99,7 +99,7 @@ class {args['class_name']}(object):
         self.API_REFRESH_URL = f'{{self.API_URL}}{{self.BASE_PATH}}/auth/refresh'
         self.API_BASE_URL = f'{{self.API_URL}}{{self.BASE_PATH}}'
 
-    # def __dir__():
+    # def __dir__(self):
 
     def login_with_api(self, data):
         \"\"\" login with the target API and save the JWT token within the class
@@ -165,7 +165,7 @@ def dir_template_f(method_names: []) -> str:
     """generate __dir__ code to deliver a list of all public methods"""
     method_names_ = "'" + "',\n            '".join(method_names) + "'"
     return f'''
-    def __dir__():
+    def __dir__(self):
         method_names = [
             {method_names_}
         ]
@@ -337,4 +337,3 @@ def client_method_template_f(method_name='', http_verb='', api_path='', doc_stri
         return r
     '''
     return py_code
-
