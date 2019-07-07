@@ -83,6 +83,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../specifications.html">Specifications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../sample_client.html">Sample Client</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
 </ul>
 
             
@@ -243,8 +244,8 @@
 <span class="s1">        else:</span>
 <span class="s1">            self.http = urllib3.PoolManager()</span>
 
-<span class="s1">        self.API_LOGIN_URL = f&#39;{{self.API_URL}}/login&#39;</span>
-<span class="s1">        self.API_REFRESH_URL = f&#39;{{self.API_URL}}/refresh&#39;</span>
+<span class="s1">        self.API_LOGIN_URL = f&#39;{{self.API_URL}}{{self.BASE_PATH}}/auth/login&#39;</span>
+<span class="s1">        self.API_REFRESH_URL = f&#39;{{self.API_URL}}{{self.BASE_PATH}}/auth/refresh&#39;</span>
 <span class="s1">        self.API_BASE_URL = f&#39;{{self.API_URL}}{{self.BASE_PATH}}&#39;</span>
 <span class="s1">    </span>
 <span class="s1">    def login_with_api(self, data):</span>

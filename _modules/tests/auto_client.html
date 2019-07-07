@@ -83,6 +83,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../specifications.html">Specifications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../sample_client.html">Sample Client</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
 </ul>
 
             
@@ -147,7 +148,7 @@
             
   <h1>Source code for tests.auto_client</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">auto-generated 2019-02-27 20:23:41</span>
+<span class="sd">auto-generated 2019-03-27 14:34:36</span>
 <span class="sd">... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)&#39;</span>
 
 <span class="sd">your module level doc-string goes here</span>
@@ -222,8 +223,8 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">http</span> <span class="o">=</span> <span class="n">urllib3</span><span class="o">.</span><span class="n">PoolManager</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">API_LOGIN_URL</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_URL}</span><span class="s1">/login&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">API_REFRESH_URL</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_URL}</span><span class="s1">/refresh&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">API_LOGIN_URL</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_URL}{self.BASE_PATH}</span><span class="s1">/auth/login&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">API_REFRESH_URL</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_URL}{self.BASE_PATH}</span><span class="s1">/auth/refresh&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">API_BASE_URL</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_URL}{self.BASE_PATH}</span><span class="s1">&#39;</span>
     
 <div class="viewcode-block" id="MyClientClass.login_with_api"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.login_with_api">[docs]</a>    <span class="k">def</span> <span class="nf">login_with_api</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
