@@ -1,6 +1,6 @@
 #!/bin/sh
-# shell version of make.cmd
-# don't forget chmod +x make.sh make_html.sh
+# $./make.sh
+# don't forget chmod +x make.sh
 activate (){
     . ../.venv/bin/activate
     }
@@ -30,11 +30,6 @@ pytest --cov-report html:cov_html \
 # setuptools? wheels?
 python setup.py sdist bdist_wheel
 
-# run pdoc as alternative to sphinx
-pdoc --html \
-     --html-dir /home/kan/dev/py/swagccg-py2py/swagccg-py2py-pdocs \
-     --overwrite swagccg
-
 # test whether the source is installable
 pip uninstall swagccg --yes
 pip install -r requirements.txt
@@ -56,11 +51,12 @@ sphinx-build -b html swagccg/docs/source ../swagccg-py2py-docs
 
 # create coverage report
 coverage run -m swagccg --c swagccg/example/config.json
-
+#: '
 # commit source changes
 git add .
 git commit -m "passed tests auto commit and push"
 git push origin master
+#'
 
 # commit documentation changes
 #: '

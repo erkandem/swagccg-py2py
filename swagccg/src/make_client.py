@@ -157,6 +157,5 @@ def main(config_path=None):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--config-path', '-c', action='store', default='config.json')
-    parser.add_argument('--output', '-o', action='store', default='/tmp/auto_client.py')
     args = parser.parse_args()
     main(config_path=args.config_path)

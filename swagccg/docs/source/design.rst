@@ -1,9 +1,9 @@
 Design
 =======
 Developers should be able to create code within the language they are using.
-The tool was originally design to cover only GET requests with
+The tool was originally designed to cover only ``GET`` requests with
 a possibility for a  query string. The response was (and is) assumed to be
-``JSON only``. But since the outwards facing parts are located in :func:`_do_call`,
+``JSON`` only. But since the outwards facing parts are located in :func:`_do_call`,
 :func:`_encode` and :func:`_decode` it's easy to add your logic.
 
 
@@ -11,7 +11,7 @@ Client Generation
 ----------------------
 
 It is very easy to create client code because of triple-quoted strings and
-*mustache like* option to drop in variables into the string. (**Python 3.6**)
+the *mustache like* option to drop in variables into the string. (**Python 3.6**)
 
 Apart from file IO, the code generation can be boiled down to four steps
  - client imports
@@ -21,7 +21,7 @@ Apart from file IO, the code generation can be boiled down to four steps
 
 Imports
 ^^^^^^^^^^
-The :func:`client_imports_f` can be used to define imports and as well as a module level comment.
+The :func:`client_imports_f` can be used to define imports and a module level comment.
 
 Reference: :func:`src.client_template.client_imports_f`
 
@@ -40,15 +40,13 @@ Drop in your preferred way.
 Reference: :func:`src.client_template.client_point_of_execution_f`
 
 
-Client Class Encoding Decoding
+Client Class Encoding-Decoding
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-By default, any request body will be encoded to json and
+By default, any request body will be encoded to JSON and
 binary assuming utf-8 input.
+Any response body will be decoded from utf-8 and loaded as JSON.
 
-Any response body will be decoded assuming JSON content.
-
-On exception is if you want to encode ``formData``.
-This is not handled on the client class level yet.
+For details see:
 See :ref:`Specifications` for details.
 
 Reference: :func:`src.client_template.client_encoding_decoding_point_f`
@@ -80,5 +78,4 @@ Weak Point:
 The parsing logic can be found within :func:`src.make_client.create_client_endpoints`
 
 The client-class-method rendering logic is placed :func:`src.client_template.client_method_template_f`
-
 
