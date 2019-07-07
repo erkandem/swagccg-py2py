@@ -1,5 +1,5 @@
 """
-auto-generated 2019-02-27 20:23:21
+auto-generated 2019-03-27 14:34:32
 ... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)'
 
 your module level doc-string goes here
@@ -74,8 +74,8 @@ class MyClientClass(object):
         else:
             self.http = urllib3.PoolManager()
 
-        self.API_LOGIN_URL = f'{self.API_URL}/login'
-        self.API_REFRESH_URL = f'{self.API_URL}/refresh'
+        self.API_LOGIN_URL = f'{self.API_URL}{self.BASE_PATH}/auth/login'
+        self.API_REFRESH_URL = f'{self.API_URL}{self.BASE_PATH}/auth/refresh'
         self.API_BASE_URL = f'{self.API_URL}{self.BASE_PATH}'
     
     def login_with_api(self, data):

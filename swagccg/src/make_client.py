@@ -1,5 +1,4 @@
 import re
-import io
 import json
 import argparse
 from urllib.parse import urlparse
@@ -82,40 +81,42 @@ def seems_like_a_url(url):
         return False
 
 
-def main(confi_path=None):
+def main(config_path=None):
     """ control flow """
-    if confi_path is None:
-        confi_path = 'confi.json'
+    if config_path is None:
+        config_path = 'config.json'
+    if config_path is None:
+        config_path = '/tmp/auto_client.py'
     try:
-        with io.open(confi_path, 'r') as f:
-            confi = json.load(f)
+        with open(config_path, 'r') as f:
+            config = json.load(f)
     except FileNotFoundError:
         msg = (f'Could not find a configuration file at: '
-               f'\n{confi_path}\n '
+               f'\n{config_path}\n '
                f'Did you pass a path to the location of the configuration file?'
                f'The default assumption search only the working directory.'
                f'If yes, try to pass an absolute path.')
         raise FileNotFoundError(msg)
 
     try:
-        if seems_like_a_url(confi['swagger_path']):
-            with urlopen(confi['swagger_path']) as url:
+        if seems_like_a_url(config['swagger_path']):
+            with urlopen(config['swagger_path']) as url:
                 swagger_data = json.loads(url.read().decode())
         else:
-            with io.open(confi['swagger_path'], 'r') as f:
+            with open(config['swagger_path'], 'r') as f:
                 swagger_data = json.load(f)
     except FileNotFoundError:
         msg = (f'Could not find the swagger specification file at:\n'
-               f'{confi["swagger_path"]}\n'
-               f'A look inside {confi_path} is worth a shot.')
+               f'{config["swagger_path"]}\n'
+               f'A look inside {config_path} is worth a shot.')
         raise FileNotFoundError(msg)
 
     if 'basePath' in swagger_data:
-        confi['basePath'] = swagger_data['basePath']
+        config['basePath'] = swagger_data['basePath']
     else:
-        confi['basePath'] = ''
+        config['basePath'] = ''
         Warning(f"``basePath`` does not seem to be assigned within:\n"
-                f"{confi['swagger_path']}\n"
+                f"{config['swagger_path']}\n"
                 f"Did not result in any data. This isn't necessarily a problem\n"
                 f"Setting ``basePath`` as '' (empty string)")
 
@@ -123,38 +124,39 @@ def main(confi_path=None):
         api_paths = list(swagger_data['paths'])
     else:
         raise ValueError(f"The swagger definition below did not provide any ``paths``:\n"
-                         f"{confi['swagger_path']}\n"
+                         f"{config['swagger_path']}\n"
                          f"An API definition without paths? Test? Exiting.")
 
     client_imports = client_imports_f()
-    client_class_def = client_class_def_template_f(args=confi)
+    client_class_def = client_class_def_template_f(args=config)
     client_encode_decoding_point = client_encoding_decoding_point_f()
     client_point_of_execution = client_point_of_execution_f()
 
-    client_methods = create_client_endpoints(api_paths=api_paths,
-                                             swagger_data=swagger_data)
-
+    client_methods = create_client_endpoints(
+        api_paths=api_paths,
+        swagger_data=swagger_data
+    )
     all_in_one = (client_imports
                   + client_class_def
                   + client_point_of_execution
                   + client_encode_decoding_point
-                  + client_methods[:-4])  # remove the last 4 white spaces
-
+                  + client_methods[:-4]  # remove the last 4 white spaces / indentation
+    )
     try:
-        with io.open(confi['target_path'], 'wb') as f:
+        with open(config['target_path'], 'wb') as f:
             f.write(all_in_one.encode('utf-8'))
 
-        msg = (f"Done! the client was created at:\n\n{confi['target_path']}\n"
+        msg = (f"Done! The client was created at:\n\n{config['target_path']}\n"
                f"Next step is to customize your client and test it with some sample requests.\n")
         print(msg)
     except IOError:
         raise IOError(f'Could not write at the desired location at:\n'
-                      f'{confi["target_path"]}\n')
+                      f'{config["target_path"]}\n')
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--confi-path', '-c', action='store', default='confi.json')
+    parser.add_argument('--config-path', '-c', action='store', default='config.json')
+    parser.add_argument('--output', '-o', action='store', default='/tmp/auto_client.py')
     args = parser.parse_args()
-
-    main(confi_path=args.confi_path)
+    main(config_path=args.config_path)

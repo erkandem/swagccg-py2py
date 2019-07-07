@@ -15,8 +15,8 @@ Welcome to swagccg-py2py's documentation!
    specifications
    sample_client
    api
+   license
 
-.. todo:: add license page
 
 .. todo:: add comparison between code generation libraries
 

@@ -4,6 +4,6 @@ if __name__ == '__main__':
     from swagccg.src.make_client import main as make_client
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--confi-path', '-c', action='store', default='confi.json')
+    parser.add_argument('--config-path', '-c', action='store', default='config.json')
     args = parser.parse_args()
-    make_client(confi_path=args.confi_path)
+    make_client(config_path=args.config_path)

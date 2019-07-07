@@ -4,7 +4,7 @@ from datetime import datetime as dt
 # dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 # dotenv.load_dotenv(dotenv_path)
 
-# python -m swagccg swagccg/examples/confi.json
+# python -m swagccg swagccg/examples/config.json
 
 # add a pet
 from random import random
@@ -26,7 +26,7 @@ HEADERS = {
     'api-key': 'special-key'
 }
 
-COMMAND = 'python -m swagccg  --c swagccg/tests/test_confi.json'
+COMMAND = 'python -m swagccg  --c swagccg/tests/test_config.json'
 STATUS = os.system(COMMAND)
 if STATUS == 0:
     from swagccg.tests.auto_client import MyClientClass

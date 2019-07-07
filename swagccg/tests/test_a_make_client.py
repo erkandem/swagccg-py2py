@@ -5,13 +5,13 @@ a test for itself.
 
 """
 import os
-import io
 import json
 
 
 class TestClientCreation(object):
     """ """
     client = None
+    config_path = 'swagccg/tests/test_config.json'
 
     def test_client_creation(self):
         """
@@ -22,7 +22,7 @@ class TestClientCreation(object):
             - reading the swagger file
             - writing the output
         """
-        cmd = 'python -m swagccg  --c swagccg/tests/test_confi.json'
+        cmd = f'python -m swagccg  -c {self.config_path}'
         status = os.system(cmd)
         # response = subprocess.run(cmd, capture_output=True)
         # if response.returncode:
@@ -37,10 +37,10 @@ class TestClientCreation(object):
         """
         # cmd = 'python src/make_client.py --confi_path tests/test_confi.json'
         # status = os.system(cmd)
-        with io.open('swagccg/tests/test_confi.json') as f:
-            confi = json.load(f)
-        confi_keys_is = list(confi)
-        confi_keys_should = [
+        with open(self.config_path) as f:
+            config = json.load(f)
+        config_keys_is = list(config)
+        config_keys_should = [
             'swagger_path',
             'target_path',
             'class_name',
@@ -51,7 +51,7 @@ class TestClientCreation(object):
             'api_url_base_remote',
             'api_protocol_remote'
         ]
-        assert confi_keys_is == confi_keys_should
+        assert config_keys_is == config_keys_should
 
     def test_importing_test_client(self):
         import_succeeded = False
