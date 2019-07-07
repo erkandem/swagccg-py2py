@@ -1,13 +1,12 @@
 from setuptools import setup, find_packages
 import os
-import io
 import re
 
 here = os.path.abspath(os.path.dirname(__file__))
-with io.open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
+with open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
-with io.open(os.path.join(here, "swagccg", "__init__.py")) as f:
+with open(os.path.join(here, "swagccg", "__init__.py")) as f:
     VERSION = re.search(r"__version__ = '(.+?)'", f.read()).group(1)
 
 name = 'swagccg'
@@ -32,7 +31,7 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
     ],
-    keywords='REST api-client client-code code-generator swagger openapi ',
+    keywords='REST api-client client-code code-generator swagger openapi',
     packages=find_packages(exclude=['swagccg.docs', 'swagccg.tests']),
     # install_requires=['peppercorn'],
     # extras_require={  # Optional

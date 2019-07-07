@@ -1,5 +1,5 @@
 """
-auto-generated 2019-07-07 21:38:29
+auto-generated 2019-07-08 00:21:01
 ... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)'
 
 your module level doc-string goes here
@@ -61,16 +61,16 @@ class MyClientClass(object):
         self.AUTH_TOKEN_KEY_REFRESH = 'refreshed_token'
         self.REFRESH_KEY = 'token'
 
-        self.API_ENDPOINTS = []  # unused
-        
         if self.API_PORT == '80':
             self.API_URL = f'{self.API_PROTOCOL}://{self.API_URL_BASE}'
         else:
             self.API_URL = f'{self.API_PROTOCOL}://{self.API_URL_BASE}:{self.API_PORT}'
         
         if self.API_PROTOCOL == 'https':
-            self.http = urllib3.PoolManager(cert_reqs='CERT_REQUIRED',
-                                            ca_certs=certifi.where())
+            self.http = urllib3.PoolManager(
+                cert_reqs='CERT_REQUIRED',
+                ca_certs=certifi.where()
+            )
         else:
             self.http = urllib3.PoolManager()
 
@@ -78,15 +78,19 @@ class MyClientClass(object):
         self.API_REFRESH_URL = f'{self.API_URL}{self.BASE_PATH}/auth/refresh'
         self.API_BASE_URL = f'{self.API_URL}{self.BASE_PATH}'
     
+    # def __dir__():
+    
     def login_with_api(self, data):
         """ login with the target API and save the JWT token within the class
             .. param data:: login data externally supplied
         """
         encoded_data = json.dumps(data).encode('utf-8')
-        r = self.http.request('POST',
-                              self.API_LOGIN_URL,
-                              headers={'Content-Type': 'application/json'},
-                              body=encoded_data)
+        r = self.http.request(
+                'POST',
+                self.API_LOGIN_URL,
+                headers={'Content-Type': 'application/json'},
+                body=encoded_data
+        )
         if r.status == 200:
             res = json.loads(r.data.decode('utf-8'))
             self.API_TOKEN = res[self.AUTH_TOKEN_KEY]
@@ -162,21 +166,27 @@ class MyClientClass(object):
         if body is not None and method in ['POST', 'PUT', 'PATCH']:
             if 'Content-Type' not in list(headers):
                 headers['Content-Type'] = 'application/json'
-                r = self.http.request(method=method,
-                                      url=url,
-                                      body=self._encode(body),
-                                      headers=headers)
+                r = self.http.request(
+                        method=method,
+                        url=url,
+                        body=self._encode(body),
+                        headers=headers
+                    )
             else:
                 if headers['Content-Type'] == 'application/x-www-form-urlencoded':
-                    r = self.http.urlopen(method,
-                                          url,
-                                          body=self._encode(body, 'url'),
-                                          headers=headers)
+                    r = self.http.urlopen(
+                            method,
+                            url,
+                            body=self._encode(body, 'url'),
+                            headers=headers
+                    )
                 elif headers['Content-Type'] == 'application/json':
-                    r = self.http.request(method=method,
-                                          url=url,
-                                          body=self._encode(body),
-                                          headers=headers)
+                    r = self.http.request(
+                            method=method,
+                            url=url,
+                            body=self._encode(body),
+                            headers=headers
+                    )
                 else:
                     msg = f''' The Content-Type header was set to {headers['Content-Type']}\n
                     However, anything else than 'application/json' or 'application/x-www-form-urlencoded'\n

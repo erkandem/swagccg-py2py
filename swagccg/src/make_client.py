@@ -9,12 +9,14 @@ try:
     from swagccg.src.client_template import client_method_template_f
     from swagccg.src.client_template import client_point_of_execution_f
     from swagccg.src.client_template import client_encode_decoding_point_f
+    from swagccg.src.client_template import dir_template_f
 except ImportError:
     from .client_template import client_imports_f
     from .client_template import client_class_def_template_f
     from .client_template import client_method_template_f
     from .client_template import client_point_of_execution_f
     from .client_template import client_encoding_decoding_point_f
+    from .client_template import dir_template_f
     print("Alternative import used.")
 
 PARSED_HTTP_METHODS = ['GET', 'POST', 'DELETE', 'PATCH', 'PUT']
@@ -27,14 +29,14 @@ def convert_to_snake_case(name):
 
 
 def create_client_endpoints(swagger_data, api_paths):
-    methods_list = ['']
+    methods_list = []
+    method_names = []
     n = 0
     for api_path in api_paths:
         # compose the method name
         http_methods = list(swagger_data['paths'][api_path])
 
         for http_method in http_methods:
-
             operation = f'initial_{n}'
             n += 1
             doc_string = f' '
@@ -46,13 +48,13 @@ def create_client_endpoints(swagger_data, api_paths):
             # convert to snake case if it isn't already
             operation = convert_to_snake_case(operation)
 
-            # check if the http verb is already part of the operation name
+            # check if the HTTP verb is already part of the operation name
             scan = [re.match(verb, operation, flags=re.IGNORECASE) is None for verb in PARSED_HTTP_METHODS]
             if len(scan) == sum(scan):
                 method_name = f'{http_method}_{operation}_r'.lower()
             else:
                 method_name = f'{operation}_r'.lower()
-
+            method_names.append(method_name)
             # handle path parameters explicitly as opposed to parameters within the query string
             path_params = ''
             if 'parameters' in swagger_data['paths'][api_path][http_method]:
@@ -61,15 +63,19 @@ def create_client_endpoints(swagger_data, api_paths):
                     if p['in'] == 'path':
                         path_params += f', {p["name"]}'
 
-            methods_list.append(client_method_template_f(method_name=method_name,
-                                                         http_verb=http_method,
-                                                         api_path=api_path,
-                                                         doc_string=doc_string,
-                                                         path_params=path_params))
+            methods_list.append(
+                client_method_template_f(
+                    method_name=method_name,
+                    http_verb=http_method,
+                    api_path=api_path,
+                    doc_string=doc_string,
+                    path_params=path_params
+                )
+            )
     client_methods = ''
     for i in range(len(methods_list)):
         client_methods = client_methods + methods_list[i]
-    return client_methods
+    return client_methods, method_names
 
 
 def seems_like_a_url(url):
@@ -132,10 +138,12 @@ def main(config_path=None):
     client_encode_decoding_point = client_encoding_decoding_point_f()
     client_point_of_execution = client_point_of_execution_f()
 
-    client_methods = create_client_endpoints(
+    client_methods, method_names = create_client_endpoints(
         api_paths=api_paths,
         swagger_data=swagger_data
     )
+    client_dir_function_str = dir_template_f(method_names)
+    client_class_def = client_class_def.replace('\n    # def __dir__(self):\n', client_dir_function_str, 1)
     all_in_one = (client_imports
                   + client_class_def
                   + client_point_of_execution

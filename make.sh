@@ -5,7 +5,7 @@ activate (){
     . ../.venv/bin/activate
     }
 
-pwd
+
 activate
 # delete cached files from previous builds and tests
 rm -rf build
@@ -69,3 +69,4 @@ cd ../../swagccg-py2py/
 
 # upload build to pypi
 # twine upload dist/*
+# usage explained at https://github.com/pypa/twine

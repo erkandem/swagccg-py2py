@@ -50,7 +50,7 @@ except ImportError:
     return py_code
 
 
-def client_class_def_template_f(args):
+def client_class_def_template_f(args) -> str:
     """
 
     :param args: desired name of client class name default:MyApiClient
@@ -82,16 +82,16 @@ class {args['class_name']}(object):
         self.AUTH_TOKEN_KEY_REFRESH = 'refreshed_token'
         self.REFRESH_KEY = 'token'
 
-        self.API_ENDPOINTS = []  # unused
-        
         if self.API_PORT == '80':
             self.API_URL = f'{{self.API_PROTOCOL}}://{{self.API_URL_BASE}}'
         else:
             self.API_URL = f'{{self.API_PROTOCOL}}://{{self.API_URL_BASE}}:{{self.API_PORT}}'
         
         if self.API_PROTOCOL == 'https':
-            self.http = urllib3.PoolManager(cert_reqs='CERT_REQUIRED',
-                                            ca_certs=certifi.where())
+            self.http = urllib3.PoolManager(
+                cert_reqs='CERT_REQUIRED',
+                ca_certs=certifi.where()
+            )
         else:
             self.http = urllib3.PoolManager()
 
@@ -99,15 +99,19 @@ class {args['class_name']}(object):
         self.API_REFRESH_URL = f'{{self.API_URL}}{{self.BASE_PATH}}/auth/refresh'
         self.API_BASE_URL = f'{{self.API_URL}}{{self.BASE_PATH}}'
     
+    # def __dir__():
+    
     def login_with_api(self, data):
         \"\"\" login with the target API and save the JWT token within the class
             .. param data:: login data externally supplied
         \"\"\"
         encoded_data = json.dumps(data).encode('utf-8')
-        r = self.http.request('POST',
-                              self.API_LOGIN_URL,
-                              headers={{'Content-Type': 'application/json'}},
-                              body=encoded_data)
+        r = self.http.request(
+                'POST',
+                self.API_LOGIN_URL,
+                headers={{'Content-Type': 'application/json'}},
+                body=encoded_data
+        )
         if r.status == 200:
             res = json.loads(r.data.decode('utf-8'))
             self.API_TOKEN = res[self.AUTH_TOKEN_KEY]
@@ -155,6 +159,18 @@ class {args['class_name']}(object):
         self.REFRESH_TIMESTAMP = dt.now()
     '''
     return py_code
+
+
+def dir_template_f(method_names: []) -> str:
+    """generate __dir__ code to deliver a list of all public methods"""
+    method_names_ = "'" + "',\n            '".join(method_names) + "'"
+    return f'''
+    def __dir__():
+        method_names = [
+            {method_names_}
+        ]
+        return method_names
+    '''
 
 
 def client_encoding_decoding_point_f():
@@ -205,7 +221,7 @@ def client_encoding_decoding_point_f():
     return py_code
 
 
-def client_point_of_execution_f():
+def client_point_of_execution_f() -> str:
     """
     The idea is to separate details of the endpoint and transmitting the request.
     ``status_code`` handling could be placed or called here
@@ -240,21 +256,27 @@ def client_point_of_execution_f():
         if body is not None and method in ['POST', 'PUT', 'PATCH']:
             if 'Content-Type' not in list(headers):
                 headers['Content-Type'] = 'application/json'
-                r = self.http.request(method=method,
-                                      url=url,
-                                      body=self._encode(body),
-                                      headers=headers)
+                r = self.http.request(
+                        method=method,
+                        url=url,
+                        body=self._encode(body),
+                        headers=headers
+                    )
             else:
                 if headers['Content-Type'] == 'application/x-www-form-urlencoded':
-                    r = self.http.urlopen(method,
-                                          url,
-                                          body=self._encode(body, 'url'),
-                                          headers=headers)
+                    r = self.http.urlopen(
+                            method,
+                            url,
+                            body=self._encode(body, 'url'),
+                            headers=headers
+                    )
                 elif headers['Content-Type'] == 'application/json':
-                    r = self.http.request(method=method,
-                                          url=url,
-                                          body=self._encode(body),
-                                          headers=headers)
+                    r = self.http.request(
+                            method=method,
+                            url=url,
+                            body=self._encode(body),
+                            headers=headers
+                    )
                 else:
                     msg = f\'\'\' The Content-Type header was set to {{headers['Content-Type']}}\\n
                     However, anything else than 'application/json' or 'application/x-www-form-urlencoded'\\n
@@ -289,7 +311,7 @@ def client_point_of_execution_f():
     return py_code
 
 
-def client_method_template_f(method_name='', http_verb='', api_path='', doc_string='', path_params=''):
+def client_method_template_f(method_name='', http_verb='', api_path='', doc_string='', path_params='') -> str:
     """
      one size fits *most* method template
 
@@ -315,5 +337,4 @@ def client_method_template_f(method_name='', http_verb='', api_path='', doc_stri
         return r
     '''
     return py_code
-
 
