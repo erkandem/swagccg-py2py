@@ -144,10 +144,12 @@ class {args['class_name']}(object):
     def refresh_the_login(self):
         \"\"\" server specific refresh routine\"\"\"
         encoded_data = json.dumps({{'token': self.API_TOKEN}}).encode('utf-8')
-        r = self.http.request('POST',
-                              self.API_REFRESH_URL,
-                              headers={{'Content-Type': 'application/json'}},
-                              body=encoded_data)
+        r = self.http.request(
+                'POST',
+                self.API_REFRESH_URL,
+                headers={{'Content-Type': 'application/json'}},
+                body=encoded_data
+        )
         res = json.loads(r.data.decode('utf-8'))
         self.API_TOKEN = res[self.AUTH_TOKEN_KEY_REFRESH]
         self.REFRESH_TIMESTAMP = dt.now()
@@ -263,10 +265,12 @@ def client_point_of_execution_f():
                     warnings.warn(msg)
                     return 0
         else:
-            r = self.http.request_encode_url(method=method,
-                                             url=url,
-                                             headers=headers,
-                                             fields=fields)
+            r = self.http.request_encode_url(
+                    method=method,
+                    url=url,
+                    headers=headers,
+                    fields=fields
+            )
         if 'pass_through' in kwargs:
             if kwargs['pass_through']:
                 return r
@@ -300,12 +304,14 @@ def client_method_template_f(method_name='', http_verb='', api_path='', doc_stri
     py_code = f'''
     def {method_name}(self{path_params}, headers=None, body=None, fields_data=None, **kwargs):
         \"\"\" {doc_string} \"\"\"
-        r = self._do_call(method='{http_verb.upper()}',
-                          url=f'{{self.API_BASE_URL}}{api_path}',
-                          headers=headers,
-                          body=body,
-                          fields=fields_data,
-                          **kwargs)
+        r = self._do_call(
+                method='{http_verb.upper()}',
+                url=f'{{self.API_BASE_URL}}{api_path}',
+                headers=headers,
+                body=body,
+                fields=fields_data,
+                **kwargs
+        )
         return r
     '''
     return py_code

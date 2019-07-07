@@ -1,7 +1,12 @@
 #!/bin/sh
 # shell version of make.cmd
 # don't forget chmod +x make.sh make_html.sh
+activate (){
+    . ../.venv/bin/activate
+    }
 
+pwd
+activate
 # delete cached files from previous builds and tests
 rm -rf build
 rm -rf swagccg.egg-info
@@ -41,21 +46,21 @@ pip uninstall swagccg --yes
 ./make_html.sh
 pytest -vv
 # twine upload dist/*
+
 # Is the virtualenv activated?
-# ./swagccg/docs/make html
+# sphinx-build html swagccg/docs/source ../swagccg-py2py-docs
 
-#
 
-# git add .
-# git commit -m "passed tests auto commit and push"
-# git push origin master
+git add .
+git commit -m "passed tests auto commit and push"
+git push origin master
 
 coverage run -m swagccg --c swagccg/example/config.json
 
-: '
+#: '
 cd ../swagccg-py2py-docs/html
 git add .
 git commit -m "passed tests auto-built, commit docs and push to gh-pages"
 git push origin gh-pages
 cd ../../swagccg-py2py/
-'
+#'

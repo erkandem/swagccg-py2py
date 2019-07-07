@@ -1,5 +1,5 @@
 """
-auto-generated 2019-07-07 04:27:11
+auto-generated 2019-07-07 19:30:23
 ... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)'
 
 your module level doc-string goes here
@@ -123,10 +123,12 @@ class MyClientClass(object):
     def refresh_the_login(self):
         """ server specific refresh routine"""
         encoded_data = json.dumps({'token': self.API_TOKEN}).encode('utf-8')
-        r = self.http.request('POST',
-                              self.API_REFRESH_URL,
-                              headers={'Content-Type': 'application/json'},
-                              body=encoded_data)
+        r = self.http.request(
+                'POST',
+                self.API_REFRESH_URL,
+                headers={'Content-Type': 'application/json'},
+                body=encoded_data
+        )
         res = json.loads(r.data.decode('utf-8'))
         self.API_TOKEN = res[self.AUTH_TOKEN_KEY_REFRESH]
         self.REFRESH_TIMESTAMP = dt.now()
@@ -185,10 +187,12 @@ class MyClientClass(object):
                     warnings.warn(msg)
                     return 0
         else:
-            r = self.http.request_encode_url(method=method,
-                                             url=url,
-                                             headers=headers,
-                                             fields=fields)
+            r = self.http.request_encode_url(
+                    method=method,
+                    url=url,
+                    headers=headers,
+                    fields=fields
+            )
         if 'pass_through' in kwargs:
             if kwargs['pass_through']:
                 return r
@@ -246,40 +250,48 @@ class MyClientClass(object):
     
     def get_find_pets_r(self, headers=None, body=None, fields_data=None, **kwargs):
         """   """
-        r = self._do_call(method='GET',
-                          url=f'{self.API_BASE_URL}/pets',
-                          headers=headers,
-                          body=body,
-                          fields=fields_data,
-                          **kwargs)
+        r = self._do_call(
+                method='GET',
+                url=f'{self.API_BASE_URL}/pets',
+                headers=headers,
+                body=body,
+                fields=fields_data,
+                **kwargs
+        )
         return r
     
     def post_add_pet_r(self, headers=None, body=None, fields_data=None, **kwargs):
         """   """
-        r = self._do_call(method='POST',
-                          url=f'{self.API_BASE_URL}/pets',
-                          headers=headers,
-                          body=body,
-                          fields=fields_data,
-                          **kwargs)
+        r = self._do_call(
+                method='POST',
+                url=f'{self.API_BASE_URL}/pets',
+                headers=headers,
+                body=body,
+                fields=fields_data,
+                **kwargs
+        )
         return r
     
     def get_find_pet_by_id_r(self, id, headers=None, body=None, fields_data=None, **kwargs):
         """   """
-        r = self._do_call(method='GET',
-                          url=f'{self.API_BASE_URL}/pets/{id}',
-                          headers=headers,
-                          body=body,
-                          fields=fields_data,
-                          **kwargs)
+        r = self._do_call(
+                method='GET',
+                url=f'{self.API_BASE_URL}/pets/{id}',
+                headers=headers,
+                body=body,
+                fields=fields_data,
+                **kwargs
+        )
         return r
     
     def delete_pet_r(self, id, headers=None, body=None, fields_data=None, **kwargs):
         """   """
-        r = self._do_call(method='DELETE',
-                          url=f'{self.API_BASE_URL}/pets/{id}',
-                          headers=headers,
-                          body=body,
-                          fields=fields_data,
-                          **kwargs)
+        r = self._do_call(
+                method='DELETE',
+                url=f'{self.API_BASE_URL}/pets/{id}',
+                headers=headers,
+                body=body,
+                fields=fields_data,
+                **kwargs
+        )
         return r
