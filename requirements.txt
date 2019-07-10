@@ -4,3 +4,4 @@ python-dotenv
 pytest
 codecov
 pytest-cov
+setuptools
