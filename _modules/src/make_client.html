@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>src.make_client &mdash; swagccg py2py 2019 documentation</title>
+  <title>src.make_client &mdash; swagccg py2py 2020 documentation</title>
   
 
   
@@ -17,32 +17,34 @@
   
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -148,7 +150,6 @@
             
   <h1>Source code for src.make_client</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">io</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="k">import</span> <span class="n">urlparse</span>
@@ -159,32 +160,34 @@
     <span class="kn">from</span> <span class="nn">swagccg.src.client_template</span> <span class="k">import</span> <span class="n">client_method_template_f</span>
     <span class="kn">from</span> <span class="nn">swagccg.src.client_template</span> <span class="k">import</span> <span class="n">client_point_of_execution_f</span>
     <span class="kn">from</span> <span class="nn">swagccg.src.client_template</span> <span class="k">import</span> <span class="n">client_encode_decoding_point_f</span>
+    <span class="kn">from</span> <span class="nn">swagccg.src.client_template</span> <span class="k">import</span> <span class="n">dir_template_f</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">.client_template</span> <span class="k">import</span> <span class="n">client_imports_f</span>
     <span class="kn">from</span> <span class="nn">.client_template</span> <span class="k">import</span> <span class="n">client_class_def_template_f</span>
     <span class="kn">from</span> <span class="nn">.client_template</span> <span class="k">import</span> <span class="n">client_method_template_f</span>
     <span class="kn">from</span> <span class="nn">.client_template</span> <span class="k">import</span> <span class="n">client_point_of_execution_f</span>
     <span class="kn">from</span> <span class="nn">.client_template</span> <span class="k">import</span> <span class="n">client_encoding_decoding_point_f</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t import client templates. Sphinx build?&quot;</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">.client_template</span> <span class="k">import</span> <span class="n">dir_template_f</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Alternative import used.&quot;</span><span class="p">)</span>
 
 <span class="n">PARSED_HTTP_METHODS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="s1">&#39;DELETE&#39;</span><span class="p">,</span> <span class="s1">&#39;PATCH&#39;</span><span class="p">,</span> <span class="s1">&#39;PUT&#39;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="convert_to_snake_case"><a class="viewcode-back" href="../../api.html#src.make_client.convert_to_snake_case">[docs]</a><span class="k">def</span> <span class="nf">convert_to_snake_case</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="convert_to_snake_case"><a class="viewcode-back" href="../../api.html#src.make_client.convert_to_snake_case">[docs]</a><span class="k">def</span> <span class="nf">convert_to_snake_case</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;via https://stackoverflow.com/a/1176023 &quot;&quot;&quot;</span>
     <span class="n">s1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;(.)([A-Z][a-z]+)&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\1_\2&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;([a-z0-9])([A-Z])&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\1_\2&#39;</span><span class="p">,</span> <span class="n">s1</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="create_client_endpoints"><a class="viewcode-back" href="../../api.html#src.make_client.create_client_endpoints">[docs]</a><span class="k">def</span> <span class="nf">create_client_endpoints</span><span class="p">(</span><span class="n">swagger_data</span><span class="p">,</span> <span class="n">api_paths</span><span class="p">):</span>
-    <span class="n">methods_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span>
+    <span class="n">methods_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">method_names</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">api_path</span> <span class="ow">in</span> <span class="n">api_paths</span><span class="p">:</span>
         <span class="c1"># compose the method name</span>
         <span class="n">http_methods</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">swagger_data</span><span class="p">[</span><span class="s1">&#39;paths&#39;</span><span class="p">][</span><span class="n">api_path</span><span class="p">])</span>
 
         <span class="k">for</span> <span class="n">http_method</span> <span class="ow">in</span> <span class="n">http_methods</span><span class="p">:</span>
-
             <span class="n">operation</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;initial_</span><span class="si">{n}</span><span class="s1">&#39;</span>
             <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="n">doc_string</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39; &#39;</span>
@@ -196,13 +199,14 @@
             <span class="c1"># convert to snake case if it isn&#39;t already</span>
             <span class="n">operation</span> <span class="o">=</span> <span class="n">convert_to_snake_case</span><span class="p">(</span><span class="n">operation</span><span class="p">)</span>
 
-            <span class="c1"># check if the http verb is already part of the operation name</span>
+            <span class="c1"># check if the HTTP verb is already part of the operation name</span>
             <span class="n">scan</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">verb</span><span class="p">,</span> <span class="n">operation</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">verb</span> <span class="ow">in</span> <span class="n">PARSED_HTTP_METHODS</span><span class="p">]</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">scan</span><span class="p">)</span> <span class="o">==</span> <span class="nb">sum</span><span class="p">(</span><span class="n">scan</span><span class="p">):</span>
                 <span class="n">method_name</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{http_method}</span><span class="s1">_</span><span class="si">{operation}</span><span class="s1">_r&#39;</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">method_name</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{operation}</span><span class="s1">_r&#39;</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-
+            <span class="n">method_name</span> <span class="o">=</span> <span class="n">method_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
+            <span class="n">method_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">method_name</span><span class="p">)</span>
             <span class="c1"># handle path parameters explicitly as opposed to parameters within the query string</span>
             <span class="n">path_params</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
             <span class="k">if</span> <span class="s1">&#39;parameters&#39;</span> <span class="ow">in</span> <span class="n">swagger_data</span><span class="p">[</span><span class="s1">&#39;paths&#39;</span><span class="p">][</span><span class="n">api_path</span><span class="p">][</span><span class="n">http_method</span><span class="p">]:</span>
@@ -211,15 +215,19 @@
                     <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;in&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;path&#39;</span><span class="p">:</span>
                         <span class="n">path_params</span> <span class="o">+=</span> <span class="n">f</span><span class="s1">&#39;, </span><span class="si">{p[&quot;name&quot;]}</span><span class="s1">&#39;</span>
 
-            <span class="n">methods_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">client_method_template_f</span><span class="p">(</span><span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span><span class="p">,</span>
-                                                         <span class="n">http_verb</span><span class="o">=</span><span class="n">http_method</span><span class="p">,</span>
-                                                         <span class="n">api_path</span><span class="o">=</span><span class="n">api_path</span><span class="p">,</span>
-                                                         <span class="n">doc_string</span><span class="o">=</span><span class="n">doc_string</span><span class="p">,</span>
-                                                         <span class="n">path_params</span><span class="o">=</span><span class="n">path_params</span><span class="p">))</span>
+            <span class="n">methods_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">client_method_template_f</span><span class="p">(</span>
+                    <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span><span class="p">,</span>
+                    <span class="n">http_verb</span><span class="o">=</span><span class="n">http_method</span><span class="p">,</span>
+                    <span class="n">api_path</span><span class="o">=</span><span class="n">api_path</span><span class="p">,</span>
+                    <span class="n">doc_string</span><span class="o">=</span><span class="n">doc_string</span><span class="p">,</span>
+                    <span class="n">path_params</span><span class="o">=</span><span class="n">path_params</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
     <span class="n">client_methods</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">methods_list</span><span class="p">)):</span>
         <span class="n">client_methods</span> <span class="o">=</span> <span class="n">client_methods</span> <span class="o">+</span> <span class="n">methods_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">client_methods</span></div>
+    <span class="k">return</span> <span class="n">client_methods</span><span class="p">,</span> <span class="n">method_names</span></div>
 
 
 <div class="viewcode-block" id="seems_like_a_url"><a class="viewcode-back" href="../../api.html#src.make_client.seems_like_a_url">[docs]</a><span class="k">def</span> <span class="nf">seems_like_a_url</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
@@ -231,40 +239,42 @@
         <span class="k">return</span> <span class="kc">False</span></div>
 
 
-<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../api.html#src.make_client.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">confi_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../api.html#src.make_client.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">config_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; control flow &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">confi_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">confi_path</span> <span class="o">=</span> <span class="s1">&#39;confi.json&#39;</span>
+    <span class="k">if</span> <span class="n">config_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">config_path</span> <span class="o">=</span> <span class="s1">&#39;config.json&#39;</span>
+    <span class="k">if</span> <span class="n">config_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">config_path</span> <span class="o">=</span> <span class="s1">&#39;/tmp/auto_client.py&#39;</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">confi_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">confi</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="s1">&#39;Could not find a configuration file at: &#39;</span>
-               <span class="n">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="si">{confi_path}</span><span class="se">\n</span><span class="s1"> &#39;</span>
+               <span class="n">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="si">{config_path}</span><span class="se">\n</span><span class="s1"> &#39;</span>
                <span class="n">f</span><span class="s1">&#39;Did you pass a path to the location of the configuration file?&#39;</span>
                <span class="n">f</span><span class="s1">&#39;The default assumption search only the working directory.&#39;</span>
                <span class="n">f</span><span class="s1">&#39;If yes, try to pass an absolute path.&#39;</span><span class="p">)</span>
         <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">seems_like_a_url</span><span class="p">(</span><span class="n">confi</span><span class="p">[</span><span class="s1">&#39;swagger_path&#39;</span><span class="p">]):</span>
-            <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">confi</span><span class="p">[</span><span class="s1">&#39;swagger_path&#39;</span><span class="p">])</span> <span class="k">as</span> <span class="n">url</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">seems_like_a_url</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;swagger_path&#39;</span><span class="p">]):</span>
+            <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;swagger_path&#39;</span><span class="p">])</span> <span class="k">as</span> <span class="n">url</span><span class="p">:</span>
                 <span class="n">swagger_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">confi</span><span class="p">[</span><span class="s1">&#39;swagger_path&#39;</span><span class="p">],</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;swagger_path&#39;</span><span class="p">],</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="n">swagger_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="s1">&#39;Could not find the swagger specification file at:</span><span class="se">\n</span><span class="s1">&#39;</span>
-               <span class="n">f</span><span class="s1">&#39;</span><span class="si">{confi[&quot;swagger_path&quot;]}</span><span class="se">\n</span><span class="s1">&#39;</span>
-               <span class="n">f</span><span class="s1">&#39;A look inside </span><span class="si">{confi_path}</span><span class="s1"> is worth a shot.&#39;</span><span class="p">)</span>
+               <span class="n">f</span><span class="s1">&#39;</span><span class="si">{config[&quot;swagger_path&quot;]}</span><span class="se">\n</span><span class="s1">&#39;</span>
+               <span class="n">f</span><span class="s1">&#39;A look inside </span><span class="si">{config_path}</span><span class="s1"> is worth a shot.&#39;</span><span class="p">)</span>
         <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="s1">&#39;basePath&#39;</span> <span class="ow">in</span> <span class="n">swagger_data</span><span class="p">:</span>
-        <span class="n">confi</span><span class="p">[</span><span class="s1">&#39;basePath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">swagger_data</span><span class="p">[</span><span class="s1">&#39;basePath&#39;</span><span class="p">]</span>
+        <span class="n">config</span><span class="p">[</span><span class="s1">&#39;basePath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">swagger_data</span><span class="p">[</span><span class="s1">&#39;basePath&#39;</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">confi</span><span class="p">[</span><span class="s1">&#39;basePath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">config</span><span class="p">[</span><span class="s1">&#39;basePath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
         <span class="ne">Warning</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;``basePath`` does not seem to be assigned within:</span><span class="se">\n</span><span class="s2">&quot;</span>
-                <span class="n">f</span><span class="s2">&quot;</span><span class="si">{confi[&#39;swagger_path&#39;]}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="n">f</span><span class="s2">&quot;</span><span class="si">{config[&#39;swagger_path&#39;]}</span><span class="se">\n</span><span class="s2">&quot;</span>
                 <span class="n">f</span><span class="s2">&quot;Did not result in any data. This isn&#39;t necessarily a problem</span><span class="se">\n</span><span class="s2">&quot;</span>
                 <span class="n">f</span><span class="s2">&quot;Setting ``basePath`` as &#39;&#39; (empty string)&quot;</span><span class="p">)</span>
 
@@ -272,41 +282,44 @@
         <span class="n">api_paths</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">swagger_data</span><span class="p">[</span><span class="s1">&#39;paths&#39;</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;The swagger definition below did not provide any ``paths``:</span><span class="se">\n</span><span class="s2">&quot;</span>
-                         <span class="n">f</span><span class="s2">&quot;</span><span class="si">{confi[&#39;swagger_path&#39;]}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                         <span class="n">f</span><span class="s2">&quot;</span><span class="si">{config[&#39;swagger_path&#39;]}</span><span class="se">\n</span><span class="s2">&quot;</span>
                          <span class="n">f</span><span class="s2">&quot;An API definition without paths? Test? Exiting.&quot;</span><span class="p">)</span>
 
     <span class="n">client_imports</span> <span class="o">=</span> <span class="n">client_imports_f</span><span class="p">()</span>
-    <span class="n">client_class_def</span> <span class="o">=</span> <span class="n">client_class_def_template_f</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">confi</span><span class="p">)</span>
+    <span class="n">client_class_def</span> <span class="o">=</span> <span class="n">client_class_def_template_f</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
     <span class="n">client_encode_decoding_point</span> <span class="o">=</span> <span class="n">client_encoding_decoding_point_f</span><span class="p">()</span>
     <span class="n">client_point_of_execution</span> <span class="o">=</span> <span class="n">client_point_of_execution_f</span><span class="p">()</span>
 
-    <span class="n">client_methods</span> <span class="o">=</span> <span class="n">create_client_endpoints</span><span class="p">(</span><span class="n">api_paths</span><span class="o">=</span><span class="n">api_paths</span><span class="p">,</span>
-                                             <span class="n">swagger_data</span><span class="o">=</span><span class="n">swagger_data</span><span class="p">)</span>
-
-    <span class="n">all_in_one</span> <span class="o">=</span> <span class="p">(</span><span class="n">client_imports</span>
-                  <span class="o">+</span> <span class="n">client_class_def</span>
-                  <span class="o">+</span> <span class="n">client_point_of_execution</span>
-                  <span class="o">+</span> <span class="n">client_encode_decoding_point</span>
-                  <span class="o">+</span> <span class="n">client_methods</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">])</span>  <span class="c1"># remove the last 4 white spaces</span>
-
+    <span class="n">client_methods</span><span class="p">,</span> <span class="n">method_names</span> <span class="o">=</span> <span class="n">create_client_endpoints</span><span class="p">(</span>
+        <span class="n">api_paths</span><span class="o">=</span><span class="n">api_paths</span><span class="p">,</span>
+        <span class="n">swagger_data</span><span class="o">=</span><span class="n">swagger_data</span>
+    <span class="p">)</span>
+    <span class="n">client_dir_function_str</span> <span class="o">=</span> <span class="n">dir_template_f</span><span class="p">(</span><span class="n">method_names</span><span class="p">)</span>
+    <span class="n">client_class_def</span> <span class="o">=</span> <span class="n">client_class_def</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">    # def __dir__(self):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">client_dir_function_str</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">all_in_one</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">client_imports</span>
+            <span class="o">+</span> <span class="n">client_class_def</span>
+            <span class="o">+</span> <span class="n">client_point_of_execution</span>
+            <span class="o">+</span> <span class="n">client_encode_decoding_point</span>
+            <span class="o">+</span> <span class="n">client_methods</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># remove the last 4 white spaces / indentation#</span>
+    <span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">confi</span><span class="p">[</span><span class="s1">&#39;target_path&#39;</span><span class="p">],</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;target_path&#39;</span><span class="p">],</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">all_in_one</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
 
-        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="s2">&quot;Done! the client was created at:</span><span class="se">\n\n</span><span class="si">{confi[&#39;target_path&#39;]}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="s2">&quot;Done! The client was created at:</span><span class="se">\n\n</span><span class="si">{config[&#39;target_path&#39;]}</span><span class="se">\n</span><span class="s2">&quot;</span>
                <span class="n">f</span><span class="s2">&quot;Next step is to customize your client and test it with some sample requests.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Could not write at the desired location at:</span><span class="se">\n</span><span class="s1">&#39;</span>
-                      <span class="n">f</span><span class="s1">&#39;</span><span class="si">{confi[&quot;target_path&quot;]}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+                      <span class="n">f</span><span class="s1">&#39;</span><span class="si">{config[&quot;target_path&quot;]}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--confi-path&#39;</span><span class="p">,</span> <span class="s1">&#39;-c&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;confi.json&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--config-path&#39;</span><span class="p">,</span> <span class="s1">&#39;-c&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;config.json&#39;</span><span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-
-    <span class="n">main</span><span class="p">(</span><span class="n">confi_path</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">confi_path</span><span class="p">)</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">config_path</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">config_path</span><span class="p">)</span>
 </pre></div>
 
            </div>
@@ -319,7 +332,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Erkan Demiralay.
+        &copy; Copyright 2020, Erkan Demiralay
 
     </p>
   </div>
@@ -336,32 +349,16 @@
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'2019',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-
-  
-
-  <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

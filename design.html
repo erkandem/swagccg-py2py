@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Design &mdash; swagccg py2py 2019 documentation</title>
+  <title>Design &mdash; swagccg py2py 2020 documentation</title>
   
 
   
@@ -17,34 +17,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Specifications" href="specifications.html" />
     <link rel="prev" title="swagccg-py2py" href="README.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -86,7 +88,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#imports">Imports</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#client-class-definition">Client Class Definition</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#point-of-execution-poe">Point of Execution - POE</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#client-class-encoding-decoding">Client Class Encoding Decoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#client-class-encoding-decoding">Client Class Encoding-Decoding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#client-class-methods">Client Class Methods</a></li>
 </ul>
 </li>
@@ -95,6 +97,7 @@
 <li class="toctree-l1"><a class="reference internal" href="specifications.html">Specifications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sample_client.html">Sample Client</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
             
@@ -162,27 +165,26 @@
   <div class="section" id="design">
 <h1>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h1>
 <p>Developers should be able to create code within the language they are using.
-The tool was originally design to cover only GET requests with
+The tool was originally designed to cover only <code class="docutils literal notranslate"><span class="pre">GET</span></code> requests with
 a possibility for a  query string. The response was (and is) assumed to be
-<code class="docutils literal notranslate"><span class="pre">JSON</span> <span class="pre">only</span></code>. But since the outwards facing parts are located in <code class="xref py py-func docutils literal notranslate"><span class="pre">_do_call()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">JSON</span></code> only. But since the outwards facing parts are located in <code class="xref py py-func docutils literal notranslate"><span class="pre">_do_call()</span></code>,
 <code class="xref py py-func docutils literal notranslate"><span class="pre">_encode()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">_decode()</span></code> it’s easy to add your logic.</p>
 <div class="section" id="client-generation">
 <h2>Client Generation<a class="headerlink" href="#client-generation" title="Permalink to this headline">¶</a></h2>
 <p>It is very easy to create client code because of triple-quoted strings and
-<em>mustache like</em> option to drop in variables into the string. (<strong>Python 3.6</strong>)</p>
-<dl class="docutils">
-<dt>Apart from file IO, the code generation can be boiled down to four steps</dt>
-<dd><ul class="first last simple">
-<li>client imports</li>
-<li>class definition and constructor</li>
-<li>outwards facing request dispatching point</li>
-<li>client methods</li>
+the <em>mustache like</em> option to drop in variables into the string. (<strong>Python 3.6</strong>)</p>
+<dl class="simple">
+<dt>Apart from file IO, the code generation can be boiled down to four steps</dt><dd><ul class="simple">
+<li><p>client imports</p></li>
+<li><p>class definition and constructor</p></li>
+<li><p>outwards facing request dispatching point</p></li>
+<li><p>client methods</p></li>
 </ul>
 </dd>
 </dl>
 <div class="section" id="imports">
 <h3>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">client_imports_f()</span></code> can be used to define imports and as well as a module level comment.</p>
+<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">client_imports_f()</span></code> can be used to define imports and a module level comment.</p>
 <p>Reference: <a class="reference internal" href="api.html#src.client_template.client_imports_f" title="src.client_template.client_imports_f"><code class="xref py py-func docutils literal notranslate"><span class="pre">src.client_template.client_imports_f()</span></code></a></p>
 </div>
 <div class="section" id="client-class-definition">
@@ -198,12 +200,11 @@ Drop in your preferred way.</p>
 <p>Reference: <a class="reference internal" href="api.html#src.client_template.client_point_of_execution_f" title="src.client_template.client_point_of_execution_f"><code class="xref py py-func docutils literal notranslate"><span class="pre">src.client_template.client_point_of_execution_f()</span></code></a></p>
 </div>
 <div class="section" id="client-class-encoding-decoding">
-<h3>Client Class Encoding Decoding<a class="headerlink" href="#client-class-encoding-decoding" title="Permalink to this headline">¶</a></h3>
-<p>By default, any request body will be encoded to json and
-binary assuming utf-8 input.</p>
-<p>Any response body will be decoded assuming JSON content.</p>
-<p>On exception is if you want to encode <code class="docutils literal notranslate"><span class="pre">formData</span></code>.
-This is not handled on the client class level yet.
+<h3>Client Class Encoding-Decoding<a class="headerlink" href="#client-class-encoding-decoding" title="Permalink to this headline">¶</a></h3>
+<p>By default, any request body will be encoded to JSON and
+binary assuming utf-8 input.
+Any response body will be decoded from utf-8 and loaded as JSON.</p>
+<p>For details see:
 See <a class="reference internal" href="specifications.html#specifications"><span class="std std-ref">Specifications</span></a> for details.</p>
 <p>Reference: <a class="reference internal" href="api.html#src.client_template.client_encoding_decoding_point_f" title="src.client_template.client_encoding_decoding_point_f"><code class="xref py py-func docutils literal notranslate"><span class="pre">src.client_template.client_encoding_decoding_point_f()</span></code></a></p>
 </div>
@@ -216,15 +217,15 @@ The actual name of the client-class-method will be http-method + the OperationId
 If doesn’t it will be attached.</p>
 <p>Examples:</p>
 <ul class="simple">
-<li>A <code class="docutils literal notranslate"><span class="pre">GET</span></code> http-method on a <code class="docutils literal notranslate"><span class="pre">getRessource</span></code> OperationId would render to
-<code class="docutils literal notranslate"><span class="pre">get_ressource_r</span></code></li>
-<li>A <code class="docutils literal notranslate"><span class="pre">GET</span></code> http-method on a <code class="docutils literal notranslate"><span class="pre">Ressource</span></code> OperationId would also render to
-<code class="docutils literal notranslate"><span class="pre">get_ressource_r</span></code></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">GET</span></code> http-method on a <code class="docutils literal notranslate"><span class="pre">getRessource</span></code> OperationId would render to
+<code class="docutils literal notranslate"><span class="pre">get_ressource_r</span></code></p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">GET</span></code> http-method on a <code class="docutils literal notranslate"><span class="pre">Ressource</span></code> OperationId would also render to
+<code class="docutils literal notranslate"><span class="pre">get_ressource_r</span></code></p></li>
 </ul>
 <p>Weak Point:</p>
 <ul class="simple">
-<li>A <code class="docutils literal notranslate"><span class="pre">POST</span></code> http-method on a <code class="docutils literal notranslate"><span class="pre">getRessource</span></code> OperationId would render to
-<code class="docutils literal notranslate"><span class="pre">get_ressource_r</span></code> because a</li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">POST</span></code> http-method on a <code class="docutils literal notranslate"><span class="pre">getRessource</span></code> OperationId would render to
+<code class="docutils literal notranslate"><span class="pre">get_ressource_r</span></code> because a</p></li>
 </ul>
 <p>The parsing logic can be found within <a class="reference internal" href="api.html#src.make_client.create_client_endpoints" title="src.make_client.create_client_endpoints"><code class="xref py py-func docutils literal notranslate"><span class="pre">src.make_client.create_client_endpoints()</span></code></a></p>
 <p>The client-class-method rendering logic is placed <a class="reference internal" href="api.html#src.client_template.client_method_template_f" title="src.client_template.client_method_template_f"><code class="xref py py-func docutils literal notranslate"><span class="pre">src.client_template.client_method_template_f()</span></code></a></p>
@@ -243,7 +244,7 @@ If doesn’t it will be attached.</p>
         <a href="specifications.html" class="btn btn-neutral float-right" title="Specifications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="README.html" class="btn btn-neutral" title="swagccg-py2py" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="README.html" class="btn btn-neutral float-left" title="swagccg-py2py" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -252,7 +253,7 @@ If doesn’t it will be attached.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Erkan Demiralay.
+        &copy; Copyright 2020, Erkan Demiralay
 
     </p>
   </div>
@@ -269,32 +270,16 @@ If doesn’t it will be attached.</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'2019',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

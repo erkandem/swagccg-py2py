@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>tests.auto_client &mdash; swagccg py2py 2019 documentation</title>
+  <title>tests.auto_client &mdash; swagccg py2py 2020 documentation</title>
   
 
   
@@ -17,32 +17,34 @@
   
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -148,8 +150,8 @@
             
   <h1>Source code for tests.auto_client</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">auto-generated 2019-03-27 14:34:36</span>
-<span class="sd">... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)&#39;</span>
+<span class="sd">auto-generated 2020-01-31 22:08:45</span>
+<span class="sd">... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)&#39; version 0.3.2</span>
 
 <span class="sd">your module level doc-string goes here</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -160,30 +162,12 @@
 <span class="c1"># Edit the template!</span>
 <span class="c1"># #######################################################################</span>
 
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">urllib3</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Make sure that there is no other file shadowing urllib3&#39;</span><span class="p">)</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">urllib</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Make sure that there is no other file shadowing urllib&#39;</span><span class="p">)</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">certifi</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Make sure that there is no other file shadowing certifi&#39;</span><span class="p">)</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">json</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Make sure that there is no other file shadowing json&#39;</span><span class="p">)</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span> <span class="k">as</span> <span class="n">dt</span><span class="p">,</span> <span class="n">timedelta</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Make sure that there is no other file shadowing datetime, dt, or timedelta&#39;</span><span class="p">)</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Make sure that there is no other file shadowing warnings&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span> <span class="k">as</span> <span class="n">dt</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib3</span>
+<span class="kn">import</span> <span class="nn">certifi</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
 
 
 <div class="viewcode-block" id="MyClientClass"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass">[docs]</a><span class="k">class</span> <span class="nc">MyClientClass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -198,7 +182,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">API_PORT</span> <span class="o">=</span> <span class="s1">&#39;5000&#39;</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">API_URL_BASE</span> <span class="o">=</span> <span class="s1">&#39;127.0.0.1&#39;</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">API_PROTOCOL</span> <span class="o">=</span> <span class="s1">&#39;http&#39;</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">BASE_PATH</span> <span class="o">=</span> <span class="s1">&#39;/v2&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">LOGIN_TIMESTAMP</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">API_TOKEN</span> <span class="o">=</span> <span class="kc">None</span>
@@ -210,32 +194,70 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">AUTH_TOKEN_KEY_REFRESH</span> <span class="o">=</span> <span class="s1">&#39;refreshed_token&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">REFRESH_KEY</span> <span class="o">=</span> <span class="s1">&#39;token&#39;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">API_ENDPOINTS</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># unused</span>
-        
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">API_PORT</span> <span class="o">==</span> <span class="s1">&#39;80&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">API_URL</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_PROTOCOL}</span><span class="s1">://</span><span class="si">{self.API_URL_BASE}</span><span class="s1">&#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">API_URL</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_PROTOCOL}</span><span class="s1">://</span><span class="si">{self.API_URL_BASE}</span><span class="s1">:</span><span class="si">{self.API_PORT}</span><span class="s1">&#39;</span>
-        
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">API_PROTOCOL</span> <span class="o">==</span> <span class="s1">&#39;https&#39;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">http</span> <span class="o">=</span> <span class="n">urllib3</span><span class="o">.</span><span class="n">PoolManager</span><span class="p">(</span><span class="n">cert_reqs</span><span class="o">=</span><span class="s1">&#39;CERT_REQUIRED&#39;</span><span class="p">,</span>
-                                            <span class="n">ca_certs</span><span class="o">=</span><span class="n">certifi</span><span class="o">.</span><span class="n">where</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">http</span> <span class="o">=</span> <span class="n">urllib3</span><span class="o">.</span><span class="n">PoolManager</span><span class="p">(</span>
+                <span class="n">cert_reqs</span><span class="o">=</span><span class="s1">&#39;CERT_REQUIRED&#39;</span><span class="p">,</span>
+                <span class="n">ca_certs</span><span class="o">=</span><span class="n">certifi</span><span class="o">.</span><span class="n">where</span><span class="p">()</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">http</span> <span class="o">=</span> <span class="n">urllib3</span><span class="o">.</span><span class="n">PoolManager</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">API_LOGIN_URL</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_URL}{self.BASE_PATH}</span><span class="s1">/auth/login&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">API_REFRESH_URL</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_URL}{self.BASE_PATH}</span><span class="s1">/auth/refresh&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">API_LOGIN_URL</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_URL}{self.BASE_PATH}</span><span class="s1">/login&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">API_REFRESH_URL</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_URL}{self.BASE_PATH}</span><span class="s1">/refresh&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">API_BASE_URL</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_URL}{self.BASE_PATH}</span><span class="s1">&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__dir__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">method_names</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;get_pet_by_id_r&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;post_update_pet_with_form_r&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;delete_pet_r&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;post_upload_file_r&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;post_add_pet_r&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;put_update_pet_r&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;get_find_pets_by_status_r&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;get_find_pets_by_tags_r&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;get_inventory_r&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;get_order_by_id_r&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;delete_order_r&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;post_place_order_r&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;get_user_by_name_r&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;put_update_user_r&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;delete_user_r&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;get_login_user_r&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;get_logout_user_r&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;post_create_user_r&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;post_create_users_with_array_input_r&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;post_create_users_with_list_input_r&#39;</span>
+        <span class="p">]</span>
+        <span class="k">return</span> <span class="n">method_names</span>
     
-<div class="viewcode-block" id="MyClientClass.login_with_api"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.login_with_api">[docs]</a>    <span class="k">def</span> <span class="nf">login_with_api</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; login with the target API and save the JWT token within the class</span>
-<span class="sd">            .. param data:: login data externally supplied</span>
+<div class="viewcode-block" id="MyClientClass.login_with_api"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.login_with_api">[docs]</a>    <span class="k">def</span> <span class="nf">login_with_api</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        login with the target API and save the JWT token within the class</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            data: login data externally supplied</span>
+<span class="sd">            body: data to be sent in body (typically credentials)</span>
+<span class="sd">            headers: option to supply custom headers if needed</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">encoded_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
-                              <span class="bp">self</span><span class="o">.</span><span class="n">API_LOGIN_URL</span><span class="p">,</span>
-                              <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">},</span>
-                              <span class="n">body</span><span class="o">=</span><span class="n">encoded_data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">headers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;content-type&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">h</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">headers</span><span class="p">]:</span>
+                <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;application/json&#39;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">API_LOGIN_URL</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">pass_through</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
         <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
             <span class="n">res</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">API_TOKEN</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">AUTH_TOKEN_KEY</span><span class="p">]</span>
@@ -244,18 +266,19 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">REFRESH_TIMESTAMP</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;login failed =/: </span><span class="se">\n</span><span class="s1">status:</span><span class="si">{r.status}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">message: </span><span class="si">{r.msg}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">url </span><span class="si">{r._request_url}</span><span class="s1">&#39;</span><span class="p">)</span></div>
-    
+
     <span class="c1"># -----------------------------------------------------------------------</span>
     <span class="c1"># ---------- Token Management</span>
     <span class="c1"># -----------------------------------------------------------------------</span>
-    
+
 <div class="viewcode-block" id="MyClientClass.is_it_time_to_refresh_the_token"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.is_it_time_to_refresh_the_token">[docs]</a>    <span class="k">def</span> <span class="nf">is_it_time_to_refresh_the_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Return True or False depending on the ``LOGIN_TIMESTAMP`` for the</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return True or False depending on the ``LOGIN_TIMESTAMP`` for the</span>
 <span class="sd">        first refresh or the ``REFRESH_TIMESTAMP`` if the JWT was already</span>
 <span class="sd">        refreshed once</span>
 <span class="sd">        </span>
 <span class="sd">        expiry is server specific</span>
-<span class="sd">         &quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">REFRESH_TIMESTAMP</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LOGIN_TIMESTAMP</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">dt</span><span class="o">.</span><span class="n">now</span><span class="p">():</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">refresh_the_login</span><span class="p">()</span>
@@ -268,14 +291,16 @@
                 <span class="k">return</span> <span class="kc">True</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">False</span></div>
-    
+
 <div class="viewcode-block" id="MyClientClass.refresh_the_login"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.refresh_the_login">[docs]</a>    <span class="k">def</span> <span class="nf">refresh_the_login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; server specific refresh routine&quot;&quot;&quot;</span>
         <span class="n">encoded_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s1">&#39;token&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">API_TOKEN</span><span class="p">})</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
-                              <span class="bp">self</span><span class="o">.</span><span class="n">API_REFRESH_URL</span><span class="p">,</span>
-                              <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">},</span>
-                              <span class="n">body</span><span class="o">=</span><span class="n">encoded_data</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
+                <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">API_REFRESH_URL</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">},</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">encoded_data</span>
+        <span class="p">)</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">API_TOKEN</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">AUTH_TOKEN_KEY_REFRESH</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">REFRESH_TIMESTAMP</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">now</span><span class="p">()</span></div>
@@ -291,9 +316,9 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A way to separate each resource from the actual request dispatching point</span>
 <span class="sd">        Response is assumed to be json by default. any other mapping can be hooked here.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Use ``pass_through = True`` to receive the untouched response object</span>
-<span class="sd">        </span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            method (str): HTTP-Method</span>
 <span class="sd">            url (str): endpoint</span>
@@ -304,43 +329,50 @@
 <span class="sd">                         &#39;Content-Type&#39;: &#39;application/x-www-form-urlencoded&#39;</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        
+
         <span class="n">headers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_auth_header</span><span class="p">(</span><span class="n">headers</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">body</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="s1">&#39;PUT&#39;</span><span class="p">,</span> <span class="s1">&#39;PATCH&#39;</span><span class="p">]:</span>
-            <span class="k">if</span> <span class="s1">&#39;Content-Type&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">headers</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s1">&#39;Content-Type&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">headers</span><span class="p">:</span>
                 <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;application/json&#39;</span>
-                <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
-                                      <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
-                                      <span class="n">body</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_encode</span><span class="p">(</span><span class="n">body</span><span class="p">),</span>
-                                      <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
+                        <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+                        <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+                        <span class="n">body</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_encode</span><span class="p">(</span><span class="n">body</span><span class="p">),</span>
+                        <span class="n">headers</span><span class="o">=</span><span class="n">headers</span>
+                    <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;application/x-www-form-urlencoded&#39;</span><span class="p">:</span>
-                    <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">method</span><span class="p">,</span>
-                                          <span class="n">url</span><span class="p">,</span>
-                                          <span class="n">body</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_encode</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">),</span>
-                                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+                    <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
+                            <span class="n">method</span><span class="p">,</span>
+                            <span class="n">url</span><span class="p">,</span>
+                            <span class="n">body</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_encode</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">),</span>
+                            <span class="n">headers</span><span class="o">=</span><span class="n">headers</span>
+                    <span class="p">)</span>
                 <span class="k">elif</span> <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;application/json&#39;</span><span class="p">:</span>
-                    <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
-                                          <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
-                                          <span class="n">body</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_encode</span><span class="p">(</span><span class="n">body</span><span class="p">),</span>
-                                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+                    <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
+                            <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+                            <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+                            <span class="n">body</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_encode</span><span class="p">(</span><span class="n">body</span><span class="p">),</span>
+                            <span class="n">headers</span><span class="o">=</span><span class="n">headers</span>
+                    <span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">msg</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;&#39;&#39; The Content-Type header was set to </span><span class="si">{headers[&#39;Content-Type&#39;]}</span><span class="se">\n</span><span class="s1"></span>
 <span class="s1">                    However, anything else than &#39;application/json&#39; or &#39;application/x-www-form-urlencoded&#39;</span><span class="se">\n</span><span class="s1"></span>
 <span class="s1">                    is not accounted for in the client.</span><span class="se">\n</span><span class="s1"> If you would like to add it look for:</span><span class="se">\n\n</span><span class="s1"></span>
 <span class="s1">                    client_point_of_execution_f to build the logic</span><span class="se">\n</span><span class="s1"></span>
 <span class="s1">                    client_encoding_decoding_point_f for handling encoding</span><span class="se">\n\n</span><span class="s1"></span>
-<span class="s1">                    0 (zero) was returned to avoid a RunTimeError&#39;&#39;&#39;</span>
+<span class="s1">                    -1 (negative one) was returned to avoid a RunTimeError&#39;&#39;&#39;</span>
                     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-                    <span class="k">return</span> <span class="mi">0</span>
+                    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">request_encode_url</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
-                                             <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
-                                             <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                                             <span class="n">fields</span><span class="o">=</span><span class="n">fields</span><span class="p">)</span>
-        <span class="k">if</span> <span class="s1">&#39;pass_through&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;pass_through&#39;</span><span class="p">]:</span>
-                <span class="k">return</span> <span class="n">r</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">request_encode_url</span><span class="p">(</span>
+                    <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+                    <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+                    <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                    <span class="n">fields</span><span class="o">=</span><span class="n">fields</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pass_through&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">r</span>
 
         <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -349,22 +381,22 @@
                 <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">status</span>
         <span class="k">elif</span> <span class="n">r</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">401</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">refresh_the_login</span><span class="p">()</span>
-            <span class="k">return</span> <span class="mi">0</span>
+            <span class="k">return</span> <span class="mi">401</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="mi">0</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
     
     <span class="k">def</span> <span class="nf">_encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Abstracted encoding point. Mount your custom function.</span>
 <span class="sd">        Focus here is on built in JSON.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            data(): python object</span>
 <span class="sd">            format(str): json or url</span>
-<span class="sd">        </span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            data_encoded: :func:`json.dumps` and encode from utf-8 to binary</span>
-<span class="sd">            </span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">bytes</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">data</span>
@@ -382,215 +414,255 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        abstracted decoding point </span>
 <span class="sd">        Mount your custom function. Focus here is on JSON.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            data: python object (dict, list, ...)</span>
-<span class="sd">        </span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">           data_decoded: first decode from binary to utf-8 and parse with </span>
 <span class="sd">                         built-in :func:`json.loads`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        
+
         <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span> 
-    
-<div class="viewcode-block" id="MyClientClass.post_add_pet_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.post_add_pet_r">[docs]</a>    <span class="k">def</span> <span class="nf">post_add_pet_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Add a new pet to the store &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/pet&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">r</span></div>
-    
-<div class="viewcode-block" id="MyClientClass.put_update_pet_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.put_update_pet_r">[docs]</a>    <span class="k">def</span> <span class="nf">put_update_pet_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Update an existing pet &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;PUT&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/pet&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">r</span></div>
-    
-<div class="viewcode-block" id="MyClientClass.get_find_pets_by_status_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.get_find_pets_by_status_r">[docs]</a>    <span class="k">def</span> <span class="nf">get_find_pets_by_status_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Finds Pets by status &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/pet/findByStatus&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">r</span></div>
-    
-<div class="viewcode-block" id="MyClientClass.get_find_pets_by_tags_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.get_find_pets_by_tags_r">[docs]</a>    <span class="k">def</span> <span class="nf">get_find_pets_by_tags_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Finds Pets by tags &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/pet/findByTags&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">r</span></div>
     
 <div class="viewcode-block" id="MyClientClass.get_pet_by_id_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.get_pet_by_id_r">[docs]</a>    <span class="k">def</span> <span class="nf">get_pet_by_id_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">petId</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Find pet by ID &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/pet/</span><span class="si">{petId}</span><span class="s1">&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/pet/</span><span class="si">{petId}</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="n">r</span></div>
     
 <div class="viewcode-block" id="MyClientClass.post_update_pet_with_form_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.post_update_pet_with_form_r">[docs]</a>    <span class="k">def</span> <span class="nf">post_update_pet_with_form_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">petId</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Updates a pet in the store with form data &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/pet/</span><span class="si">{petId}</span><span class="s1">&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/pet/</span><span class="si">{petId}</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="n">r</span></div>
     
 <div class="viewcode-block" id="MyClientClass.delete_pet_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.delete_pet_r">[docs]</a>    <span class="k">def</span> <span class="nf">delete_pet_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">petId</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Deletes a pet &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;DELETE&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/pet/</span><span class="si">{petId}</span><span class="s1">&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;DELETE&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/pet/</span><span class="si">{petId}</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="n">r</span></div>
     
 <div class="viewcode-block" id="MyClientClass.post_upload_file_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.post_upload_file_r">[docs]</a>    <span class="k">def</span> <span class="nf">post_upload_file_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">petId</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; uploads an image &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/pet/</span><span class="si">{petId}</span><span class="s1">/uploadImage&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/pet/</span><span class="si">{petId}</span><span class="s1">/uploadImage&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">r</span></div>
+    
+<div class="viewcode-block" id="MyClientClass.post_add_pet_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.post_add_pet_r">[docs]</a>    <span class="k">def</span> <span class="nf">post_add_pet_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Add a new pet to the store &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/pet&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">r</span></div>
+    
+<div class="viewcode-block" id="MyClientClass.put_update_pet_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.put_update_pet_r">[docs]</a>    <span class="k">def</span> <span class="nf">put_update_pet_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Update an existing pet &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;PUT&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/pet&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">r</span></div>
+    
+<div class="viewcode-block" id="MyClientClass.get_find_pets_by_status_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.get_find_pets_by_status_r">[docs]</a>    <span class="k">def</span> <span class="nf">get_find_pets_by_status_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Finds Pets by status &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/pet/findByStatus&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">r</span></div>
+    
+<div class="viewcode-block" id="MyClientClass.get_find_pets_by_tags_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.get_find_pets_by_tags_r">[docs]</a>    <span class="k">def</span> <span class="nf">get_find_pets_by_tags_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Finds Pets by tags &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/pet/findByTags&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="n">r</span></div>
     
 <div class="viewcode-block" id="MyClientClass.get_inventory_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.get_inventory_r">[docs]</a>    <span class="k">def</span> <span class="nf">get_inventory_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Returns pet inventories by status &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/store/inventory&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">r</span></div>
-    
-<div class="viewcode-block" id="MyClientClass.post_place_order_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.post_place_order_r">[docs]</a>    <span class="k">def</span> <span class="nf">post_place_order_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Place an order for a pet &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/store/order&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/store/inventory&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="n">r</span></div>
     
 <div class="viewcode-block" id="MyClientClass.get_order_by_id_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.get_order_by_id_r">[docs]</a>    <span class="k">def</span> <span class="nf">get_order_by_id_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orderId</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Find purchase order by ID &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/store/order/</span><span class="si">{orderId}</span><span class="s1">&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/store/order/</span><span class="si">{orderId}</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="n">r</span></div>
     
 <div class="viewcode-block" id="MyClientClass.delete_order_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.delete_order_r">[docs]</a>    <span class="k">def</span> <span class="nf">delete_order_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orderId</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Delete purchase order by ID &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;DELETE&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/store/order/</span><span class="si">{orderId}</span><span class="s1">&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;DELETE&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/store/order/</span><span class="si">{orderId}</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="n">r</span></div>
     
-<div class="viewcode-block" id="MyClientClass.post_create_user_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.post_create_user_r">[docs]</a>    <span class="k">def</span> <span class="nf">post_create_user_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Create user &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/user&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">r</span></div>
-    
-<div class="viewcode-block" id="MyClientClass.post_create_users_with_array_input_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.post_create_users_with_array_input_r">[docs]</a>    <span class="k">def</span> <span class="nf">post_create_users_with_array_input_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Creates list of users with given input array &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/user/createWithArray&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">r</span></div>
-    
-<div class="viewcode-block" id="MyClientClass.post_create_users_with_list_input_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.post_create_users_with_list_input_r">[docs]</a>    <span class="k">def</span> <span class="nf">post_create_users_with_list_input_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Creates list of users with given input array &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/user/createWithList&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">r</span></div>
-    
-<div class="viewcode-block" id="MyClientClass.get_login_user_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.get_login_user_r">[docs]</a>    <span class="k">def</span> <span class="nf">get_login_user_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Logs user into the system &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/user/login&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">r</span></div>
-    
-<div class="viewcode-block" id="MyClientClass.get_logout_user_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.get_logout_user_r">[docs]</a>    <span class="k">def</span> <span class="nf">get_logout_user_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Logs out current logged in user session &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/user/logout&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<div class="viewcode-block" id="MyClientClass.post_place_order_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.post_place_order_r">[docs]</a>    <span class="k">def</span> <span class="nf">post_place_order_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Place an order for a pet &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/store/order&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="n">r</span></div>
     
 <div class="viewcode-block" id="MyClientClass.get_user_by_name_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.get_user_by_name_r">[docs]</a>    <span class="k">def</span> <span class="nf">get_user_by_name_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Get user by user name &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/user/</span><span class="si">{username}</span><span class="s1">&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/user/</span><span class="si">{username}</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="n">r</span></div>
     
 <div class="viewcode-block" id="MyClientClass.put_update_user_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.put_update_user_r">[docs]</a>    <span class="k">def</span> <span class="nf">put_update_user_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Updated user &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;PUT&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/user/</span><span class="si">{username}</span><span class="s1">&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;PUT&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/user/</span><span class="si">{username}</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="n">r</span></div>
     
 <div class="viewcode-block" id="MyClientClass.delete_user_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.delete_user_r">[docs]</a>    <span class="k">def</span> <span class="nf">delete_user_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Delete user &quot;&quot;&quot;</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;DELETE&#39;</span><span class="p">,</span>
-                          <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/user/</span><span class="si">{username}</span><span class="s1">&#39;</span><span class="p">,</span>
-                          <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                          <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-                          <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
-                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;DELETE&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/user/</span><span class="si">{username}</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">r</span></div>
+    
+<div class="viewcode-block" id="MyClientClass.get_login_user_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.get_login_user_r">[docs]</a>    <span class="k">def</span> <span class="nf">get_login_user_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Logs user into the system &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/user/login&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">r</span></div>
+    
+<div class="viewcode-block" id="MyClientClass.get_logout_user_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.get_logout_user_r">[docs]</a>    <span class="k">def</span> <span class="nf">get_logout_user_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Logs out current logged in user session &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/user/logout&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">r</span></div>
+    
+<div class="viewcode-block" id="MyClientClass.post_create_user_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.post_create_user_r">[docs]</a>    <span class="k">def</span> <span class="nf">post_create_user_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Create user &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/user&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">r</span></div>
+    
+<div class="viewcode-block" id="MyClientClass.post_create_users_with_array_input_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.post_create_users_with_array_input_r">[docs]</a>    <span class="k">def</span> <span class="nf">post_create_users_with_array_input_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Creates list of users with given input array &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/user/createWithArray&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">r</span></div>
+    
+<div class="viewcode-block" id="MyClientClass.post_create_users_with_list_input_r"><a class="viewcode-back" href="../../sample_client.html#tests.auto_client.MyClientClass.post_create_users_with_list_input_r">[docs]</a>    <span class="k">def</span> <span class="nf">post_create_users_with_list_input_r</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fields_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Creates list of users with given input array &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_call</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.API_BASE_URL}</span><span class="s1">/user/createWithList&#39;</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+                <span class="n">fields</span><span class="o">=</span><span class="n">fields_data</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="n">r</span></div></div>
 </pre></div>
 
@@ -604,7 +676,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Erkan Demiralay.
+        &copy; Copyright 2020, Erkan Demiralay
 
     </p>
   </div>
@@ -621,32 +693,16 @@
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'2019',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-
-  
-
-  <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

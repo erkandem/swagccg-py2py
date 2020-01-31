@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>src.client_template &mdash; swagccg py2py 2019 documentation</title>
+  <title>src.client_template &mdash; swagccg py2py 2020 documentation</title>
   
 
   
@@ -17,32 +17,34 @@
   
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -148,19 +150,23 @@
             
   <h1>Source code for src.client_template</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span> <span class="k">as</span> <span class="n">dt</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">__version__</span>
 
 
-<div class="viewcode-block" id="client_imports_f"><a class="viewcode-back" href="../../api.html#src.client_template.client_imports_f">[docs]</a><span class="k">def</span> <span class="nf">client_imports_f</span><span class="p">():</span>
+<div class="viewcode-block" id="client_imports_f"><a class="viewcode-back" href="../../api.html#src.client_template.client_imports_f">[docs]</a><span class="k">def</span> <span class="nf">client_imports_f</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    creates the string to import the dependecies</span>
-<span class="sd">    Usually the first part of the client module</span>
-<span class="sd">    :return: string, ready to append to python-module</span>
+<span class="sd">    Creates the string to import the client dependencies and</span>
+<span class="sd">    a default module doc string. Usually the first part</span>
+<span class="sd">    of the client module.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: import statements string ready to be appended to client module</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">time_stamp</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
 
     <span class="n">py_code</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;&#39;&#39;</span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
 <span class="s1">auto-generated </span><span class="si">{time_stamp}</span><span class="s1"></span>
-<span class="s1">... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)&#39;</span>
+<span class="s1">... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)&#39; version </span><span class="si">{__version__}</span><span class="s1"></span>
 
 <span class="s1">your module level doc-string goes here</span>
 <span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
@@ -171,39 +177,23 @@
 <span class="s1"># Edit the template!</span>
 <span class="s1"># #######################################################################</span>
 
-<span class="s1">try:</span>
-<span class="s1">    import urllib3</span>
-<span class="s1">except ImportError:</span>
-<span class="s1">    raise ImportError(f&#39;Make sure that there is no other file shadowing urllib3&#39;)</span>
-<span class="s1">try:</span>
-<span class="s1">    import urllib</span>
-<span class="s1">except ImportError:</span>
-<span class="s1">    raise ImportError(f&#39;Make sure that there is no other file shadowing urllib&#39;)</span>
-<span class="s1">try:</span>
-<span class="s1">    import certifi</span>
-<span class="s1">except ImportError:</span>
-<span class="s1">    raise ImportError(f&#39;Make sure that there is no other file shadowing certifi&#39;)</span>
-<span class="s1">try:</span>
-<span class="s1">    import json</span>
-<span class="s1">except ImportError:</span>
-<span class="s1">    raise ImportError(f&#39;Make sure that there is no other file shadowing json&#39;)</span>
-<span class="s1">try:</span>
-<span class="s1">    from datetime import datetime as dt, timedelta</span>
-<span class="s1">except ImportError:</span>
-<span class="s1">    raise ImportError(f&#39;Make sure that there is no other file shadowing datetime, dt, or timedelta&#39;)</span>
-<span class="s1">try:</span>
-<span class="s1">    import warnings</span>
-<span class="s1">except ImportError:</span>
-<span class="s1">    raise ImportError(f&#39;Make sure that there is no other file shadowing warnings&#39;)</span>
+<span class="s1">from datetime import datetime as dt, timedelta</span>
+<span class="s1">import json</span>
+<span class="s1">import urllib</span>
+<span class="s1">import urllib3</span>
+<span class="s1">import certifi</span>
+<span class="s1">import warnings</span>
 <span class="s1">&#39;&#39;&#39;</span>
     <span class="k">return</span> <span class="n">py_code</span></div>
 
 
-<div class="viewcode-block" id="client_class_def_template_f"><a class="viewcode-back" href="../../api.html#src.client_template.client_class_def_template_f">[docs]</a><span class="k">def</span> <span class="nf">client_class_def_template_f</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<div class="viewcode-block" id="client_class_def_template_f"><a class="viewcode-back" href="../../api.html#src.client_template.client_class_def_template_f">[docs]</a><span class="k">def</span> <span class="nf">client_class_def_template_f</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Args:</span>
+<span class="sd">        args (dict): desired name of client class name default:MyApiClient</span>
 
-<span class="sd">    :param args: desired name of client class name default:MyApiClient</span>
-<span class="sd">    :return: string, ready to append to python-module</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        str: class definition string ready to be appended to client-module</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">py_code</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;&#39;&#39;</span>
 
@@ -219,7 +209,7 @@
 <span class="s1">            self.API_PORT = &#39;</span><span class="si">{args[&quot;api_port_local&quot;]}</span><span class="s1">&#39;</span>
 <span class="s1">            self.API_URL_BASE = &#39;</span><span class="si">{args[&quot;api_url_base_local&quot;]}</span><span class="s1">&#39;</span>
 <span class="s1">            self.API_PROTOCOL = &#39;</span><span class="si">{args[&quot;api_protocol_local&quot;]}</span><span class="s1">&#39;</span>
-<span class="s1">        </span>
+
 <span class="s1">        self.BASE_PATH = &#39;</span><span class="si">{args[&quot;basePath&quot;]}</span><span class="s1">&#39;</span>
 <span class="s1">        self.LOGIN_TIMESTAMP = None</span>
 <span class="s1">        self.API_TOKEN = None</span>
@@ -231,32 +221,47 @@
 <span class="s1">        self.AUTH_TOKEN_KEY_REFRESH = &#39;refreshed_token&#39;</span>
 <span class="s1">        self.REFRESH_KEY = &#39;token&#39;</span>
 
-<span class="s1">        self.API_ENDPOINTS = []  # unused</span>
-<span class="s1">        </span>
 <span class="s1">        if self.API_PORT == &#39;80&#39;:</span>
 <span class="s1">            self.API_URL = f&#39;{{self.API_PROTOCOL}}://{{self.API_URL_BASE}}&#39;</span>
 <span class="s1">        else:</span>
 <span class="s1">            self.API_URL = f&#39;{{self.API_PROTOCOL}}://{{self.API_URL_BASE}}:{{self.API_PORT}}&#39;</span>
-<span class="s1">        </span>
+
 <span class="s1">        if self.API_PROTOCOL == &#39;https&#39;:</span>
-<span class="s1">            self.http = urllib3.PoolManager(cert_reqs=&#39;CERT_REQUIRED&#39;,</span>
-<span class="s1">                                            ca_certs=certifi.where())</span>
+<span class="s1">            self.http = urllib3.PoolManager(</span>
+<span class="s1">                cert_reqs=&#39;CERT_REQUIRED&#39;,</span>
+<span class="s1">                ca_certs=certifi.where()</span>
+<span class="s1">            )</span>
 <span class="s1">        else:</span>
 <span class="s1">            self.http = urllib3.PoolManager()</span>
 
-<span class="s1">        self.API_LOGIN_URL = f&#39;{{self.API_URL}}{{self.BASE_PATH}}/auth/login&#39;</span>
-<span class="s1">        self.API_REFRESH_URL = f&#39;{{self.API_URL}}{{self.BASE_PATH}}/auth/refresh&#39;</span>
+<span class="s1">        self.API_LOGIN_URL = f&#39;{{self.API_URL}}{{self.BASE_PATH}}/login&#39;</span>
+<span class="s1">        self.API_REFRESH_URL = f&#39;{{self.API_URL}}{{self.BASE_PATH}}/refresh&#39;</span>
 <span class="s1">        self.API_BASE_URL = f&#39;{{self.API_URL}}{{self.BASE_PATH}}&#39;</span>
-<span class="s1">    </span>
-<span class="s1">    def login_with_api(self, data):</span>
-<span class="s1">        </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"> login with the target API and save the JWT token within the class</span>
-<span class="s1">            .. param data:: login data externally supplied</span>
+
+<span class="s1">    # def __dir__(self):</span>
+
+<span class="s1">    def login_with_api(self, *, body, headers=None, **kwargs):</span>
 <span class="s1">        </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
-<span class="s1">        encoded_data = json.dumps(data).encode(&#39;utf-8&#39;)</span>
-<span class="s1">        r = self.http.request(&#39;POST&#39;,</span>
-<span class="s1">                              self.API_LOGIN_URL,</span>
-<span class="s1">                              headers={{&#39;Content-Type&#39;: &#39;application/json&#39;}},</span>
-<span class="s1">                              body=encoded_data)</span>
+<span class="s1">        login with the target API and save the JWT token within the class</span>
+<span class="s1">        </span>
+<span class="s1">        Args:</span>
+<span class="s1">            data: login data externally supplied</span>
+<span class="s1">            body: data to be sent in body (typically credentials)</span>
+<span class="s1">            headers: option to supply custom headers if needed</span>
+<span class="s1">        </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
+<span class="s1">        if headers is None:</span>
+<span class="s1">            headers = {{&#39;Content-Type&#39;: &#39;application/json&#39;}}</span>
+<span class="s1">        else:</span>
+<span class="s1">            if &#39;content-type&#39; not in [h.lower() for h in headers]:</span>
+<span class="s1">                headers[&#39;Content-Type&#39;] = &#39;application/json&#39;</span>
+<span class="s1">        r = self._do_call(</span>
+<span class="s1">                method=&#39;POST&#39;,</span>
+<span class="s1">                url=self.API_LOGIN_URL,</span>
+<span class="s1">                headers=headers,</span>
+<span class="s1">                body=body,</span>
+<span class="s1">                pass_through=True,</span>
+<span class="s1">                **kwargs</span>
+<span class="s1">        )</span>
 <span class="s1">        if r.status == 200:</span>
 <span class="s1">            res = json.loads(r.data.decode(&#39;utf-8&#39;))</span>
 <span class="s1">            self.API_TOKEN = res[self.AUTH_TOKEN_KEY]</span>
@@ -265,18 +270,19 @@
 <span class="s1">            self.REFRESH_TIMESTAMP = None</span>
 <span class="s1">        else:</span>
 <span class="s1">            print(f&#39;login failed =/: </span><span class="se">\\</span><span class="s1">nstatus:{{r.status}} </span><span class="se">\\</span><span class="s1">nmessage: {{r.msg}} </span><span class="se">\\</span><span class="s1">nurl {{r._request_url}}&#39;)</span>
-<span class="s1">    </span>
+
 <span class="s1">    # -----------------------------------------------------------------------</span>
 <span class="s1">    # ---------- Token Management</span>
 <span class="s1">    # -----------------------------------------------------------------------</span>
-<span class="s1">    </span>
+
 <span class="s1">    def is_it_time_to_refresh_the_token(self):</span>
-<span class="s1">        </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"> Return True or False depending on the ``LOGIN_TIMESTAMP`` for the</span>
+<span class="s1">        </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
+<span class="s1">        Return True or False depending on the ``LOGIN_TIMESTAMP`` for the</span>
 <span class="s1">        first refresh or the ``REFRESH_TIMESTAMP`` if the JWT was already</span>
 <span class="s1">        refreshed once</span>
 <span class="s1">        </span>
 <span class="s1">        expiry is server specific</span>
-<span class="s1">         </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
+<span class="s1">        </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
 <span class="s1">        if self.REFRESH_TIMESTAMP is None:</span>
 <span class="s1">            if (self.LOGIN_TIMESTAMP + timedelta(hours=10)) &lt; dt.now():</span>
 <span class="s1">                self.refresh_the_login()</span>
@@ -289,14 +295,16 @@
 <span class="s1">                return True</span>
 <span class="s1">            else:</span>
 <span class="s1">                return False</span>
-<span class="s1">    </span>
+
 <span class="s1">    def refresh_the_login(self):</span>
 <span class="s1">        </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"> server specific refresh routine</span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
 <span class="s1">        encoded_data = json.dumps({{&#39;token&#39;: self.API_TOKEN}}).encode(&#39;utf-8&#39;)</span>
-<span class="s1">        r = self.http.request(&#39;POST&#39;,</span>
-<span class="s1">                              self.API_REFRESH_URL,</span>
-<span class="s1">                              headers={{&#39;Content-Type&#39;: &#39;application/json&#39;}},</span>
-<span class="s1">                              body=encoded_data)</span>
+<span class="s1">        r = self.http.request(</span>
+<span class="s1">                &#39;POST&#39;,</span>
+<span class="s1">                self.API_REFRESH_URL,</span>
+<span class="s1">                headers={{&#39;Content-Type&#39;: &#39;application/json&#39;}},</span>
+<span class="s1">                body=encoded_data</span>
+<span class="s1">        )</span>
 <span class="s1">        res = json.loads(r.data.decode(&#39;utf-8&#39;))</span>
 <span class="s1">        self.API_TOKEN = res[self.AUTH_TOKEN_KEY_REFRESH]</span>
 <span class="s1">        self.REFRESH_TIMESTAMP = dt.now()</span>
@@ -304,22 +312,39 @@
     <span class="k">return</span> <span class="n">py_code</span></div>
 
 
-<div class="viewcode-block" id="client_encoding_decoding_point_f"><a class="viewcode-back" href="../../api.html#src.client_template.client_encoding_decoding_point_f">[docs]</a><span class="k">def</span> <span class="nf">client_encoding_decoding_point_f</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;move every call for parsing response data to a single method&quot;&quot;&quot;</span>
+<span class="k">def</span> <span class="nf">dir_template_f</span><span class="p">(</span><span class="n">method_names</span><span class="p">:</span> <span class="p">[])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    generate `__dir__` method code to deliver</span>
+<span class="sd">    a list of all methods which are mapped</span>
+<span class="sd">    to an  API routes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">method_names_</span> <span class="o">=</span> <span class="s2">&quot;&#39;&quot;</span> <span class="o">+</span> <span class="s2">&quot;&#39;,</span><span class="se">\n</span><span class="s2">            &#39;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">method_names</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&#39;&quot;</span>
+    <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">    def __dir__(self):</span>
+<span class="s1">        method_names = [</span>
+<span class="s1">            </span><span class="si">{method_names_}</span><span class="s1"></span>
+<span class="s1">        ]</span>
+<span class="s1">        return method_names</span>
+<span class="s1">    &#39;&#39;&#39;</span>
 
+
+<div class="viewcode-block" id="client_encoding_decoding_point_f"><a class="viewcode-back" href="../../api.html#src.client_template.client_encoding_decoding_point_f">[docs]</a><span class="k">def</span> <span class="nf">client_encoding_decoding_point_f</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    provides method code to encode and decode response data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">py_code</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">    def _encode(self, data, format=None):</span>
 <span class="s1">        </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
 <span class="s1">        Abstracted encoding point. Mount your custom function.</span>
 <span class="s1">        Focus here is on built in JSON.</span>
-<span class="s1">        </span>
+
 <span class="s1">        Args:</span>
 <span class="s1">            data(): python object</span>
 <span class="s1">            format(str): json or url</span>
-<span class="s1">        </span>
+
 <span class="s1">        Returns:</span>
 <span class="s1">            data_encoded: :func:`json.dumps` and encode from utf-8 to binary</span>
-<span class="s1">            </span>
+
 <span class="s1">        </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
 <span class="s1">        if type(data) is bytes:</span>
 <span class="s1">            return data</span>
@@ -337,22 +362,22 @@
 <span class="s1">        </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
 <span class="s1">        abstracted decoding point </span>
 <span class="s1">        Mount your custom function. Focus here is on JSON.</span>
-<span class="s1">        </span>
+
 <span class="s1">        Args:</span>
 <span class="s1">            data: python object (dict, list, ...)</span>
-<span class="s1">        </span>
+
 <span class="s1">        Returns:</span>
 <span class="s1">           data_decoded: first decode from binary to utf-8 and parse with </span>
 <span class="s1">                         built-in :func:`json.loads`</span>
 <span class="s1">        </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
-<span class="s1">        </span>
+
 <span class="s1">        return json.loads(data.decode(&#39;utf-8&#39;)) </span>
 <span class="s1">    &#39;&#39;&#39;</span>
 
     <span class="k">return</span> <span class="n">py_code</span></div>
 
 
-<div class="viewcode-block" id="client_point_of_execution_f"><a class="viewcode-back" href="../../api.html#src.client_template.client_point_of_execution_f">[docs]</a><span class="k">def</span> <span class="nf">client_point_of_execution_f</span><span class="p">():</span>
+<div class="viewcode-block" id="client_point_of_execution_f"><a class="viewcode-back" href="../../api.html#src.client_template.client_point_of_execution_f">[docs]</a><span class="k">def</span> <span class="nf">client_point_of_execution_f</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The idea is to separate details of the endpoint and transmitting the request.</span>
 <span class="sd">    ``status_code`` handling could be placed or called here</span>
@@ -369,9 +394,9 @@
 <span class="s1">        </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
 <span class="s1">        A way to separate each resource from the actual request dispatching point</span>
 <span class="s1">        Response is assumed to be json by default. any other mapping can be hooked here.</span>
-<span class="s1">        </span>
+
 <span class="s1">        Use ``pass_through = True`` to receive the untouched response object</span>
-<span class="s1">        </span>
+
 <span class="s1">        Args:</span>
 <span class="s1">            method (str): HTTP-Method</span>
 <span class="s1">            url (str): endpoint</span>
@@ -382,43 +407,50 @@
 <span class="s1">                         &#39;Content-Type&#39;: &#39;application/x-www-form-urlencoded&#39;</span>
 
 <span class="s1">        </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
-<span class="s1">        </span>
+
 <span class="s1">        headers = self._add_auth_header(headers)</span>
 <span class="s1">        if body is not None and method in [&#39;POST&#39;, &#39;PUT&#39;, &#39;PATCH&#39;]:</span>
-<span class="s1">            if &#39;Content-Type&#39; not in list(headers):</span>
+<span class="s1">            if &#39;Content-Type&#39; not in headers:</span>
 <span class="s1">                headers[&#39;Content-Type&#39;] = &#39;application/json&#39;</span>
-<span class="s1">                r = self.http.request(method=method,</span>
-<span class="s1">                                      url=url,</span>
-<span class="s1">                                      body=self._encode(body),</span>
-<span class="s1">                                      headers=headers)</span>
+<span class="s1">                r = self.http.request(</span>
+<span class="s1">                        method=method,</span>
+<span class="s1">                        url=url,</span>
+<span class="s1">                        body=self._encode(body),</span>
+<span class="s1">                        headers=headers</span>
+<span class="s1">                    )</span>
 <span class="s1">            else:</span>
 <span class="s1">                if headers[&#39;Content-Type&#39;] == &#39;application/x-www-form-urlencoded&#39;:</span>
-<span class="s1">                    r = self.http.urlopen(method,</span>
-<span class="s1">                                          url,</span>
-<span class="s1">                                          body=self._encode(body, &#39;url&#39;),</span>
-<span class="s1">                                          headers=headers)</span>
+<span class="s1">                    r = self.http.urlopen(</span>
+<span class="s1">                            method,</span>
+<span class="s1">                            url,</span>
+<span class="s1">                            body=self._encode(body, &#39;url&#39;),</span>
+<span class="s1">                            headers=headers</span>
+<span class="s1">                    )</span>
 <span class="s1">                elif headers[&#39;Content-Type&#39;] == &#39;application/json&#39;:</span>
-<span class="s1">                    r = self.http.request(method=method,</span>
-<span class="s1">                                          url=url,</span>
-<span class="s1">                                          body=self._encode(body),</span>
-<span class="s1">                                          headers=headers)</span>
+<span class="s1">                    r = self.http.request(</span>
+<span class="s1">                            method=method,</span>
+<span class="s1">                            url=url,</span>
+<span class="s1">                            body=self._encode(body),</span>
+<span class="s1">                            headers=headers</span>
+<span class="s1">                    )</span>
 <span class="s1">                else:</span>
 <span class="s1">                    msg = f</span><span class="se">\&#39;\&#39;\&#39;</span><span class="s1"> The Content-Type header was set to {{headers[&#39;Content-Type&#39;]}}</span><span class="se">\\</span><span class="s1">n</span>
 <span class="s1">                    However, anything else than &#39;application/json&#39; or &#39;application/x-www-form-urlencoded&#39;</span><span class="se">\\</span><span class="s1">n</span>
 <span class="s1">                    is not accounted for in the client.</span><span class="se">\\</span><span class="s1">n If you would like to add it look for:</span><span class="se">\\</span><span class="s1">n</span><span class="se">\\</span><span class="s1">n</span>
 <span class="s1">                    client_point_of_execution_f to build the logic</span><span class="se">\\</span><span class="s1">n</span>
 <span class="s1">                    client_encoding_decoding_point_f for handling encoding</span><span class="se">\\</span><span class="s1">n</span><span class="se">\\</span><span class="s1">n</span>
-<span class="s1">                    0 (zero) was returned to avoid a RunTimeError</span><span class="se">\&#39;\&#39;\&#39;</span><span class="s1"></span>
+<span class="s1">                    -1 (negative one) was returned to avoid a RunTimeError</span><span class="se">\&#39;\&#39;\&#39;</span><span class="s1"></span>
 <span class="s1">                    warnings.warn(msg)</span>
-<span class="s1">                    return 0</span>
+<span class="s1">                    return -1</span>
 <span class="s1">        else:</span>
-<span class="s1">            r = self.http.request_encode_url(method=method,</span>
-<span class="s1">                                             url=url,</span>
-<span class="s1">                                             headers=headers,</span>
-<span class="s1">                                             fields=fields)</span>
-<span class="s1">        if &#39;pass_through&#39; in kwargs:</span>
-<span class="s1">            if kwargs[&#39;pass_through&#39;]:</span>
-<span class="s1">                return r</span>
+<span class="s1">            r = self.http.request_encode_url(</span>
+<span class="s1">                    method=method,</span>
+<span class="s1">                    url=url,</span>
+<span class="s1">                    headers=headers,</span>
+<span class="s1">                    fields=fields</span>
+<span class="s1">            )</span>
+<span class="s1">        if kwargs.get(&#39;pass_through&#39;):</span>
+<span class="s1">            return r</span>
 
 <span class="s1">        if r.status == 200:</span>
 <span class="s1">            if len(r.data) &gt; 0:</span>
@@ -427,39 +459,48 @@
 <span class="s1">                return r.status</span>
 <span class="s1">        elif r.status == 401:</span>
 <span class="s1">            self.refresh_the_login()</span>
-<span class="s1">            return 0</span>
+<span class="s1">            return 401</span>
 <span class="s1">        else:</span>
-<span class="s1">            return 0</span>
+<span class="s1">            return -1</span>
 <span class="s1">    &#39;&#39;&#39;</span>
     <span class="k">return</span> <span class="n">py_code</span></div>
 
 
-<div class="viewcode-block" id="client_method_template_f"><a class="viewcode-back" href="../../api.html#src.client_template.client_method_template_f">[docs]</a><span class="k">def</span> <span class="nf">client_method_template_f</span><span class="p">(</span><span class="n">method_name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">http_verb</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">api_path</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">doc_string</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">path_params</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="client_method_template_f"><a class="viewcode-back" href="../../api.html#src.client_template.client_method_template_f">[docs]</a><span class="k">def</span> <span class="nf">client_method_template_f</span><span class="p">(</span>
+        <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="n">http_verb</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="n">api_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="n">doc_string</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="n">path_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">     one size fits *most* method template</span>
 
-<span class="sd">    :param http_verb: GET, POST, PUT, DELETE and PATCH</span>
-<span class="sd">    :param method_name: a valid python function name as a string</span>
-<span class="sd">    :param api_path: a valid URL part which is joined with the BASE_PATH, can</span>
-<span class="sd">                      contain parameters. Wil be evaluated to a string.</span>
-<span class="sd">    :param doc_string: some description of the function and or endpoint</span>
-<span class="sd">    :param path_params: e.g. pagination is frequently used in the path</span>
-<span class="sd">    :return: string, ready to be appended to python-client-module</span>
+<span class="sd">    Args:</span>
+<span class="sd">        http_verb (str): `GET`, `POST`, `PUT`, `DELETE` and `PATCH`</span>
+<span class="sd">        method_name (str): a valid python function name as a string</span>
+<span class="sd">        api_path (str): a valid URL part which is joined with the `BASE_PATH`.</span>
+<span class="sd">                  Can contain path parameters. Will be evaluated to a string.</span>
+<span class="sd">        doc_string (str): some description of the method and or endpoint</span>
+<span class="sd">        path_params (str): e.g. pagination is frequently used in the path</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: a method code string ready to be appended to python-client-module</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">py_code</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">    def </span><span class="si">{method_name}</span><span class="s1">(self</span><span class="si">{path_params}</span><span class="s1">, headers=None, body=None, fields_data=None, **kwargs):</span>
 <span class="s1">        </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"> </span><span class="si">{doc_string}</span><span class="s1"> </span><span class="se">\&quot;\&quot;\&quot;</span><span class="s1"></span>
-<span class="s1">        r = self._do_call(method=&#39;{http_verb.upper()}&#39;,</span>
-<span class="s1">                          url=f&#39;{{self.API_BASE_URL}}</span><span class="si">{api_path}</span><span class="s1">&#39;,</span>
-<span class="s1">                          headers=headers,</span>
-<span class="s1">                          body=body,</span>
-<span class="s1">                          fields=fields_data,</span>
-<span class="s1">                          **kwargs)</span>
+<span class="s1">        r = self._do_call(</span>
+<span class="s1">                method=&#39;{http_verb.upper()}&#39;,</span>
+<span class="s1">                url=f&#39;{{self.API_BASE_URL}}</span><span class="si">{api_path}</span><span class="s1">&#39;,</span>
+<span class="s1">                headers=headers,</span>
+<span class="s1">                body=body,</span>
+<span class="s1">                fields=fields_data,</span>
+<span class="s1">                **kwargs</span>
+<span class="s1">        )</span>
 <span class="s1">        return r</span>
 <span class="s1">    &#39;&#39;&#39;</span>
     <span class="k">return</span> <span class="n">py_code</span></div>
-
-
 </pre></div>
 
            </div>
@@ -472,7 +513,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Erkan Demiralay.
+        &copy; Copyright 2020, Erkan Demiralay
 
     </p>
   </div>
@@ -489,32 +530,16 @@
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'2019',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-
-  
-
-  <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

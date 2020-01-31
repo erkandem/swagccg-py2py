@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>swagccg-py2py &mdash; swagccg py2py 2019 documentation</title>
+  <title>swagccg-py2py &mdash; swagccg py2py 2020 documentation</title>
   
 
   
@@ -17,34 +17,36 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Design" href="design.html" />
     <link rel="prev" title="Welcome to swagccg-py2py’s documentation!" href="index.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -165,10 +167,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <p><a class="reference external" href="https://travis-ci.com/erkandem/swagccg-py2py"><img alt="Build Status" src="https://travis-ci.com/erkandem/swagccg-py2py.svg?token=EM8YQfR9wuLvQFQzBZ5o&amp;branch=master" /></a></p>
-<p><img alt="image1" src="https://img.shields.io/badge/License-BSD-blue.svg" /></p>
-<p><img alt="image2" src="https://img.shields.io/badge/Python-3.6%20%7C%203.7%20-blue.svg" /></p>
-<p><a class="reference external" href="https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=erkandem/swagccg-py2py&amp;utm_campaign=Badge_Grade"><img alt="Codacy Badge" src="https://api.codacy.com/project/badge/Grade/0181315639494eda8504e5b5092dee73" /></a></p>
+  <p><a class="reference external" href="https://travis-ci.com/erkandem/swagccg-py2py"><img alt="Build Status" src="https://travis-ci.com/erkandem/swagccg-py2py.svg?token=EM8YQfR9wuLvQFQzBZ5o&amp;branch=master" /></a> <img alt="image1" src="https://img.shields.io/badge/License-BSD-blue.svg" /> <img alt="image2" src="https://img.shields.io/badge/Python-3.6%20%7C%203.7%20-blue.svg" /> <a class="reference external" href="https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=erkandem/swagccg-py2py&amp;utm_campaign=Badge_Grade"><img alt="Codacy Badge" src="https://api.codacy.com/project/badge/Grade/0181315639494eda8504e5b5092dee73" /></a></p>
 <div class="section" id="swagccg-py2py">
 <h1>swagccg-py2py<a class="headerlink" href="#swagccg-py2py" title="Permalink to this headline">¶</a></h1>
 <p><em>Swagger Client Code Generator. Using Python. For Python</em></p>
@@ -183,16 +182,16 @@ to place itself between those two categories.</p>
 <p>On top of that, I would expect a programming language to be able to
 create its own tools. While Java is a mature and well established
 language, it might not be within the proficiency portfolio of each and
-everyone.</p>
+everyone - not to mention the author.</p>
 </div>
 <div class="section" id="get-the-code">
 <h2>Get the Code<a class="headerlink" href="#get-the-code" title="Permalink to this headline">¶</a></h2>
 <p>🚨 <strong>not yet</strong></p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">swagccg</span><span class="o">-</span><span class="n">py2py</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install swagccg-py2py
 </pre></div>
 </div>
 <p>or clone it into your development environment</p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">erkandem</span><span class="o">/</span><span class="n">swagccg</span><span class="o">-</span><span class="n">py2py</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/erkandem/swagccg-py2py.git
 </pre></div>
 </div>
 <p>or download the zip</p>
@@ -202,44 +201,42 @@ everyone.</p>
 </div>
 <div class="section" id="getting-started">
 <h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
-<p>The assumption here ist that you already have a <code class="docutils literal notranslate"><span class="pre">swagger.json</span></code> file</p>
-<p>the creation of client comes down to. Of course you could write a little
-shell script or create it on the fly for an app which is consuming your
-API.</p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">swagccg</span>
+<p>The assumption here ist that you already have a <code class="docutils literal notranslate"><span class="pre">swagger.json</span></code> file.</p>
+<p>The creation of a client comes down to:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python swagccg
 </pre></div>
 </div>
-<p>If the <code class="docutils literal notranslate"><span class="pre">confi.json</span></code> is not in your working directory you would have to
-add it’s location to the call:</p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">swagccg</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">location</span><span class="o">/</span><span class="n">of</span><span class="o">/</span><span class="n">your</span><span class="o">/</span><span class="n">confi</span><span class="o">.</span><span class="n">json</span>
+<p>If the <code class="docutils literal notranslate"><span class="pre">config.json</span></code> is not in your working directory you would have
+to add its location to the call:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m swagccg -c /location/of/your/config.json
 </pre></div>
 </div>
 <div class="section" id="the-configuration-file">
 <h3>the configuration file<a class="headerlink" href="#the-configuration-file" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">confi.json</span></code> consists of two distinct parts. First we would like to
-tell the script - where we keep swagger definition - where we would like
-the module to be created - what name we would like the client class to
-have</p>
-<p>Since it’s rather a development tool we would like to switch between
-target hosts with little afford (i.e.&nbsp;environment variable). Therefore,
-we will offer it two targets which are later used to composed to the
-resource URL.</p>
-<p>We’ll set a local (i.e.&nbsp;development) and remote (i.e.&nbsp;deployed) set of:
+<p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> consists of two distinct parts. First, we would like to
+tell the script: - where we keep a swagger definition - where we would
+like the client module to be created - what name we would like the
+client class to have</p>
+<p>Since this is rather a development tool we would like to switch between
+target hosts with little afford (i.e. environment variable). Therefore,
+we will offer it two targets which are later used to assamble resource
+URLs.</p>
+<p>We’ll set a local (i.e. development) and remote (i.e. deployed) set of:
 - port - base url (i.e IPv4, host, domain_name.tld,
-subdomain.domain_name.tld) - protocol (http or https)</p>
-<div class="code json highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;swagger_path&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/abuser/apiclient/swagger.json&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;target_path&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/abuser/apiclient/auto_client.py&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;class_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Myclient&quot;</span><span class="p">,</span>
+subdomain.domain_name.tld) - scheme (http or https)</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;swagger_path&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/abuser/apiclient/swagger.json&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target_path&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/abuser/apiclient/auto_client.py&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;class_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Myclient&quot;</span><span class="p">,</span>
 
 
-  <span class="s2">&quot;api_port_local&quot;</span><span class="p">:</span> <span class="s2">&quot;5000&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;api_url_base_local&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;api_protocol_local&quot;</span><span class="p">:</span> <span class="s2">&quot;http&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;api_port_local&quot;</span><span class="p">:</span> <span class="s2">&quot;5000&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;api_url_base_local&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;api_protocol_local&quot;</span><span class="p">:</span> <span class="s2">&quot;http&quot;</span><span class="p">,</span>
 
-  <span class="s2">&quot;api_port_remote&quot;</span><span class="p">:</span> <span class="s2">&quot;80&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;api_url_base_remote&quot;</span><span class="p">:</span> <span class="s2">&quot;deployed.com&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;api_protocol_remote&quot;</span><span class="p">:</span> <span class="s2">&quot;https&quot;</span>
+  <span class="nt">&quot;api_port_remote&quot;</span><span class="p">:</span> <span class="s2">&quot;80&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;api_url_base_remote&quot;</span><span class="p">:</span> <span class="s2">&quot;deployed.com&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;api_protocol_remote&quot;</span><span class="p">:</span> <span class="s2">&quot;https&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -247,7 +244,7 @@ subdomain.domain_name.tld) - protocol (http or https)</p>
 </div>
 <div class="section" id="client-creation">
 <h2>Client Creation<a class="headerlink" href="#client-creation" title="Permalink to this headline">¶</a></h2>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">swagccg</span> <span class="o">--</span><span class="n">c</span> <span class="n">location</span><span class="o">/</span><span class="n">of</span><span class="o">/</span><span class="n">your</span><span class="o">/</span><span class="n">confi</span><span class="o">.</span><span class="n">json</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m swagccg --c location/of/your/config.json
 </pre></div>
 </div>
 </div>
@@ -255,8 +252,8 @@ subdomain.domain_name.tld) - protocol (http or https)</p>
 <h2>Client Usage<a class="headerlink" href="#client-usage" title="Permalink to this headline">¶</a></h2>
 <p>Ultimately, the usage of the client depends on your requirements.
 Nonetheless, the README would be incomplete without some usage examples:</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">auto_client</span> <span class="k">import</span> <span class="n">MyApiClient</span> <span class="c1"># default names - set them in confi.json</span>
-<span class="kn">from</span> <span class="nn">settings</span> <span class="k">import</span> <span class="n">credential_dict</span> <span class="c1"># if needed</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">auto_client</span> <span class="kn">import</span> <span class="n">MyApiClient</span> <span class="c1"># default names - set them in confi.json</span>
+<span class="kn">from</span> <span class="nn">settings</span> <span class="kn">import</span> <span class="n">credential_dict</span> <span class="c1"># if needed</span>
 
 <span class="n">client_instance</span> <span class="o">=</span> <span class="n">MyApiClient</span><span class="p">(</span><span class="s1">&#39;remote&#39;</span><span class="p">)</span>  <span class="c1"># or &#39;local&#39;</span>
 <span class="n">client_instance</span><span class="o">.</span><span class="n">login_with_api</span><span class="p">(</span><span class="n">credential_dict</span><span class="p">)</span>
@@ -264,10 +261,10 @@ Nonetheless, the README would be incomplete without some usage examples:</p>
 </pre></div>
 </div>
 <p>or</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">dotenv</span> <span class="k">import</span> <span class="n">load_dotenv</span>
-<span class="kn">from</span> <span class="nn">auto_client</span> <span class="k">import</span> <span class="n">MyApiClient</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">from</span> <span class="nn">auto_client</span> <span class="kn">import</span> <span class="n">MyApiClient</span>
 <span class="c1">#%%</span>
 <span class="n">env_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="s1">&#39;.env&#39;</span>
 <span class="n">load_dotenv</span><span class="p">(</span><span class="n">dotenv_path</span><span class="o">=</span><span class="n">env_path</span><span class="p">)</span>
@@ -277,7 +274,7 @@ Nonetheless, the README would be incomplete without some usage examples:</p>
 <span class="n">client_instance</span><span class="o">.</span><span class="n">login_with_api</span><span class="p">({</span>
     <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;API_USERNAME&#39;</span><span class="p">),</span>
     <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;API_PASSWORD&#39;</span><span class="p">)</span>
-    <span class="p">})</span>
+<span class="p">})</span>
 <span class="n">param_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">client_instance</span><span class="o">.</span><span class="n">get_something_r</span><span class="p">(</span><span class="n">fields_data</span><span class="o">=</span><span class="n">param_dict</span><span class="p">)</span>
 </pre></div>
@@ -286,11 +283,13 @@ Nonetheless, the README would be incomplete without some usage examples:</p>
 <div class="section" id="gotchas">
 <h2>gotchas<a class="headerlink" href="#gotchas" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>authorization is highly custom</li>
-<li>most of the swagger details are not parsed</li>
-<li>models and mapping is omitted (<code class="docutils literal notranslate"><span class="pre">marshmallow</span></code>)</li>
-<li>little to none <code class="docutils literal notranslate"><span class="pre">HTTP</span> <span class="pre">status</span> <span class="pre">codes</span></code> parsing</li>
-<li>assumes knowledge on HTTP HEADER, BODY, METHOD</li>
+<li><p>authorization is highly custom</p></li>
+<li><p>most of the swagger details are not parsed</p></li>
+<li><p>models and mapping is omitted (<code class="docutils literal notranslate"><span class="pre">marshmallow</span></code>)</p></li>
+<li><p>little to none <code class="docutils literal notranslate"><span class="pre">HTTP</span> <span class="pre">status</span> <span class="pre">codes</span></code> parsing</p></li>
+<li><p>assumes knowledge on HTTP HEADER, BODY, METHOD</p></li>
+<li><p>pass <code class="docutils literal notranslate"><span class="pre">pass_through=True</span></code> as parameter to receive the response
+object untouched</p></li>
 </ul>
 </div>
 <div class="section" id="recommended-reading">
@@ -326,6 +325,8 @@ licensed repo.</p>
 <p>Visitors who were interested in this repo also took a look at:</p>
 <p><a class="reference external" href="https://github.com/erkandem/swagccg-m2m">swagccg-m2m - MatLab to MatLab Client Code
 Generation</a></p>
+<p>Because every programming language should be able to create its own
+tools.</p>
 </div>
 </div>
 
@@ -340,7 +341,7 @@ Generation</a></p>
         <a href="design.html" class="btn btn-neutral float-right" title="Design" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Welcome to swagccg-py2py’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to swagccg-py2py’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -349,7 +350,7 @@ Generation</a></p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Erkan Demiralay.
+        &copy; Copyright 2020, Erkan Demiralay
 
     </p>
   </div>
@@ -366,32 +367,16 @@ Generation</a></p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'2019',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
