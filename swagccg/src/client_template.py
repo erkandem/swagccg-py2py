@@ -298,9 +298,8 @@ def client_point_of_execution_f() -> str:
                     headers=headers,
                     fields=fields
             )
-        if 'pass_through' in kwargs:
-            if kwargs['pass_through']:
-                return r
+        if kwargs.get('pass_through'):
+            return r
 
         if r.status == 200:
             if len(r.data) > 0:
