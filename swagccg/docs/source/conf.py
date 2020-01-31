@@ -21,13 +21,13 @@ sys.path.insert(0, os.path.abspath('../..'))
 # -- Project information -----------------------------------------------------
 
 project = 'swagccg py2py'
-copyright = '2019, Erkan Demiralay'
+copyright = '2020, Erkan Demiralay'
 author = 'Erkan Demiralay'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = '2019'
+release = '2020'
 
 
 # -- General configuration ---------------------------------------------------
