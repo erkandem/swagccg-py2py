@@ -315,17 +315,26 @@ def client_point_of_execution_f() -> str:
     return py_code
 
 
-def client_method_template_f(method_name='', http_verb='', api_path='', doc_string='', path_params='') -> str:
+def client_method_template_f(
+        method_name: str = '',
+        http_verb: str = '',
+        api_path: str = '',
+        doc_string: str = '',
+        path_params: str = ''
+) -> str:
     """
      one size fits *most* method template
 
-    :param http_verb: GET, POST, PUT, DELETE and PATCH
-    :param method_name: a valid python function name as a string
-    :param api_path: a valid URL part which is joined with the BASE_PATH, can
-                      contain parameters. Wil be evaluated to a string.
-    :param doc_string: some description of the function and or endpoint
-    :param path_params: e.g. pagination is frequently used in the path
-    :return: string, ready to be appended to python-client-module
+    Args:
+        http_verb (str): `GET`, `POST`, `PUT`, `DELETE` and `PATCH`
+        method_name (str): a valid python function name as a string
+        api_path (str): a valid URL part which is joined with the `BASE_PATH`.
+                  Can contain path parameters. Will be evaluated to a string.
+        doc_string (str): some description of the method and or endpoint
+        path_params (str): e.g. pagination is frequently used in the path
+
+    Returns:
+        str: a method code string ready to be appended to python-client-module
     """
     py_code = f'''
     def {method_name}(self{path_params}, headers=None, body=None, fields_data=None, **kwargs):
