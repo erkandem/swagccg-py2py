@@ -288,9 +288,9 @@ def client_point_of_execution_f() -> str:
                     is not accounted for in the client.\\n If you would like to add it look for:\\n\\n
                     client_point_of_execution_f to build the logic\\n
                     client_encoding_decoding_point_f for handling encoding\\n\\n
-                    0 (zero) was returned to avoid a RunTimeError\'\'\'
+                    -1 (negative one) was returned to avoid a RunTimeError\'\'\'
                     warnings.warn(msg)
-                    return 0
+                    return -1
         else:
             r = self.http.request_encode_url(
                     method=method,
