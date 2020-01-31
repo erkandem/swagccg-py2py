@@ -125,12 +125,13 @@ class {args['class_name']}(object):
     # -----------------------------------------------------------------------
 
     def is_it_time_to_refresh_the_token(self):
-        \"\"\" Return True or False depending on the ``LOGIN_TIMESTAMP`` for the
+        \"\"\"
+        Return True or False depending on the ``LOGIN_TIMESTAMP`` for the
         first refresh or the ``REFRESH_TIMESTAMP`` if the JWT was already
         refreshed once
-
+        
         expiry is server specific
-         \"\"\"
+        \"\"\"
         if self.REFRESH_TIMESTAMP is None:
             if (self.LOGIN_TIMESTAMP + timedelta(hours=10)) < dt.now():
                 self.refresh_the_login()
