@@ -3,7 +3,7 @@ from datetime import datetime as dt
 
 def client_imports_f():
     """
-    creates the string to import the dependecies
+    creates the string to import the dependencies
     Usually the first part of the client module
     :return: string, ready to append to python-module
     """
