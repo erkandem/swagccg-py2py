@@ -83,8 +83,8 @@ class {args['class_name']}(object):
         else:
             self.http = urllib3.PoolManager()
 
-        self.API_LOGIN_URL = f'{{self.API_URL}}{{self.BASE_PATH}}/auth/login'
-        self.API_REFRESH_URL = f'{{self.API_URL}}{{self.BASE_PATH}}/auth/refresh'
+        self.API_LOGIN_URL = f'{{self.API_URL}}{{self.BASE_PATH}}/login'
+        self.API_REFRESH_URL = f'{{self.API_URL}}{{self.BASE_PATH}}/refresh'
         self.API_BASE_URL = f'{{self.API_URL}}{{self.BASE_PATH}}'
 
     # def __dir__(self):
