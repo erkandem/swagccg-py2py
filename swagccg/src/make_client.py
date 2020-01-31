@@ -145,11 +145,12 @@ def main(config_path=None):
     )
     client_dir_function_str = dir_template_f(method_names)
     client_class_def = client_class_def.replace('\n    # def __dir__(self):\n', client_dir_function_str, 1)
-    all_in_one = (client_imports
-                  + client_class_def
-                  + client_point_of_execution
-                  + client_encode_decoding_point
-                  + client_methods[:-4]  # remove the last 4 white spaces / indentation
+    all_in_one = (
+            client_imports
+            + client_class_def
+            + client_point_of_execution
+            + client_encode_decoding_point
+            + client_methods[:-4]  # remove the last 4 white spaces / indentation#
     )
     try:
         with open(config['target_path'], 'wb') as f:
