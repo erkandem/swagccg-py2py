@@ -4,9 +4,12 @@ from . import __version__
 
 def client_imports_f() -> str:
     """
-    creates the string to import the dependencies
-    Usually the first part of the client module
-    :return: string, ready to append to python-module
+    Creates the string to import the client dependencies and
+    a default module doc string. Usually the first part
+    of the client module.
+
+    Returns:
+        str: import statements string ready to be appended to client module
     """
     time_stamp = dt.now().strftime('%Y-%m-%d %H:%M:%S')
 
