@@ -1,4 +1,5 @@
 from datetime import datetime as dt
+from . import __version__
 
 
 def client_imports_f():

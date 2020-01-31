@@ -1,3 +1,5 @@
+__version__ = '0.3.1'
+
 from .client_template import (
     client_point_of_execution_f,
     client_method_template_f,

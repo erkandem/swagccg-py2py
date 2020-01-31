@@ -6,7 +6,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
-with open(os.path.join(here, "swagccg", "__init__.py")) as f:
+with open(os.path.join(here, "swagccg", "src", "__init__.py")) as f:
     VERSION = re.search(r"__version__ = '(.+?)'", f.read()).group(1)
 
 name = 'swagccg'

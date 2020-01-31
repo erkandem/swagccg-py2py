@@ -28,5 +28,3 @@ except ImportError:
     print('Alternate import used')
 
 
-__version__ = '0.3.1'
-
