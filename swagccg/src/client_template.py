@@ -177,9 +177,10 @@ def dir_template_f(method_names: []) -> str:
     '''
 
 
-def client_encoding_decoding_point_f():
-    """move every call for parsing response data to a single method"""
-
+def client_encoding_decoding_point_f() -> str:
+    """
+    provides method code to encode and decode response data
+    """
     py_code = '''
     def _encode(self, data, format=None):
         \"\"\"
