@@ -162,7 +162,11 @@ class {args['class_name']}(object):
 
 
 def dir_template_f(method_names: []) -> str:
-    """generate __dir__ code to deliver a list of all public methods"""
+    """
+    generate `__dir__` method code to deliver
+    a list of all methods which are mapped
+    to an  API routes
+    """
     method_names_ = "'" + "',\n            '".join(method_names) + "'"
     return f'''
     def __dir__(self):
