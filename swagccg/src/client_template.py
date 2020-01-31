@@ -259,7 +259,7 @@ def client_point_of_execution_f() -> str:
 
         headers = self._add_auth_header(headers)
         if body is not None and method in ['POST', 'PUT', 'PATCH']:
-            if 'Content-Type' not in list(headers):
+            if 'Content-Type' not in headers:
                 headers['Content-Type'] = 'application/json'
                 r = self.http.request(
                         method=method,
