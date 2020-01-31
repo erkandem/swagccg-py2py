@@ -89,16 +89,27 @@ class {args['class_name']}(object):
 
     # def __dir__(self):
 
-    def login_with_api(self, data):
-        \"\"\" login with the target API and save the JWT token within the class
-            .. param data:: login data externally supplied
+    def login_with_api(self, *, body, headers=None, **kwargs):
         \"\"\"
-        encoded_data = json.dumps(data).encode('utf-8')
-        r = self.http.request(
-                'POST',
-                self.API_LOGIN_URL,
-                headers={{'Content-Type': 'application/json'}},
-                body=encoded_data
+        login with the target API and save the JWT token within the class
+        
+        Args:
+            data: login data externally supplied
+            body: data to be sent in body (typically credentials)
+            headers: option to supply custom headers if needed
+        \"\"\"
+        if headers is None:
+            headers = {{'Content-Type': 'application/json'}}
+        else:
+            if 'content-type' not in [h.lower() for h in headers]:
+                headers['Content-Type'] = 'application/json'
+        r = self._do_call(
+                method='POST',
+                url=self.API_LOGIN_URL,
+                headers=headers,
+                body=body,
+                pass_through=True,
+                **kwargs
         )
         if r.status == 200:
             res = json.loads(r.data.decode('utf-8'))
