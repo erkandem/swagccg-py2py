@@ -36,11 +36,13 @@ import warnings
     return py_code
 
 
-def client_class_def_template_f(args) -> str:
+def client_class_def_template_f(args: dict) -> str:
     """
+    Args:
+        args (dict): desired name of client class name default:MyApiClient
 
-    :param args: desired name of client class name default:MyApiClient
-    :return: string, ready to append to python-module
+    Returns:
+        str: class definition string ready to be appended to client-module
     """
     py_code = f'''
 
