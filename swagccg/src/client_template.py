@@ -308,9 +308,9 @@ def client_point_of_execution_f() -> str:
                 return r.status
         elif r.status == 401:
             self.refresh_the_login()
-            return 0
+            return 401
         else:
-            return 0
+            return -1
     '''
     return py_code
 
