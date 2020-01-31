@@ -26,30 +26,12 @@ your module level doc-string goes here
 # Edit the template!
 # #######################################################################
 
-try:
-    import urllib3
-except ImportError:
-    raise ImportError(f'Make sure that there is no other file shadowing urllib3')
-try:
-    import urllib
-except ImportError:
-    raise ImportError(f'Make sure that there is no other file shadowing urllib')
-try:
-    import certifi
-except ImportError:
-    raise ImportError(f'Make sure that there is no other file shadowing certifi')
-try:
-    import json
-except ImportError:
-    raise ImportError(f'Make sure that there is no other file shadowing json')
-try:
-    from datetime import datetime as dt, timedelta
-except ImportError:
-    raise ImportError(f'Make sure that there is no other file shadowing datetime, dt, or timedelta')
-try:
-    import warnings
-except ImportError:
-    raise ImportError(f'Make sure that there is no other file shadowing warnings')
+from datetime import datetime as dt, timedelta
+import json
+import urllib
+import urllib3
+import certifi
+import warnings
 '''
     return py_code
 
