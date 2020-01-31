@@ -15,7 +15,7 @@ def client_imports_f() -> str:
 
     py_code = f'''\"\"\"
 auto-generated {time_stamp}
-... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)'
+... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)' version {__version__}
 
 your module level doc-string goes here
 \"\"\"
