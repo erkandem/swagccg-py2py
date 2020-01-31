@@ -54,6 +54,7 @@ def create_client_endpoints(swagger_data, api_paths):
                 method_name = f'{http_method}_{operation}_r'.lower()
             else:
                 method_name = f'{operation}_r'.lower()
+            method_name = method_name.replace('-', '_')
             method_names.append(method_name)
             # handle path parameters explicitly as opposed to parameters within the query string
             path_params = ''
