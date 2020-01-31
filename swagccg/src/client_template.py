@@ -2,7 +2,7 @@ from datetime import datetime as dt
 from . import __version__
 
 
-def client_imports_f():
+def client_imports_f() -> str:
     """
     creates the string to import the dependencies
     Usually the first part of the client module
