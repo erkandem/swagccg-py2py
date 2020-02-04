@@ -147,7 +147,7 @@ Mark Masse, REST API Design Rulebook - Designing Consistent RESTful Web Service 
 
 ## Contact
 
-``Email`` [erkan@erkan.io](mailto:erkan@erkan.io)
+``Email`` [erkan.dem@pm.me](mailto:erkan.dem@pm.me)
 
 ``Issues``: [github.com/erkandem/swagccg-py2py/issues](https://github.com/erkandem/swagccg-py2py/issues)
 

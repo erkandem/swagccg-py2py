@@ -162,7 +162,7 @@ Specififcation <https://github.com/OAI/OpenAPI-Specification>`__
 Contact
 -------
 
-``Email`` erkan@erkan.io
+``Email`` erkan.dem@pm.me
 
 ``Issues``:
 `github.com/erkandem/swagccg-py2py/issues <https://github.com/erkandem/swagccg-py2py/issues>`__
