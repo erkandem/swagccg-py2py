@@ -1,5 +1,5 @@
 """
-auto-generated 2020-01-31 22:08:45
+auto-generated 2020-02-07 16:06:21
 ... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)' version 0.3.2
 
 your module level doc-string goes here
@@ -110,11 +110,10 @@ class MyClientClass(object):
         if r.status == 200:
             res = json.loads(r.data.decode('utf-8'))
             self.API_TOKEN = res[self.AUTH_TOKEN_KEY]
-            # print(self.API_TOKEN)
             self.LOGIN_TIMESTAMP = dt.now()
             self.REFRESH_TIMESTAMP = None
         else:
-            print(f'login failed =/: \nstatus:{r.status} \nmessage: {r.msg} \nurl {r._request_url}')
+            print(f'login failed =/: \nstatus:{r.status} \n \nurl {r._request_url}')
 
     # -----------------------------------------------------------------------
     # ---------- Token Management
