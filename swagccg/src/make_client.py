@@ -79,7 +79,7 @@ def create_client_endpoints(swagger_data, api_paths):
     return client_methods, method_names
 
 
-def seems_like_a_url(url: str) -> bool:
+def seems_like_a_url(url):
     """ is_url https://stackoverflow.com/a/52455972/10124294 """
     try:
         r = urlparse(url)
