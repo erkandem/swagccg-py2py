@@ -25,6 +25,6 @@ except ImportError:
         create_client_endpoints,
         seems_like_a_url
     )
-    print('Alternate import used')
+    print('Alternative import used')
 
 
