@@ -265,11 +265,10 @@
 <span class="s1">        if r.status == 200:</span>
 <span class="s1">            res = json.loads(r.data.decode(&#39;utf-8&#39;))</span>
 <span class="s1">            self.API_TOKEN = res[self.AUTH_TOKEN_KEY]</span>
-<span class="s1">            # print(self.API_TOKEN)</span>
 <span class="s1">            self.LOGIN_TIMESTAMP = dt.now()</span>
 <span class="s1">            self.REFRESH_TIMESTAMP = None</span>
 <span class="s1">        else:</span>
-<span class="s1">            print(f&#39;login failed =/: </span><span class="se">\\</span><span class="s1">nstatus:{{r.status}} </span><span class="se">\\</span><span class="s1">nmessage: {{r.msg}} </span><span class="se">\\</span><span class="s1">nurl {{r._request_url}}&#39;)</span>
+<span class="s1">            print(f&#39;login failed =/: </span><span class="se">\\</span><span class="s1">nstatus:{{r.status}} </span><span class="se">\\</span><span class="s1">n </span><span class="se">\\</span><span class="s1">nurl {{r._request_url}}&#39;)</span>
 
 <span class="s1">    # -----------------------------------------------------------------------</span>
 <span class="s1">    # ---------- Token Management</span>

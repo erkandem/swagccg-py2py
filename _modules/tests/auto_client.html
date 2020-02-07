@@ -150,8 +150,8 @@
             
   <h1>Source code for tests.auto_client</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">auto-generated 2020-02-04 21:08:03</span>
-<span class="sd">... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)&#39; version 0.3.2</span>
+<span class="sd">auto-generated 2020-02-07 16:07:36</span>
+<span class="sd">... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)&#39; version 0.3.3</span>
 
 <span class="sd">your module level doc-string goes here</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -261,11 +261,10 @@
         <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
             <span class="n">res</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">API_TOKEN</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">AUTH_TOKEN_KEY</span><span class="p">]</span>
-            <span class="c1"># print(self.API_TOKEN)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">LOGIN_TIMESTAMP</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">REFRESH_TIMESTAMP</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;login failed =/: </span><span class="se">\n</span><span class="s1">status:</span><span class="si">{r.status}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">message: </span><span class="si">{r.msg}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">url </span><span class="si">{r._request_url}</span><span class="s1">&#39;</span><span class="p">)</span></div>
+            <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;login failed =/: </span><span class="se">\n</span><span class="s1">status:</span><span class="si">{r.status}</span><span class="s1"> </span><span class="se">\n</span><span class="s1"> </span><span class="se">\n</span><span class="s1">url </span><span class="si">{r._request_url}</span><span class="s1">&#39;</span><span class="p">)</span></div>
 
     <span class="c1"># -----------------------------------------------------------------------</span>
     <span class="c1"># ---------- Token Management</span>
