@@ -117,7 +117,8 @@ class {args['class_name']}(object):
             self.LOGIN_TIMESTAMP = dt.now()
             self.REFRESH_TIMESTAMP = None
         else:
-            print(f'login failed =/: \\nstatus:{{r.status}} \\n \\nurl {{r._request_url}}')
+            print(f'login failed \\nstatus:{{r.status}} \\n \\nurl: {{self.API_LOGIN_URL}}'
+                  '\\nIs the username and password correct?')
 
     # -----------------------------------------------------------------------
     # ---------- Token Management
