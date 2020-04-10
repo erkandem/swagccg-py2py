@@ -199,6 +199,6 @@ tools.
 .. |Build Status| image:: https://travis-ci.com/erkandem/swagccg-py2py.svg?token=EM8YQfR9wuLvQFQzBZ5o&branch=master
    :target: https://travis-ci.com/erkandem/swagccg-py2py
 .. |image1| image:: https://img.shields.io/badge/License-BSD-blue.svg
-.. |image2| image:: https://img.shields.io/badge/Python-3.6%20%7C%203.7%20-blue.svg
+.. |image2| image:: https://img.shields.io/badge/Python-3.6%20%7C%203.7%20%7C%203.8%20-blue.svg
 .. |Codacy Badge| image:: https://api.codacy.com/project/badge/Grade/0181315639494eda8504e5b5092dee73
    :target: https://www.codacy.com?utm_source=github.com&utm_medium=referral&utm_content=erkandem/swagccg-py2py&utm_campaign=Badge_Grade
