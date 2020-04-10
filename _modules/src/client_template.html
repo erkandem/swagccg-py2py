@@ -268,7 +268,8 @@
 <span class="s1">            self.LOGIN_TIMESTAMP = dt.now()</span>
 <span class="s1">            self.REFRESH_TIMESTAMP = None</span>
 <span class="s1">        else:</span>
-<span class="s1">            print(f&#39;login failed =/: </span><span class="se">\\</span><span class="s1">nstatus:{{r.status}} </span><span class="se">\\</span><span class="s1">n </span><span class="se">\\</span><span class="s1">nurl {{r._request_url}}&#39;)</span>
+<span class="s1">            print(f&#39;login failed </span><span class="se">\\</span><span class="s1">nstatus:{{r.status}} </span><span class="se">\\</span><span class="s1">n </span><span class="se">\\</span><span class="s1">nurl: {{self.API_LOGIN_URL}}&#39;</span>
+<span class="s1">                  &#39;</span><span class="se">\\</span><span class="s1">nIs the username and password correct?&#39;)</span>
 
 <span class="s1">    # -----------------------------------------------------------------------</span>
 <span class="s1">    # ---------- Token Management</span>
