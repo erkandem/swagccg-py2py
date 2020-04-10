@@ -92,7 +92,7 @@ class TestClientFunctionality(object):
         }
         headers = {'Content-Type': 'application/x-www-form-urlencoded'}
         r4 = CLIENT.post_update_pet_with_form_r(petId=PET_ID, body=update, headers=headers)
-        assert r4 == 200
+        assert r4['code'] == 200
 
     def test_get_path_param_1(self):
         """ """
@@ -107,7 +107,7 @@ class TestClientFunctionality(object):
         }
         headers = {'Content-Type': 'application/x-www-form-urlencoded'}
         r6 = CLIENT.post_update_pet_with_form_r(petId=PET_ID, body=update, headers=headers)
-        assert r6 == 200
+        assert r6['code'] == 200
 
     def test_get_path_param_2(self):
         """ """
@@ -118,4 +118,4 @@ class TestClientFunctionality(object):
     def test_delete_with_path_param(self):
         """ """
         r_final = CLIENT.delete_pet_r(petId=PET_ID)
-        assert r_final == 200
+        assert r_final['code'] == 200
