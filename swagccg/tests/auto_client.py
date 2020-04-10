@@ -1,5 +1,5 @@
 """
-auto-generated 2020-02-12 23:26:38
+auto-generated 2020-04-10 18:14:10
 ... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)' version 0.3.3
 
 your module level doc-string goes here
@@ -62,26 +62,26 @@ class MyClientClass(object):
 
     def __dir__(self):
         method_names = [
-            'get_pet_by_id_r',
-            'post_update_pet_with_form_r',
-            'delete_pet_r',
             'post_upload_file_r',
             'post_add_pet_r',
             'put_update_pet_r',
             'get_find_pets_by_status_r',
             'get_find_pets_by_tags_r',
-            'get_inventory_r',
+            'get_pet_by_id_r',
+            'post_update_pet_with_form_r',
+            'delete_pet_r',
+            'post_place_order_r',
             'get_order_by_id_r',
             'delete_order_r',
-            'post_place_order_r',
+            'get_inventory_r',
+            'post_create_users_with_array_input_r',
+            'post_create_users_with_list_input_r',
             'get_user_by_name_r',
             'put_update_user_r',
             'delete_user_r',
             'get_login_user_r',
             'get_logout_user_r',
-            'post_create_user_r',
-            'post_create_users_with_array_input_r',
-            'post_create_users_with_list_input_r'
+            'post_create_user_r'
         ]
         return method_names
     
@@ -274,42 +274,6 @@ class MyClientClass(object):
 
         return json.loads(data.decode('utf-8')) 
     
-    def get_pet_by_id_r(self, petId, headers=None, body=None, fields_data=None, **kwargs):
-        """ Find pet by ID """
-        r = self._do_call(
-                method='GET',
-                url=f'{self.API_BASE_URL}/pet/{petId}',
-                headers=headers,
-                body=body,
-                fields=fields_data,
-                **kwargs
-        )
-        return r
-    
-    def post_update_pet_with_form_r(self, petId, headers=None, body=None, fields_data=None, **kwargs):
-        """ Updates a pet in the store with form data """
-        r = self._do_call(
-                method='POST',
-                url=f'{self.API_BASE_URL}/pet/{petId}',
-                headers=headers,
-                body=body,
-                fields=fields_data,
-                **kwargs
-        )
-        return r
-    
-    def delete_pet_r(self, petId, headers=None, body=None, fields_data=None, **kwargs):
-        """ Deletes a pet """
-        r = self._do_call(
-                method='DELETE',
-                url=f'{self.API_BASE_URL}/pet/{petId}',
-                headers=headers,
-                body=body,
-                fields=fields_data,
-                **kwargs
-        )
-        return r
-    
     def post_upload_file_r(self, petId, headers=None, body=None, fields_data=None, **kwargs):
         """ uploads an image """
         r = self._do_call(
@@ -370,11 +334,47 @@ class MyClientClass(object):
         )
         return r
     
-    def get_inventory_r(self, headers=None, body=None, fields_data=None, **kwargs):
-        """ Returns pet inventories by status """
+    def get_pet_by_id_r(self, petId, headers=None, body=None, fields_data=None, **kwargs):
+        """ Find pet by ID """
         r = self._do_call(
                 method='GET',
-                url=f'{self.API_BASE_URL}/store/inventory',
+                url=f'{self.API_BASE_URL}/pet/{petId}',
+                headers=headers,
+                body=body,
+                fields=fields_data,
+                **kwargs
+        )
+        return r
+    
+    def post_update_pet_with_form_r(self, petId, headers=None, body=None, fields_data=None, **kwargs):
+        """ Updates a pet in the store with form data """
+        r = self._do_call(
+                method='POST',
+                url=f'{self.API_BASE_URL}/pet/{petId}',
+                headers=headers,
+                body=body,
+                fields=fields_data,
+                **kwargs
+        )
+        return r
+    
+    def delete_pet_r(self, petId, headers=None, body=None, fields_data=None, **kwargs):
+        """ Deletes a pet """
+        r = self._do_call(
+                method='DELETE',
+                url=f'{self.API_BASE_URL}/pet/{petId}',
+                headers=headers,
+                body=body,
+                fields=fields_data,
+                **kwargs
+        )
+        return r
+    
+    def post_place_order_r(self, headers=None, body=None, fields_data=None, **kwargs):
+        """ Place an order for a pet """
+        r = self._do_call(
+                method='POST',
+                url=f'{self.API_BASE_URL}/store/order',
                 headers=headers,
                 body=body,
                 fields=fields_data,
@@ -406,11 +406,35 @@ class MyClientClass(object):
         )
         return r
     
-    def post_place_order_r(self, headers=None, body=None, fields_data=None, **kwargs):
-        """ Place an order for a pet """
+    def get_inventory_r(self, headers=None, body=None, fields_data=None, **kwargs):
+        """ Returns pet inventories by status """
+        r = self._do_call(
+                method='GET',
+                url=f'{self.API_BASE_URL}/store/inventory',
+                headers=headers,
+                body=body,
+                fields=fields_data,
+                **kwargs
+        )
+        return r
+    
+    def post_create_users_with_array_input_r(self, headers=None, body=None, fields_data=None, **kwargs):
+        """ Creates list of users with given input array """
         r = self._do_call(
                 method='POST',
-                url=f'{self.API_BASE_URL}/store/order',
+                url=f'{self.API_BASE_URL}/user/createWithArray',
+                headers=headers,
+                body=body,
+                fields=fields_data,
+                **kwargs
+        )
+        return r
+    
+    def post_create_users_with_list_input_r(self, headers=None, body=None, fields_data=None, **kwargs):
+        """ Creates list of users with given input array """
+        r = self._do_call(
+                method='POST',
+                url=f'{self.API_BASE_URL}/user/createWithList',
                 headers=headers,
                 body=body,
                 fields=fields_data,
@@ -483,30 +507,6 @@ class MyClientClass(object):
         r = self._do_call(
                 method='POST',
                 url=f'{self.API_BASE_URL}/user',
-                headers=headers,
-                body=body,
-                fields=fields_data,
-                **kwargs
-        )
-        return r
-    
-    def post_create_users_with_array_input_r(self, headers=None, body=None, fields_data=None, **kwargs):
-        """ Creates list of users with given input array """
-        r = self._do_call(
-                method='POST',
-                url=f'{self.API_BASE_URL}/user/createWithArray',
-                headers=headers,
-                body=body,
-                fields=fields_data,
-                **kwargs
-        )
-        return r
-    
-    def post_create_users_with_list_input_r(self, headers=None, body=None, fields_data=None, **kwargs):
-        """ Creates list of users with given input array """
-        r = self._do_call(
-                method='POST',
-                url=f'{self.API_BASE_URL}/user/createWithList',
                 headers=headers,
                 body=body,
                 fields=fields_data,
