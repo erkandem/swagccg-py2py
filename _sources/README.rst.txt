@@ -1,4 +1,4 @@
-|Build Status| |image1| |image2| |Codacy Badge|
+|Build Status| |image1| |image2| |Codacy Badge| |image4|
 
 swagccg-py2py
 =============
@@ -23,8 +23,6 @@ everyone - not to mention the author.
 
 Get the Code
 ------------
-
-🚨 **not yet**
 
 .. code:: bash
 
@@ -202,3 +200,4 @@ tools.
 .. |image2| image:: https://img.shields.io/badge/Python-3.6%20%7C%203.7%20%7C%203.8%20-blue.svg
 .. |Codacy Badge| image:: https://api.codacy.com/project/badge/Grade/0181315639494eda8504e5b5092dee73
    :target: https://www.codacy.com?utm_source=github.com&utm_medium=referral&utm_content=erkandem/swagccg-py2py&utm_campaign=Badge_Grade
+.. |image4| image:: https://img.shields.io/pypi/v/swagccg?color=blue
