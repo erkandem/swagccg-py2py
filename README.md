@@ -2,6 +2,7 @@
 ![](https://img.shields.io/badge/License-BSD-blue.svg)
 ![](https://img.shields.io/badge/Python-3.6%20%7C%203.7%20%7C%203.8%20-blue.svg)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/0181315639494eda8504e5b5092dee73)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=erkandem/swagccg-py2py&amp;utm_campaign=Badge_Grade)
+![](https://img.shields.io/pypi/v/swagccg?color=blue)
 
 # swagccg-py2py
 *Swagger Client Code Generator. Using Python. For Python*
@@ -22,7 +23,6 @@ the proficiency portfolio of each and everyone - not to mention the author.
 
 
 ## Get the Code
-🚨 **not yet**
 ```bash
 pip install swagccg-py2py
 ```
