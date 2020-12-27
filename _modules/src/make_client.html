@@ -208,12 +208,12 @@
             <span class="n">method_name</span> <span class="o">=</span> <span class="n">method_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
             <span class="n">method_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">method_name</span><span class="p">)</span>
             <span class="c1"># handle path parameters explicitly as opposed to parameters within the query string</span>
-            <span class="n">path_params</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="n">path_params_list</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">if</span> <span class="s1">&#39;parameters&#39;</span> <span class="ow">in</span> <span class="n">swagger_data</span><span class="p">[</span><span class="s1">&#39;paths&#39;</span><span class="p">][</span><span class="n">api_path</span><span class="p">][</span><span class="n">http_method</span><span class="p">]:</span>
                 <span class="n">parameters</span> <span class="o">=</span> <span class="n">swagger_data</span><span class="p">[</span><span class="s1">&#39;paths&#39;</span><span class="p">][</span><span class="n">api_path</span><span class="p">][</span><span class="n">http_method</span><span class="p">][</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span>
                 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;in&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;path&#39;</span><span class="p">:</span>
-                        <span class="n">path_params</span> <span class="o">+=</span> <span class="n">f</span><span class="s1">&#39;, </span><span class="si">{p[&quot;name&quot;]}</span><span class="s1">&#39;</span>
+                        <span class="n">path_params_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
 
             <span class="n">methods_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                 <span class="n">client_method_template_f</span><span class="p">(</span>
@@ -221,7 +221,7 @@
                     <span class="n">http_verb</span><span class="o">=</span><span class="n">http_method</span><span class="p">,</span>
                     <span class="n">api_path</span><span class="o">=</span><span class="n">api_path</span><span class="p">,</span>
                     <span class="n">doc_string</span><span class="o">=</span><span class="n">doc_string</span><span class="p">,</span>
-                    <span class="n">path_params</span><span class="o">=</span><span class="n">path_params</span>
+                    <span class="n">path_params_list</span><span class="o">=</span><span class="n">path_params_list</span>
                 <span class="p">)</span>
             <span class="p">)</span>
     <span class="n">client_methods</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
@@ -273,10 +273,13 @@
         <span class="n">config</span><span class="p">[</span><span class="s1">&#39;basePath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">swagger_data</span><span class="p">[</span><span class="s1">&#39;basePath&#39;</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">config</span><span class="p">[</span><span class="s1">&#39;basePath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-        <span class="ne">Warning</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;``basePath`` does not seem to be assigned within:</span><span class="se">\n</span><span class="s2">&quot;</span>
-                <span class="n">f</span><span class="s2">&quot;</span><span class="si">{config[&#39;swagger_path&#39;]}</span><span class="se">\n</span><span class="s2">&quot;</span>
-                <span class="n">f</span><span class="s2">&quot;Did not result in any data. This isn&#39;t necessarily a problem</span><span class="se">\n</span><span class="s2">&quot;</span>
-                <span class="n">f</span><span class="s2">&quot;Setting ``basePath`` as &#39;&#39; (empty string)&quot;</span><span class="p">)</span>
+        <span class="ne">Warning</span><span class="p">(</span>
+            <span class="n">f</span><span class="s2">&quot;``basePath`` does not seem to be assigned within:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">f</span><span class="s2">&quot;</span><span class="si">{config[&#39;swagger_path&#39;]}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">f</span><span class="s2">&quot;Did not result in any data. This isn&#39;t necessarily a problem</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">f</span><span class="s2">&quot;Setting ``basePath`` as &#39;&#39; (empty string)&quot;</span>
+            <span class="s2">&quot;You can supply `base_path` parameter if you instantiate the client&quot;</span>
+            <span class="p">)</span>
 
     <span class="k">if</span> <span class="s1">&#39;paths&#39;</span> <span class="ow">in</span> <span class="n">swagger_data</span><span class="p">:</span>
         <span class="n">api_paths</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">swagger_data</span><span class="p">[</span><span class="s1">&#39;paths&#39;</span><span class="p">])</span>
@@ -301,7 +304,7 @@
             <span class="o">+</span> <span class="n">client_class_def</span>
             <span class="o">+</span> <span class="n">client_point_of_execution</span>
             <span class="o">+</span> <span class="n">client_encode_decoding_point</span>
-            <span class="o">+</span> <span class="n">client_methods</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># remove the last 4 white spaces / indentation#</span>
+            <span class="o">+</span> <span class="n">client_methods</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># remove the last 4 white spaces / indentation</span>
     <span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;target_path&#39;</span><span class="p">],</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>

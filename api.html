@@ -204,7 +204,7 @@ of the client module.</p>
 
 <dl class="function">
 <dt id="src.client_template.client_class_def_template_f">
-<code class="sig-prename descclassname">src.client_template.</code><code class="sig-name descname">client_class_def_template_f</code><span class="sig-paren">(</span><em class="sig-param">args: dict</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/src/client_template.html#client_class_def_template_f"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.client_template.client_class_def_template_f" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">src.client_template.</code><code class="sig-name descname">client_class_def_template_f</code><span class="sig-paren">(</span><em class="sig-param">args: Dict[str, Any]</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/src/client_template.html#client_class_def_template_f"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.client_template.client_class_def_template_f" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>args</strong> (<em>dict</em>) – desired name of client class name default:MyApiClient</p>
@@ -233,7 +233,7 @@ of the client module.</p>
 
 <dl class="function">
 <dt id="src.client_template.client_method_template_f">
-<code class="sig-prename descclassname">src.client_template.</code><code class="sig-name descname">client_method_template_f</code><span class="sig-paren">(</span><em class="sig-param">method_name: str = ''</em>, <em class="sig-param">http_verb: str = ''</em>, <em class="sig-param">api_path: str = ''</em>, <em class="sig-param">doc_string: str = ''</em>, <em class="sig-param">path_params: str = ''</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/src/client_template.html#client_method_template_f"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.client_template.client_method_template_f" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">src.client_template.</code><code class="sig-name descname">client_method_template_f</code><span class="sig-paren">(</span><em class="sig-param">method_name: str = ''</em>, <em class="sig-param">http_verb: str = ''</em>, <em class="sig-param">api_path: str = ''</em>, <em class="sig-param">doc_string: str = ''</em>, <em class="sig-param">path_params_list: List[str] = None</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/src/client_template.html#client_method_template_f"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.client_template.client_method_template_f" title="Permalink to this definition">¶</a></dt>
 <dd><blockquote>
 <div><p>one size fits <em>most</em> method template</p>
 </div></blockquote>
@@ -245,7 +245,7 @@ of the client module.</p>
 <li><p><strong>api_path</strong> (<em>str</em>) – a valid URL part which is joined with the <cite>BASE_PATH</cite>.
 Can contain path parameters. Will be evaluated to a string.</p></li>
 <li><p><strong>doc_string</strong> (<em>str</em>) – some description of the method and or endpoint</p></li>
-<li><p><strong>path_params</strong> (<em>str</em>) – e.g. pagination is frequently used in the path</p></li>
+<li><p><strong>path_params_list</strong> (<em>str</em>) – e.g. pagination is frequently used in the path</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

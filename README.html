@@ -96,6 +96,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#contact">Contact</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#click-bait">Click Bait</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#change-log">change log</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
@@ -174,15 +175,10 @@
 <hr class="docutils" />
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>Immediately testing new resources is important if resources are going to
-be co-dependent. While the tools at SwaggerHub are mind blowing they may
-represent an overkill for <em>not yet production</em> code. Typing a single
-query can be done in any browser or with tools like curl. This tool aims
-to place itself between those two categories.</p>
-<p>On top of that, I would expect a programming language to be able to
-create its own tools. While Java is a mature and well established
-language, it might not be within the proficiency portfolio of each and
-everyone - not to mention the author.</p>
+<p>There is a) professional SDK generation tools (OpenAPI code gen and
+others) and b) tools like postman or simply <code class="docutils literal notranslate"><span class="pre">curl</span></code> This tool aims to
+place itself a notch more useful than querying your API with <code class="docutils literal notranslate"><span class="pre">curl</span></code>.</p>
+<p>Fork it and use it as a template.</p>
 </div>
 <div class="section" id="get-the-code">
 <h2>Get the Code<a class="headerlink" href="#get-the-code" title="Permalink to this headline">¶</a></h2>
@@ -286,9 +282,7 @@ Nonetheless, the README would be incomplete without some usage examples:</p>
 <li><p>most of the swagger details are not parsed</p></li>
 <li><p>models and mapping is omitted (<code class="docutils literal notranslate"><span class="pre">marshmallow</span></code>)</p></li>
 <li><p>little to none <code class="docutils literal notranslate"><span class="pre">HTTP</span> <span class="pre">status</span> <span class="pre">codes</span></code> parsing</p></li>
-<li><p>assumes knowledge on HTTP HEADER, BODY, METHOD</p></li>
-<li><p>pass <code class="docutils literal notranslate"><span class="pre">pass_through=True</span></code> as parameter to receive the response
-object untouched</p></li>
+<li><p>assumes knowledge on HTTP</p></li>
 </ul>
 </div>
 <div class="section" id="recommended-reading">
@@ -326,6 +320,16 @@ licensed repo.</p>
 Generation</a></p>
 <p>Because every programming language should be able to create its own
 tools.</p>
+</div>
+<div class="section" id="change-log">
+<h2>change log<a class="headerlink" href="#change-log" title="Permalink to this headline">¶</a></h2>
+<p><strong>breaking</strong></p>
+<ul class="simple">
+<li><p>remove “logic” around trying to load response content just return the
+fluffing response</p></li>
+<li><p>completely remove refreshing related stuff</p></li>
+<li><p>add typing where ease and added indentation for arguments (too long)</p></li>
+</ul>
 </div>
 </div>
 
