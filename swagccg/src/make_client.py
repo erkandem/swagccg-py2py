@@ -57,12 +57,12 @@ def create_client_endpoints(swagger_data, api_paths):
             method_name = method_name.replace('-', '_')
             method_names.append(method_name)
             # handle path parameters explicitly as opposed to parameters within the query string
-            path_params = ''
+            path_params_list = []
             if 'parameters' in swagger_data['paths'][api_path][http_method]:
                 parameters = swagger_data['paths'][api_path][http_method]['parameters']
                 for p in parameters:
                     if p['in'] == 'path':
-                        path_params += f', {p["name"]}'
+                        path_params_list.append(p['name'])
 
             methods_list.append(
                 client_method_template_f(
@@ -70,7 +70,7 @@ def create_client_endpoints(swagger_data, api_paths):
                     http_verb=http_method,
                     api_path=api_path,
                     doc_string=doc_string,
-                    path_params=path_params
+                    path_params_list=path_params_list
                 )
             )
     client_methods = ''
@@ -122,10 +122,13 @@ def main(config_path=None):
         config['basePath'] = swagger_data['basePath']
     else:
         config['basePath'] = ''
-        Warning(f"``basePath`` does not seem to be assigned within:\n"
-                f"{config['swagger_path']}\n"
-                f"Did not result in any data. This isn't necessarily a problem\n"
-                f"Setting ``basePath`` as '' (empty string)")
+        Warning(
+            f"``basePath`` does not seem to be assigned within:\n"
+            f"{config['swagger_path']}\n"
+            f"Did not result in any data. This isn't necessarily a problem\n"
+            f"Setting ``basePath`` as '' (empty string)"
+            "You can supply `base_path` parameter if you instantiate the client"
+            )
 
     if 'paths' in swagger_data:
         api_paths = list(swagger_data['paths'])
@@ -150,7 +153,7 @@ def main(config_path=None):
             + client_class_def
             + client_point_of_execution
             + client_encode_decoding_point
-            + client_methods[:-4]  # remove the last 4 white spaces / indentation#
+            + client_methods[:-4]  # remove the last 4 white spaces / indentation
     )
     try:
         with open(config['target_path'], 'wb') as f:

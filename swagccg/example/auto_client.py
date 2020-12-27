@@ -1,6 +1,6 @@
 """
-auto-generated 2020-04-10 18:19:18
-... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)' version 0.3.3
+auto-generated 2020-12-27 17:27:16
+... using [swagccg-py2py](https://erkandem.github.io/swagccg-py2py)' version 0.4.0
 
 your module level doc-string goes here
 """
@@ -11,18 +11,22 @@ your module level doc-string goes here
 # Edit the template!
 # #######################################################################
 
-from datetime import datetime as dt, timedelta
+from datetime import datetime as dt
 import json
+import typing as t
 import urllib
 import urllib3
+from urllib3.response import HTTPResponse
 import certifi
-import warnings
+
+
+JSONEncodable = t.Union[t.List[t.Any], t.Dict[str, t.Any]]
 
 
 class MyClientClass(object):
     """your client class level doc-string goes here"""
 
-    def __init__(self, deployment='remote'):
+    def __init__(self, deployment: str = 'remote', base_path: str = None):
         if deployment == 'remote':
             self.API_PORT = '80'
             self.API_URL_BASE = 'petstore.swagger.io'
@@ -33,15 +37,15 @@ class MyClientClass(object):
             self.API_PROTOCOL = 'http'
 
         self.BASE_PATH = '/api'
+        if base_path:
+            self.BASE_PATH = base_path
+
         self.LOGIN_TIMESTAMP = None
         self.API_TOKEN = None
-        self.REFRESH_TIMESTAMP = None
 
         self.AUTH_HEADER_NAME = 'Authorization'
         self.AUTH_PREFIX = 'Bearer '  # mind the whitespace
         self.AUTH_TOKEN_KEY = 'access_token'
-        self.AUTH_TOKEN_KEY_REFRESH = 'refreshed_token'
-        self.REFRESH_KEY = 'token'
 
         if self.API_PORT == '80':
             self.API_URL = f'{self.API_PROTOCOL}://{self.API_URL_BASE}'
@@ -57,10 +61,9 @@ class MyClientClass(object):
             self.http = urllib3.PoolManager()
 
         self.API_LOGIN_URL = f'{self.API_URL}{self.BASE_PATH}/login'
-        self.API_REFRESH_URL = f'{self.API_URL}{self.BASE_PATH}/refresh'
         self.API_BASE_URL = f'{self.API_URL}{self.BASE_PATH}'
 
-    def __dir__(self):
+    def __dir__(self) -> t.List[str]:
         method_names = [
             'get_find_pets_r',
             'post_add_pet_r',
@@ -69,7 +72,13 @@ class MyClientClass(object):
         ]
         return method_names
     
-    def login_with_api(self, *, body, headers=None, **kwargs):
+    def login_with_api(
+        self, 
+        *,
+        body, 
+        headers: t.Dict[str, t.Any] = None,
+        **kwargs: t.Dict[str, t.Any],
+    ):
         """
         login with the target API and save the JWT token within the class
         
@@ -88,69 +97,39 @@ class MyClientClass(object):
                 url=self.API_LOGIN_URL,
                 headers=headers,
                 body=body,
-                pass_through=True,
                 **kwargs
         )
         if r.status == 200:
             res = json.loads(r.data.decode('utf-8'))
             self.API_TOKEN = res[self.AUTH_TOKEN_KEY]
             self.LOGIN_TIMESTAMP = dt.now()
-            self.REFRESH_TIMESTAMP = None
         else:
             print(f'login failed \nstatus:{r.status} \n \nurl: {self.API_LOGIN_URL}'
                   '\nIs the username and password correct?')
-
-    # -----------------------------------------------------------------------
-    # ---------- Token Management
-    # -----------------------------------------------------------------------
-
-    def is_it_time_to_refresh_the_token(self):
-        """
-        Return True or False depending on the ``LOGIN_TIMESTAMP`` for the
-        first refresh or the ``REFRESH_TIMESTAMP`` if the JWT was already
-        refreshed once
-        
-        expiry is server specific
-        """
-        if self.REFRESH_TIMESTAMP is None:
-            if (self.LOGIN_TIMESTAMP + timedelta(hours=10)) < dt.now():
-                self.refresh_the_login()
-                return True
-            else:
-                return False
-        else:
-            if (self.REFRESH_TIMESTAMP + timedelta(hours=10)) < dt.now():
-                self.refresh_the_login()
-                return True
-            else:
-                return False
-
-    def refresh_the_login(self):
-        """ server specific refresh routine"""
-        encoded_data = json.dumps({'token': self.API_TOKEN}).encode('utf-8')
-        r = self.http.request(
-                'POST',
-                self.API_REFRESH_URL,
-                headers={'Content-Type': 'application/json'},
-                body=encoded_data
-        )
-        res = json.loads(r.data.decode('utf-8'))
-        self.API_TOKEN = res[self.AUTH_TOKEN_KEY_REFRESH]
-        self.REFRESH_TIMESTAMP = dt.now()
     
-    def _add_auth_header(self, headers=None):
+    def _add_auth_header(
+        self, 
+        headers: t.Union[None, t.Dict[str, t.Any]] = None,
+    ) -> t.Dict[str, t.Any]:
         """ adds the preconfigured authorization header """
         if headers is None:
-            headers = dict()
+            headers = {}
         headers[self.AUTH_HEADER_NAME] = f'{self.AUTH_PREFIX}{self.API_TOKEN}'
         return headers
 
-    def _do_call(self, method=None, url=None, headers=None, fields=None, body=None, **kwargs):
+    def _do_call(
+        self, 
+        method: str = None, 
+        url: str = None, 
+        headers: t.Dict[str, str] = None,
+        fields: t.Dict[str, t.Any] = None, 
+        body: JSONEncodable = None,
+        **kwargs: t.Dict[str, t.Any],
+    ) -> HTTPResponse:
         """
         A way to separate each resource from the actual request dispatching point
-        Response is assumed to be json by default. any other mapping can be hooked here.
-
-        Use ``pass_through = True`` to receive the untouched response object
+        Response is assumed to be json by default. 
+        Good point to add hooks.
 
         Args:
             method (str): HTTP-Method
@@ -162,7 +141,7 @@ class MyClientClass(object):
                          'Content-Type': 'application/x-www-form-urlencoded'
 
         """
-
+        r = HTTPResponse()
         headers = self._add_auth_header(headers)
         if body is not None and method in ['POST', 'PUT', 'PATCH']:
             if 'Content-Type' not in headers:
@@ -191,12 +170,11 @@ class MyClientClass(object):
                 else:
                     msg = f''' The Content-Type header was set to {headers['Content-Type']}\n
                     However, anything else than 'application/json' or 'application/x-www-form-urlencoded'\n
-                    is not accounted for in the client.\n If you would like to add it look for:\n\n
-                    client_point_of_execution_f to build the logic\n
+                    is not accounted for in the client.\n If you would like to add it, look for:\n\n
+                    "_do_call" to hook the logic\n
                     client_encoding_decoding_point_f for handling encoding\n\n
-                    -1 (negative one) was returned to avoid a RunTimeError'''
-                    warnings.warn(msg)
-                    return -1
+                    '''
+                    raise NotImplementedError(msg)
         else:
             r = self.http.request_encode_url(
                     method=method,
@@ -204,34 +182,22 @@ class MyClientClass(object):
                     headers=headers,
                     fields=fields
             )
-        if kwargs.get('pass_through'):
-            return r
-
-        if r.status == 200:
-            if len(r.data) > 0:
-                return self._decode(r.data)
-            else:
-                return r.status
-        elif r.status == 401:
-            self.refresh_the_login()
-            return 401
-        else:
-            return -1
+        return r
     
-    def _encode(self, data, format=None):
+    def _encode(self, data, format: str = None) -> bytes:
         """
         Abstracted encoding point. Mount your custom function.
-        Focus here is on built in JSON.
+        Main focus here is on building a JSON or URL/"percent" encoded bytes.
 
         Args:
             data(): python object
-            format(str): json or url
+            format(str): `json` or `url` 
 
         Returns:
             data_encoded: :func:`json.dumps` and encode from utf-8 to binary
 
         """
-        if type(data) is bytes:
+        if isinstance(data, bytes):
             return data
         if format == 'url':
             return (urllib.parse.urlencode(data)).encode('utf-8')
@@ -243,7 +209,7 @@ class MyClientClass(object):
             msg = f"received format = {format}.\nUse 'json' or 'url'.\n 'json' is default."
             raise NotImplementedError(msg)
 
-    def _decode(self, data):
+    def _decode(self, data: bytes):
         """
         abstracted decoding point 
         Mount your custom function. Focus here is on JSON.
@@ -258,7 +224,14 @@ class MyClientClass(object):
 
         return json.loads(data.decode('utf-8')) 
     
-    def get_find_pets_r(self, headers=None, body=None, fields_data=None, **kwargs):
+    def get_find_pets_r(
+       self,
+       
+       headers: t.Dict[str, str] = None,
+       body: JSONEncodable = None,
+       fields_data: t.Dict[str, str] = None,
+       **kwargs
+    ):
         """   """
         r = self._do_call(
                 method='GET',
@@ -270,7 +243,14 @@ class MyClientClass(object):
         )
         return r
     
-    def post_add_pet_r(self, headers=None, body=None, fields_data=None, **kwargs):
+    def post_add_pet_r(
+       self,
+       
+       headers: t.Dict[str, str] = None,
+       body: JSONEncodable = None,
+       fields_data: t.Dict[str, str] = None,
+       **kwargs
+    ):
         """   """
         r = self._do_call(
                 method='POST',
@@ -282,7 +262,14 @@ class MyClientClass(object):
         )
         return r
     
-    def get_find_pet_by_id_r(self, id, headers=None, body=None, fields_data=None, **kwargs):
+    def get_find_pet_by_id_r(
+       self,
+       id,
+       headers: t.Dict[str, str] = None,
+       body: JSONEncodable = None,
+       fields_data: t.Dict[str, str] = None,
+       **kwargs
+    ):
         """   """
         r = self._do_call(
                 method='GET',
@@ -294,7 +281,14 @@ class MyClientClass(object):
         )
         return r
     
-    def delete_pet_r(self, id, headers=None, body=None, fields_data=None, **kwargs):
+    def delete_pet_r(
+       self,
+       id,
+       headers: t.Dict[str, str] = None,
+       body: JSONEncodable = None,
+       fields_data: t.Dict[str, str] = None,
+       **kwargs
+    ):
         """   """
         r = self._do_call(
                 method='DELETE',

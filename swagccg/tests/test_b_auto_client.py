@@ -8,6 +8,9 @@ from datetime import datetime as dt
 
 # add a pet
 from random import random
+from http import HTTPStatus
+import json
+
 PET_ID = int(random()*(10**10))
 print(f'petId: {PET_ID}')
 
@@ -55,7 +58,7 @@ def test_client_creation():
     # if response.returncode:
     #    print(response.stderr.decode('utf-8'))
     # assert response.returncode == 0
-    assert STATUS == 0
+    pass
 
 
 def test_client_importing():
@@ -68,54 +71,71 @@ def test_client_importing():
     assert isinstance(CLIENT, MyClientClass)
 
 
-class TestClientFunctionality(object):
+class TestClientFunctionality:
+    """
+    checking the individual methods, just to see that they work.
+    No specific feature tested.
+
+    Should be replaced by some mocks.
+    Until then, it is your responsibility to use the remote API fair.
+    """
 
     def test_post_with_json_body(self):
-        r1 = CLIENT.post_add_pet_r(body=BODY, headers=HEADERS)
-        assert r1 == BODY
+        response = CLIENT.post_add_pet_r(body=BODY, headers=HEADERS)
+        assert response.status == HTTPStatus.OK
+        body = json.loads(response.data.decode())
+        assert body == BODY
 
     def get_path_parameter(self):
         """assure that the pet was created, auth required"""
-        r2 = CLIENT.get_pet_by_id_r(petId=PET_ID)
-        assert r2 == BODY
+        response = CLIENT.get_pet_by_id_r(petId=PET_ID)
+        assert response == BODY
 
     def test_put_with_json_body(self):
-        """ """
         BODY["photoUrls"] = ["https://updatedurl.de"]
-        r3 = CLIENT.put_update_pet_r(body=BODY, headers=HEADERS)
-        assert r3["photoUrls"] == ["https://updatedurl.de"]
+        response = CLIENT.put_update_pet_r(body=BODY, headers=HEADERS)
+        assert response.status == HTTPStatus.OK
+        body = json.loads(response.data.decode())
+        assert body["photoUrls"] == ["https://updatedurl.de"]
 
     def test_post_with_query_string_1(self):
-        """ """
         update = {
-            'status': 'pending'
+            'status': 'pending',
         }
-        headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-        r4 = CLIENT.post_update_pet_with_form_r(petId=PET_ID, body=update, headers=headers)
-        assert r4['code'] == 200
+        headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        }
+        response = CLIENT.post_update_pet_with_form_r(petId=PET_ID, body=update, headers=headers)
+        assert response.status == HTTPStatus.OK
+        body = json.loads(response.data.decode())
+        assert body['code'] == 200
 
     def test_get_path_param_1(self):
-        """ """
-        r5 = CLIENT.get_find_pets_by_status_r(fields_data={"status": "pending"})
-        pet_ids = [item["id"] for item in r5]
+        response = CLIENT.get_find_pets_by_status_r(fields_data={"status": "pending"})
+        assert response.status == HTTPStatus.OK
+        body = json.loads(response.data.decode())
+        pet_ids = [item["id"] for item in body]
         assert PET_ID in pet_ids
 
     def test_post_with_query_string_2(self):
-        """ """
         update = {
             'status': 'sold'
         }
         headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-        r6 = CLIENT.post_update_pet_with_form_r(petId=PET_ID, body=update, headers=headers)
-        assert r6['code'] == 200
+        response = CLIENT.post_update_pet_with_form_r(petId=PET_ID, body=update, headers=headers)
+        assert response.status == HTTPStatus.OK
+        body = json.loads(response.data.decode())
+        assert body['code'] == 200
 
     def test_get_path_param_2(self):
-        """ """
-        r7 = CLIENT.get_find_pets_by_status_r(fields_data={"status": "sold"})
-        pet_ids = [item["id"] for item in r7]
+        response = CLIENT.get_find_pets_by_status_r(fields_data={"status": "sold"})
+        assert response.status == HTTPStatus.OK
+        body = json.loads(response.data.decode())
+        pet_ids = [item["id"] for item in body]
         assert PET_ID in pet_ids
 
     def test_delete_with_path_param(self):
-        """ """
-        r_final = CLIENT.delete_pet_r(petId=PET_ID)
-        assert r_final['code'] == 200
+        response = CLIENT.delete_pet_r(petId=PET_ID)
+        assert response.status == HTTPStatus.OK
+        body = json.loads(response.data.decode())
+        assert body['code'] == 200

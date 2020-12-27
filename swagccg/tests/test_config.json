@@ -1,5 +1,5 @@
 {
-  "swagger_path": "https://petstore.swagger.io/v2/swagger.json",
+  "swagger_path": "swagccg/tests/petstore-v2-swagger.json",
   "target_path": "swagccg/tests/auto_client.py",
   "class_name": "MyClientClass",
 

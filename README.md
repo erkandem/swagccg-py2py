@@ -11,15 +11,11 @@
 
 ## Summary
 
-Immediately testing new resources is important if resources are going to be 
-co-dependent. While the tools at SwaggerHub are mind blowing 
-they may represent an overkill for *not yet production* code.
-Typing a single query can be done in any browser or with tools like curl.
-This tool aims to place itself between those two categories.
+There is a) professional SDK generation tools (OpenAPI code gen and others)
+and b) tools like postman or simply `curl`
+This tool aims to place itself a notch more useful than querying your API with `curl`.
 
-On top of that, I would expect a programming language to be able to create its own tools. 
-While Java is a mature and well established language, it might not be within 
-the proficiency portfolio of each and everyone - not to mention the author.
+Fork it and use it as a template.
 
 
 ## Get the Code
@@ -135,8 +131,7 @@ data = client_instance.get_something_r(fields_data=param_dict)
  - most of the swagger details are not parsed
  - models and mapping is omitted (``marshmallow``)
  - little to none ``HTTP status codes`` parsing
- - assumes knowledge on HTTP HEADER, BODY, METHOD
- - pass ``pass_through=True``  as parameter to receive the response object untouched
+ - assumes knowledge on HTTP
 
 ## recommended  reading
 Mark Masse, REST API Design Rulebook - Designing Consistent RESTful Web Service Interfaces
@@ -168,3 +163,16 @@ Visitors who were interested in this repo also took a look at:
 [swagccg-m2m - MatLab to MatLab Client Code Generation](https://github.com/erkandem/swagccg-m2m)
 
 Because every programming language should be able to create its own tools.
+
+## change log
+
+### v0.4.0 2020-27-20
+
+**breaking**
+
+ - remove "logic" around trying to load response content
+   just return the fluffing response
+ 
+ - completely remove refreshing related stuff
+ 
+ - add typing where ease and added indentation for arguments (too long)
